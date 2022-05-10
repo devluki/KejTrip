@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet  -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <!-- Socket -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.0/socket.io.js"></script>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fasthand&family=Poppins:ital,wght@0,400;1,500&display=swap"
+        rel="stylesheet">
+    <!-- End of fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/style.css">
+    <title><%= typeof title != 'undefined'?title:'Kejtrip - blog podróżniczy' %></title>
+</head>
+
+<body>
+    <div class="wrapper">
+        <header class="header">
+            <nav class="nav">
+                <!-- TO Do -> delete -->
+                <!-- <div class="logo-container">
+                    <img class="logo link nav__logo" src="./IMG/logo-napis-green.png" alt="logo"></div> -->
+                <div class="nav__burger-container"><i class="fa-solid fa-bars"></i></div>
+
+                <ul class="nav__links">
+
+                    <li class=" nav__logo-container">
+                        <img class="nav__logo-img" src="/IMG/logo-napis-green.png" alt="logo"></li>
+                    <li class="nav__item">
+                        <a class="nav__link" href="/"><i class="nav-icon fas fa-home"> </i>Home</a>
+                    </li>
+
+                    <li class="nav__item">
+                        <a class="nav__link" href="/about"><i class="nav-icon far fa-address-card"></i> O mnie</a>
+                    </li>
+                    <li class="nav__item"><a class="nav__link" href="/destinations"><i
+                        class="nav-icon fas fa-map-signs"></i> Kierunki</a></li>
+                    <li class="nav__item nav__search-container">
+                        <a class="nav__link nav__search" href=""><i class="fa-solid fa-magnifying-glass-location nav-icon"></i> Szukaj</a>
+                        <div class="nav__form-container search-active">
+                            <form method="POST" action="/search" class="form">
+
+                                <input type="search" name="searchTerm" class="form__input" placeholder="Szukaj..."
+                                    aria-label="Search">
+                                <button type="submit" class="btn-search"><i
+                                        class="fa-solid fa-magnifying-glass-location"></i></button>
+                                <!-- <input type="submit" value="Szukaj" class="btn"> -->
+
+
+                            </form>
+
+                        </div>
+                    </li>
+
+
+                    <li class="nav__item nav__social">
+                        <a class="nav__link" href="https://www.facebook.com/KejTrip-102614665683163"><i class="fa-brands fa-facebook-square"></i></a><a class="nav__link" href="#"><i class="fa-brands fa-instagram-square"></i></a><a class="nav__link" href="#"><i
+                                    class="fas fa-envelope"></i></a></li>
+                </ul>
+            </nav>
+
+        </header>
+
+
+
+        <%- body -%>
+        <footer class="footer">
+            <div class="footer__content-container">
+                <p class="footer__content-question text">Mam nadzieję, że podczas czytania choć raz pojawił się uśmiech
+                    na Waszych twarzach i udało mi się przesłać Wam pozytywną energię!
+                </p>
+                <p class="footer__content-text text">Przez liczne pytania czy prośby bliższych i dalszych znajomych z
+                    niekłamanym lekkim zażenowaniem założyłam PayPal gdzie możecie wrzucić jakąś złotówkę (czy dowolną
+                    walutę 😁) i dołożyć się do mojej szalonej podróży.
+                    Jeśli chcecie mi po prostu pomóc czy spodobał Wam się jakiś tekst, skorzystaliście z jakichś
+                    informacji, a może tylko skutecznie zmarnowaliście ze mną czas (mam nadzieje, że miło 😉). Do tej
+                    pory tylko dla najbliższych znajomych byłam jak serial z subskrypcją.</p>
+            </div>
+            <div class="footer__links-container">
+                <!-- <p class="footer__social-heading heading">
+                    <span class="heading__bar"></span><span class="heading-text">Social media</span>
+                    <span class="heading__bar"></span></p> -->
+                <ul class="footer__links">
+                    <li><a class="footer__link" href="#"><i
+                        class="fa-brands fa-facebook-square"></i></a></li>
+                    <li><a class="footer__link" href="#"><i class="fa-brands fa-instagram-square"></i></a></li>
+                    <li><a class="footer__link" href="#"><i
+                        class="fas fa-envelope"></i></a></li>
+                </ul>
+            </div>
+            <div class="footer__author-container">
+                <a href="" class="author-link text"> Devluki
+                    <!-- <span>&copy;</span>   -->
+                    <i class="fa-brands fa-github"></i> </a>
+            </div>
+
+        </footer>
+
+
+    </div>
+
+    </div>
+    </div>
+
+
+
+    <script src="/js/script.js"></script>
+</body>
+
+</html>

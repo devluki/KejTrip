@@ -1,0 +1,59 @@
+<h1> Submit</h1>
+
+<div class="post__form-container">
+
+    <% if(infoSubmitObj !='') {%>
+    <div class="message-container" style="background-color:green">
+        Submit succes!
+        <!--  -->
+        <%= infoSubmitObj %>
+    </div>
+    <% } %>
+
+    <% if(infoErrorsObj !='') {%>
+    <div class="message-container" style="background-color:red">
+        Error!
+        <!--  -->
+        <%= infoErrorsObj[0].message %>
+        <%= infoErrorsObj%>
+    </div>
+    <% } %>
+    <form action="/submit-about" enctype="multipart/form-data" method="POST" class="post__form">
+        <div class="input-container">
+            <label for="title">Tytuł artykułu</label> <br>
+            <input type="text" name="title" id="name">
+        </div>
+
+
+
+        <div class="post__section-container">
+            <div class="section__content">
+                <div class="input-container">
+                    <label for="postContent">Treść sekcji</label> <br>
+                    <small>Wprowadź tekst sekcji</small> <br>
+
+                    <textarea name="postContent" id="postContent" cols="30" rows="8"></textarea>
+                </div>
+            </div>
+            <!-- <div class="section__content">
+                <div class="input-container">
+                    <label for="markdown">Treść sekcji</label> <br>
+                    <small>Wprowadź tekst sekcji</small> <br>
+                 
+                    <textarea name="markdown" id="markdown" cols="30" rows="8"></textarea>
+                </div>
+            </div> -->
+
+
+
+        </div>
+        <!-- <div class="input-container">
+            <button type="button" class="btn" id="addSection">Dodaj sekcje</button>
+        </div> -->
+        <div class="input-container">
+            <button type="submit" class="btn" id="addSection">Publikuj post</button>
+        </div>
+
+    </form>
+
+</div>

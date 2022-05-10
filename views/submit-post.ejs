@@ -1,0 +1,105 @@
+<section class="header__banner-container">
+
+    <div class="header__banner" style="height:100vh ;">
+
+        <div class="header__panel" style="max-height: 90vh; max-width:1140px; width:70%; height: 80%; ">
+            <div class="post__form-container">
+
+                <% if(infoSubmitObj !='') {%>
+                <div class="message-container" style="background-color:green">
+                    Submit succes!
+                    <!--  -->
+                    <%= infoSubmitObj %>
+                </div>
+                <% } %>
+
+                <% if(infoErrorsObj !='') {%>
+                <div class="message-container" style="background-color:red">
+                    Error!
+                    <!--  -->
+                    <%= infoErrorsObj[0].message %>
+                    <%= infoErrorsObj%>
+                </div>
+                <% } %>
+                <a href="/admin-panel" class="menu__link btn">Wróć do panelu</a>
+                <form action="/submit-post" enctype="multipart/form-data" method="POST" class="post__form">
+                    <div class="input-container">
+                        <label for="title">Tytuł artykułu</label> <br>
+                        <input type="text" name="title" id="name">
+                    </div>
+
+                    <div class="input-container">
+                        <label for="category">Kategoria artykułu</label> <br>
+                        <small>Wybierz: "Relacja" lub "Poradnik"</small> <br>
+                        <select name="category" name="category" aria-label="kategoria" id="">
+                            <option selected>Wybierz kategorię</option>
+                            <option value="Relacja">Relacja</option>
+                            <option value="Poradnik">Poradnik</option>
+                        </select>
+                        <!-- <input type="text" name="name" id="name"> -->
+                    </div>
+
+
+                    <div class="input-container">
+                        <label for="location">Nazwa Państwa</label> <br>
+                        <small>Wpisz nazwę kraju</small> <br>
+                        <input type="text" name="location" id="location">
+                    </div>
+
+
+                    <div class="input-container">
+                        <label for="city">Dokładna lokalizacja</label> <br>
+                        <small>Wpisz nazwę regionu/miasta</small> <br>
+                        <input type="text" name="city" id="city">
+                    </div>
+                    <div class="input-container">
+                        <label for="image">Zdjęcie do miniatry i nagłówka</label> <br>
+                        <input type="file" class="form-control" name="image" accept="image/*">
+                    </div>
+
+                    <!-- <div class="input-container">
+                        <label for="image1">Zdjęcie do artykułu - opcja</label> <br>
+                        <input type="file" class="form-control" name="image1" accept="image/*">
+                    </div>
+            
+                    <div class="input-container">
+                        <label for="image2">Zdjęcie do artykułu - opcja</label> <br>
+                        <input type="file" class="form-control" name="image2" accept="image/*">
+                    </div> -->
+
+
+                    <div class="post__section-container">
+                        <div class="section__content">
+                            <div class="input-container">
+                                <label for="postContent">Treść sekcji</label> <br>
+                                <small>Wprowadź tekst sekcji</small> <br>
+
+                                <textarea name="postContent" id="postContent" cols="30" rows="8"></textarea>
+                            </div>
+                        </div>
+                        <!-- <div class="section__content">
+                            <div class="input-container">
+                                <label for="markdown">Treść sekcji</label> <br>
+                                <small>Wprowadź tekst sekcji</small> <br>
+                             
+                                <textarea name="markdown" id="markdown" cols="30" rows="8"></textarea>
+                            </div>
+                        </div> -->
+
+
+
+                    </div>
+                    <!-- <div class="input-container">
+                        <button type="button" class="btn" id="addSection">Dodaj sekcje</button>
+                    </div> -->
+                    <div class="input-container">
+                        <button type="submit" class="btn" id="addSection">Publikuj post</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+</section>

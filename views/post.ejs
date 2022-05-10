@@ -1,0 +1,129 @@
+<h1>post</h1>
+
+
+
+
+
+<div class="app-wrapper">
+    <section class="section" id="section--1">
+        <div class="articles">
+            <div class="articles__posts-container">
+                <h1><%=post.title%></h1>
+                <p><%=post.date%></p>
+                <p><%-post.sanitizedHtml%></p>
+                <span class="likes-count"><%- post.likes%></span><span class="likes-ico"><i class="fa-regular fa-heart"></i></span></a>
+                <% if(show) {%>
+                <button class="like btn__like" postId="<%=post._id%>">Polub post!</button>
+                <%}%>
+                <div class="post__comments-container">
+
+                    <div class="form__comments">
+                        <form method="POST" class="post__comments">
+                            <input type="text" name="postId" value="<%=post._id%>">
+                <label for="city">Imię:</label>
+                <input type="text" name="userName">
+                <label for="comments">Komentaż:</label>
+
+                <textarea name="comment" cols="50" rows="8"></textarea>
+
+
+                <button type="submit" class="comments__add btn">Dodaj komentaż</button>
+
+                </form>
+                <div class="comments__container">
+                    <% if(post.comments) {%>
+                    <% post.comments = post.comments.reverse()%>
+                    <% post.comments.forEach(comment=> {%>
+                    <p><%=comment.userName%></p>
+                    <p><%=comment.comment%></p>
+
+                    <%} )%>
+                    <%}%>
+                    </div>
+                        </div>
+                    </div>
+
+                </div>
+                <aside class="aside" id="section--4">
+                    <!-- test -->
+
+                    <p class="aside__about-heading heading">
+                        <span class="heading__bar"></span><span class="heading-text">O mnie</span><span class="heading__bar"></span>
+                    </p>
+                    <div class="aside__about">
+                        <div class="aside__content">
+                            <div class="about__pic-container">
+
+                                <div class="about-pic"></div>
+                            </div>
+                            <div class="about__short-text">
+                                <p class="aside__txt">Uzależniona od nowosci i zmiany.
+                                    Urodzona w Dąbrowie Górniczej (Zagłębie, ale nie Sosnowiec <i
+                                        class="fa-solid fa-face-smile-wink emoticon"></i>), wakacje spędzane ze
+                                    Ślązakami, po studiach zamieszkała w Krakowie. Wychodzę na zewnątrz i tam
+                                    najlepiej się czuję. Wśród zieleni i w ruchu. Szukam swojego miejsca. Spisuję
+                                    wspomnienia, przygody i praktyczne wskazówki.</p>
+                                <a href="/about" class="btn aside__btn--about">Więcej</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="aside__subscribe-heading heading"><span class="heading__bar"></span>
+                        <span class="heading-text">Subskrypcja</span>
+                        <span class="heading__bar"></span></p>
+                    <div class="aside__subscribe">
+
+                        <div class="aside__content">
+                            <p class="aside__txt">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque,
+                                nulla
+                                sit
+                                fugiat officia
+                                eveniet
+                                ab dolor sed omnis cum id accusantium aut quam quis quas voluptate vitae sunt porro
+                                impedit!
+                            </p>
+                            <!-- <div class="aside__subscribe-inputs"> -->
+                            <form action="" class="aside__subscribe-inputs">
+                                <input class="aside__subscribe-input" placeholder="Imię" type="email" name="" id="">
+                                <input class="aside__subscribe-input" placeholder="M@il" type="email" name="" id="">
+                                <input type="submit" class="btn aside__subscribe--btn">
+                            </form>
+
+                            <!-- </div> -->
+                        </div>
+                    </div>
+                    <!-- <p class="heading__contact heading"><span class="heading__bar"></span>Kontakt
+            <span class="heading__bar"></span></p> -->
+                    <p class="aside__contact-heading heading" id="section--2">
+                        <span class="heading__bar"></span><span class="heading-text">Kontakt</span>
+                        <span class="heading__bar"></span></p>
+                    <div class="aside__contact">
+                        <!-- <a href=""></a> -->
+
+                        <div class="aside__content">
+                            <p class="aside__txt">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque,
+                                nulla
+                                sit
+                                fugiat officia
+                                eveniet
+                            </p>
+                            <div class="aside__contact-social-container">
+
+                                <ul class="aside__contact-links">
+                                    <li><a class="aside__contact-link" href="#"><i
+                        class="fa-brands fa-facebook-square"></i></a></li>
+                                    <li><a class="aside__contact-link" href="#"><i class="fa-brands fa-instagram-square"></i></a>
+                                    </li>
+                                    <li><a class="aside__contact-link" href="#"><i
+                        class="fas fa-envelope"></i></a></li>
+                                </ul>
+
+
+
+                            </div>
+                        </div>
+                </aside>
+    </section>
+</div>
+
+</div>

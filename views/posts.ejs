@@ -1,0 +1,138 @@
+<h1>Posts all - zmienić nav i wywalić banner!!! Dodać pagination</h1>
+
+
+
+
+<!--  -->
+
+
+<!--  -->
+<div class="app-wrapper">
+    <section class="section" id="section--1">
+        <div class="articles">
+            <div class="articles__posts-container">
+                <div class="articles__latest-posts">
+                    <h2 class="articles__latest-posts-heading heading">
+                        <span class="heading__bar"></span>
+                        <span class="heading-text">Wszystkie wpisy</span>
+                        <span class="heading__bar"></span></h2>
+
+
+                    <div class="articles__featured-posts-container">
+                        <% if(posts != '') { %>
+                        <% posts.forEach((post,i)=>{  %>
+
+                        <div class="post articles__featured-post">
+                            <a class ="article__link" href="/post/<%= post._id%>">
+                            <div class="post__img articles__slide-img--0"
+                                style=" background-image: url('../uploads/<%- post.image%>')">
+                                <p class="post__data">
+                                    <%- post.data.getUTCDay()%>-<%- post.data.getUTCDate()%>-<%- post.data.getUTCFullYear()%>
+                                    <!-- <%- post.data.getDay()%>-<%- post.data.getMonth()%>-<%- post.data.getYear()%> -->
+                                </p>
+                                <p class="post__likes"><span class="likes-count"><%- post.likes%></span><i class="fa-solid fa-heart"></i></p>
+                            </div>
+                            <div class="post__text">
+                                <p class="post__title"><%- post.title %>
+                                </p>
+
+                            </div>
+                            </a>
+                        </div>
+
+                        <% }) %>
+                        <% } %>
+
+
+                    </div>
+                    <div class="pagination__panel-container ">
+                        <button class="btn__slide previous-page "><i class="fa-solid fa-circle-arrow-left"></i></button>
+                        <span>Strona <%=page%></span><span>/</span><span class="last-page"></span><span class="no-of__posts hidden"><%=numPosts%></span><span class="limit-of__posts hidden"><%=limit%></span>
+                        <button class="btn__slide next-page "><i class="fa-solid fa-circle-arrow-right"></i></button>
+                    </div>
+
+                </div>
+
+            </div>
+            <aside class="aside" id="section--4">
+                <!-- test -->
+
+                <p class="aside__about-heading heading">
+                    <span class="heading__bar"></span><span class="heading-text">O mnie</span><span class="heading__bar"></span>
+                </p>
+                <div class="aside__about">
+                    <div class="aside__content">
+                        <div class="about__pic-container">
+
+                            <div class="about-pic"></div>
+                        </div>
+                        <div class="about__short-text">
+                            <p class="aside__txt">Uzależniona od nowosci i zmiany.
+                                Urodzona w Dąbrowie Górniczej (Zagłębie, ale nie Sosnowiec <i
+                                    class="fa-solid fa-face-smile-wink emoticon"></i>), wakacje spędzane ze
+                                Ślązakami, po studiach zamieszkała w Krakowie. Wychodzę na zewnątrz i tam
+                                najlepiej się czuję. Wśród zieleni i w ruchu. Szukam swojego miejsca. Spisuję
+                                wspomnienia, przygody i praktyczne wskazówki.</p>
+                            <a href="/about" class="btn aside__btn--about">Więcej</a>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="aside__subscribe-heading heading"><span class="heading__bar"></span>
+                    <span class="heading-text">Subskrypcja</span>
+                    <span class="heading__bar"></span></p>
+                <div class="aside__subscribe">
+
+                    <div class="aside__content">
+                        <p class="aside__txt">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque,
+                            nulla
+                            sit
+                            fugiat officia
+                            eveniet
+                            ab dolor sed omnis cum id accusantium aut quam quis quas voluptate vitae sunt porro
+                            impedit!
+                        </p>
+                        <!-- <div class="aside__subscribe-inputs"> -->
+                        <form action="" class="aside__subscribe-inputs">
+                            <input class="aside__subscribe-input" placeholder="Imię" type="email" name="" id="">
+                            <input class="aside__subscribe-input" placeholder="M@il" type="email" name="" id="">
+                            <input type="submit" class="btn aside__subscribe--btn">
+                        </form>
+
+                        <!-- </div> -->
+                    </div>
+                </div>
+                <!-- <p class="heading__contact heading"><span class="heading__bar"></span>Kontakt
+                <span class="heading__bar"></span></p> -->
+                <p class="aside__contact-heading heading" id="section--2">
+                    <span class="heading__bar"></span><span class="heading-text">Kontakt</span>
+                    <span class="heading__bar"></span></p>
+                <div class="aside__contact">
+                    <!-- <a href=""></a> -->
+
+                    <div class="aside__content">
+                        <p class="aside__txt">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque,
+                            nulla
+                            sit
+                            fugiat officia
+                            eveniet
+                        </p>
+                        <div class="aside__contact-social-container">
+
+                            <ul class="aside__contact-links">
+                                <li><a class="aside__contact-link" href="#"><i
+                            class="fa-brands fa-facebook-square"></i></a></li>
+                                <li><a class="aside__contact-link" href="#"><i class="fa-brands fa-instagram-square"></i></a>
+                                </li>
+                                <li><a class="aside__contact-link" href="#"><i
+                            class="fas fa-envelope"></i></a></li>
+                            </ul>
+
+
+
+                        </div>
+                    </div>
+            </aside>
+        </div>
+    </section>
+</div>

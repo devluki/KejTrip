@@ -1,0 +1,300 @@
+<section class="header__banner-container">
+    <div class="header__banner">
+        <div class="header__content">
+            <p class="header__welcome">Witaj na moim blogu!</p>
+            <!-- <h1 class="header__intro">Nazywam się Kaśka i podróżuje solo po świecie</h1> -->
+            <div class="header__motivation">
+
+                <div class="header__motivation-quote-container">
+                    <p class="header__motivation-quote">"Najważniejsze w życiu jest nie to, co posiadamy,
+                        lecz
+                        kogo
+                        spotykamy."
+                    </p>
+                    <p class="motivation__quote-author">J. M. Lawrence</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+<div class="app-wrapper">
+
+    <section class="section" id="section--1">
+        <div class="articles">
+            <div class="articles__posts-container">
+                <div class="articles__latest-posts">
+                    <h2 class="articles__latest-posts-heading heading">
+                        <span class="heading__bar"></span>
+                        <span class="heading-text">Ostatnio
+                        dodane</span>
+                        <span class="heading__bar"></span></h2>
+                    <!-- ///// Test slider -->
+                    <div class="articles__slider-container">
+
+                        <div class="articles__slider">
+
+                            <div class="articles__slider-wrapper ">
+                                <% if(postsLatest != '') { %>
+                                <% postsLatest.forEach((post,i)=>{  %>
+                                <div class="articles__slide post">
+                                    <a class ="article__link" href="/post/<%= post._id%>">
+                                    <div class="post__img articles__slide-img--0 " style="background-image: url('uploads/<%- post.image%>')">
+                                    <!-- <div class="post__img articles__slide-img--0 "> -->
+                                        <p class="post__data">
+                                            <%- post.data.getUTCDay()%>-<%- post.data.getUTCDate()%>-<%- post.data.getUTCFullYear()%>
+                                            <!-- <%- post.data.getDay()%>-<%- post.data.getMonth()%>-<%- post.data.getYear()%> -->
+                                        </p>
+                                        <p class="post__likes"><span class="likes-count"><%- post.likes%></span><i class="fa-solid fa-heart"></i></p>
+                                    </div>
+                                    <div class="post__text">
+                                        <p class="post__title"><%- post.title %>
+                                        </p>
+                                        
+
+                                    </div>
+                                </a>
+                                </div>
+                                <% }) %>
+                                <% } %>
+                                <!-- Dodać else??? -->
+                                <!-- <div class="articles__slide post">
+                                    <div class="post__img articles__slide-img--1">
+                                        <p class="post__data">2022-02-11</p>
+                                    </div>
+                                    <div class="post__text">
+                                        <p class="post__title">1Lorem ipsum dolor sit amet consectetur
+                                            adipisicing
+                                            elit.
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <div class="articles__slide post">
+                                    <div class="post__img articles__slide-img--2">
+                                        <p class="post__data">2022-02-11</p>
+                                    </div>
+                                    <div class="post__text">
+                                        <p class="post__title">2Lorem ipsum dolor sit amet consectetur
+                                            adipisicing
+                                            elit.
+                                        </p>
+
+                                    </div>
+                                </div>
+                                <div class="articles__slide post">
+                                    <div class="post__img articles__slide-img--3">
+                                        <p class="post__data">2022-02-11</p>
+                                    </div>
+                                    <div class="post__text">
+                                        <p class="post__title">3Lorem ipsum dolor sit amet consectetur
+                                            adipisicing
+                                            elit.
+                                        </p>
+
+                                    </div>
+                                </div> -->
+
+                            </div>
+
+
+                            <button class="btn__slide--left btn__slide"><span class="btn-text"><i
+                                class="fa-solid fa-circle-arrow-left"></i></span>
+                                <!-- <i class="fas fa-chevron-left"></i> -->
+                            </button>
+                            <button class="btn__slide--right btn__slide"><span  class="btn-text"><i
+                                class="fa-solid fa-circle-arrow-right"></i></span>
+                                <!-- <i class="fas fa-chevron-right"></i> -->
+                            </button>
+
+                            <div class="articles__slider-dots-container">
+                                <span class="articles__slider-dot slider__dot--active" ></span><span class="articles__slider-dot"></span><span class="articles__slider-dot"></span><span class="articles__slider-dot"></span>
+                            </div>
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+
+
+                    <div class="articles__featured-posts-container">
+                        <h2 class="articles__featured-posts-heading heading">
+                            <span class="heading__bar"></span><span class="heading-text"><span class="heading-text">Polecane wpisy</span></span>
+                            <span class="heading__bar"></span>
+                        </h2>
+                        <% if(postsFeatured != '') { %>
+                        <% postsFeatured.forEach((post,i)=>{  %>
+                        <div class="post articles__featured-post">
+                            <a class ="article__link" href="/post/<%= post._id %>">
+                            <div class="post__img articles__slide-img--0" style="background-image: url('uploads/<%- post.image%>')">
+                                <p class="post__data">
+                                    <%- post.data.getUTCDay()%>-<%- post.data.getUTCDate()%>-<%- post.data.getUTCFullYear()%>
+                                    <!-- <%- post.data.getDay()%>-<%- post.data.getMonth()%>-<%- post.data.getYear()%> -->
+                                </p>
+                                <p class="post__likes"><span class="likes-count"><%- post.likes%></span><i class="fa-solid fa-heart"></i></p>
+                            </div>
+                            <div class="post__text">
+                                <p class="post__title"><%- post.title %>
+                                </p>
+
+                            </div>
+                        </a>
+                        </div>
+                        <% }) %>
+                        <% } %>
+
+                        <!-- <div class="post articles__featured-post">
+                            <div class="post__img articles__featured-img--0">
+                                <p class="post__data">2022-02-11</p>
+                            </div>
+                            <div class="post__text">
+                                <p class="post__title">Lorem ipsum dolor sit amet consectetur adipisicing
+                                    elit. </p>
+
+                            </div>
+                        </div>
+                        <div class="post articles__featured-post">
+                            <div class="post__img articles__featured-img--1">
+                                <p class="post__data">2022-02-12</p>
+                            </div>
+                            <div class="post__text">
+
+                                <p class="post__title">Lorem ipsum dolor sit amet consectetur adipisicing
+                                    elit. </p>
+                            </div>
+                        </div>
+                        <div class="post articles__featured-post">
+                            <div class="post__img articles__featured-img--2">
+                                <p class="post__data">2022-02-13</p>
+                            </div>
+                            <div class="post__text">
+
+                                <p class="post__title">Lorem ipsum dolor sit amet consectetur adipisicing
+                                    elit. </p>
+                            </div>
+                        </div> -->
+                        <!-- <a href="#" class="btn articles__featured--btn">Więcej artykułów</a> -->
+                        <a href="/posts" class="btn articles__featured--btn">Więcej artykułów</a>
+                    </div>
+                </div>
+
+            </div>
+            <aside class="aside" id="section--4">
+                <!-- test -->
+
+                <p class="aside__about-heading heading">
+                    <span class="heading__bar"></span><span class="heading-text">O mnie</span><span class="heading__bar"></span>
+                </p>
+                <div class="aside__about">
+                    <div class="aside__content">
+                        <div class="about__pic-container">
+
+                            <div class="about-pic"></div>
+                        </div>
+                        <div class="about__short-text">
+                            <p class="aside__txt">Uzależniona od nowosci i zmiany.
+                                Urodzona w Dąbrowie Górniczej (Zagłębie, ale nie Sosnowiec <i
+                                    class="fa-solid fa-face-smile-wink emoticon"></i>), wakacje spędzane ze
+                                Ślązakami, po studiach zamieszkała w Krakowie. Wychodzę na zewnątrz i tam
+                                najlepiej się czuję. Wśród zieleni i w ruchu. Szukam swojego miejsca. Spisuję
+                                wspomnienia, przygody i praktyczne wskazówki.</p>
+                            <a href="/about" class="btn aside__btn--about">Więcej</a>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="aside__subscribe-heading heading"><span class="heading__bar"></span>
+                    <span class="heading-text">Subskrypcja</span>
+                    <span class="heading__bar"></span></p>
+                <div class="aside__subscribe">
+
+                    <div class="aside__content">
+                        <p class="aside__txt">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque,
+                            nulla
+                            sit
+                            fugiat officia
+                            eveniet
+                            ab dolor sed omnis cum id accusantium aut quam quis quas voluptate vitae sunt porro
+                            impedit!
+                        </p>
+                        <!-- <div class="aside__subscribe-inputs"> -->
+                        <form action="" class="aside__subscribe-inputs">
+                            <input class="aside__subscribe-input" placeholder="Imię" type="email" name="" id="">
+                            <input class="aside__subscribe-input" placeholder="M@il" type="email" name="" id="">
+                            <input type="submit" class="btn aside__subscribe--btn">
+                        </form>
+
+                        <!-- </div> -->
+                    </div>
+                </div>
+                <!-- <p class="heading__contact heading"><span class="heading__bar"></span>Kontakt
+                <span class="heading__bar"></span></p> -->
+                <p class="aside__contact-heading heading" id="section--2">
+                    <span class="heading__bar"></span><span class="heading-text">Kontakt</span>
+                    <span class="heading__bar"></span></p>
+                <div class="aside__contact">
+                    <!-- <a href=""></a> -->
+
+                    <div class="aside__content">
+                        <p class="aside__txt">Jeśli masz jakieś sugestie, prośby, pytania czy ciekawe pomysły pisz
+                            koniecznie!
+                            A może chcesz dołączyć na jakimś etapie? - pisz!
+                            Robisz wycieczkę i potrzebujesz informacji czy kontaktu do człowieka z jakiegoś miejsca? -
+                            pisz!
+                            Chcesz jechać, ale nie masz czasu, ochoty czy doświadczenia w planowaniu i jeżdżeniu
+                            najpierw palcem po mapie -pisz!
+
+                            Ogólnie piszcie do mnie o czym chcecie. 😁😅
+
+                            Nie mam doświadczenia (jeszcze!) w prowadzeniu bloga więc jeśli będzie jakakolwiek
+                            interakcja z Wami to będę zachwycona!
+                            I będę wiedziała, że mordowanie się na komórce w notatniku i spisywanie tego wszystkiego w
+                            najdziwniejszych miejscach świata nie poszło na marne!
+                        </p>
+                        <div class="aside__contact-social-container">
+
+                            <ul class="aside__contact-links">
+                                <li><a class="aside__contact-link" href="#"><i
+                            class="fa-brands fa-facebook-square"></i></a></li>
+                                <li><a class="aside__contact-link" href="#"><i class="fa-brands fa-instagram-square"></i></a>
+                                </li>
+                                <li><a class="aside__contact-link" href="#"><i
+                            class="fas fa-envelope"></i></a></li>
+                            </ul>
+
+
+
+                        </div>
+                    </div>
+            </aside>
+        </div>
+    </section>
+    <section class="section map" id="section--3">
+
+        <div class="destinations__map">
+            <h3 class="heading destinations__map-heading"><span class="heading__bar"></span><span class="heading-text">Kierunki<i
+                class="fas fa-map-signs"></i></span>
+                <span class="heading__bar"></span>
+            </h3>
+
+            <div class="destinations__content">
+                <p class="destinations__map-content text">Wszystkie odwiedzone przeze mnie miejsca, mniej lub bardziej
+                    dokładnie zaznaczone.
+                    Dużo jeszcze przede mną.
+                    Część europejską zwiedzałam nie spisując informacji, a i tam zdarzyły się ciekawe przygody czy
+                    piękne momenty.
+                    Jeśli potrzebujesz jakichś informacji czy szukasz inspiracji - pisz śmiało tutaj. <i
+                        class="fa-solid fa-face-smile-wink emoticon"></i>!</p>
+                <div class="destinations__map-conteiner">
+                    <!-- <div class="map__search"></div> -->
+                    <div id="map"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
