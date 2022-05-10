@@ -13,7 +13,10 @@ const methodOverride = require('method-override')
 
 const app = express();
 // Sprawdzić deklaracje protu do wrzucenia
+// const port = normalizePort(process.env.PORT || '3000');
+
 const port = process.env.PORT || 3000;
+app.set('port', port);
 // Socekt.io
 const http = require('http').createServer(app);
 const io = require('socket.io')(http)
@@ -74,12 +77,14 @@ io.on("connection", (socket) => {
 // Routes
 
 const routes = require('./server/routes/articlesRoutes.js');
+
 const {
     SocketAddress
 } = require('net');
 app.use('/', routes);
 http.listen(port, (req, res) => {
     console.log(`Listening to port ${port}`);
+    console.log('io:port', port);
 })
 // app.listen(port, (req, res) => {
 //     console.log(`Listening to port ${port}`);
