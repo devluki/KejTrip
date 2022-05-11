@@ -264,13 +264,13 @@ if (maps) {
     // Pin - icon
 
     var pinkIcon = L.icon({
-        iconUrl: '/img/pin2.png',
+        iconUrl: '/img/Pin2.png',
         iconSize: [40, 60],
         iconAnchor: [20, 60],
     });
 
     var greenIcon = L.icon({
-        iconUrl: '/img/pin.png',
+        iconUrl: '/img/Pin.png',
         // shadowUrl: 'leaf-shadow.png',
 
         iconSize: [40, 60], // size of the icon
