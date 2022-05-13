@@ -12,7 +12,7 @@ cloudinary.config({
     api_secret: '-6z9SMUE86RZgYK4UtxLaH1c7oY'
 });
 
-const sharp = require('sharp');
+
 
 //  Homepage
 exports.homepage = async (req, res) => {
