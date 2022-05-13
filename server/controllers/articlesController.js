@@ -239,9 +239,9 @@ exports.submitPostArticle = async (req, res) => {
             const result = await cloudinary.uploader.upload(uploadPath, function (error, result) {
 
                 imageCloudPath = result.url;
-                // if (!error) {
-                //     fs.unlink(uploadPath, () => console.log('succes'))
-                // }
+                if (!error) {
+                    fs.unlink(uploadPath, () => console.log('succes'))
+                }
             });
 
 
