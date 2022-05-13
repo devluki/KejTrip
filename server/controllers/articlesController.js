@@ -12,6 +12,8 @@ cloudinary.config({
     api_secret: '-6z9SMUE86RZgYK4UtxLaH1c7oY'
 });
 
+const sharp = require('sharp');
+
 //  Homepage
 exports.homepage = async (req, res) => {
 
@@ -232,19 +234,20 @@ exports.submitPostArticle = async (req, res) => {
             imageUploadFile = req.files.image;
             newImageName = Date.now() + imageUploadFile.name;
             uploadPath = require('path').resolve('./') + '/public/uploads/' + newImageName;
-
+            console.log(uploadPath);
             imageUploadFile.mv(uploadPath, function (err) {
                 if (err) return res.status(500).send(err)
             })
-            const result = await cloudinary.uploader.upload(uploadPath, function (error, result) {
+            const result = await cloudinary.uploader.upload(uploadPath, {
+                width: 700,
+                q_auto: 'good'
+            }, function (error, result) {
 
                 imageCloudPath = result.url;
                 if (!error) {
                     fs.unlink(uploadPath, () => console.log('succes'))
                 }
             });
-
-
         }
 
 
