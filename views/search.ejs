@@ -20,7 +20,7 @@
                         <div class="post articles__featured-post">
                             <a class ="article__link" href="/post/<%= post._id%>">
                             <div class="post__img articles__slide-img--0"
-                                style=" background-image: url('/uploads/<%- post.image%>')">
+                                style=" background-image: url('<%- post.image%>')">
                                 <p class="post__data">
                                     <%- post.data.getUTCDay()%>-<%- post.data.getUTCDate()%>-<%- post.data.getUTCFullYear()%>
                                     <!-- <%- post.data.getDay()%>-<%- post.data.getMonth()%>-<%- post.data.getYear()%> -->

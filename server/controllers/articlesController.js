@@ -3,8 +3,14 @@ require('../models/database');
 const Post = require('../models/Post');
 const Posts = require('../models/Post');
 const About = require('../models/About')
-const User = require('../models/User')
-
+const User = require('../models/User');
+const fs = require('fs')
+const cloudinary = require('cloudinary').v2;
+cloudinary.config({
+    cloud_name: 'devluki',
+    api_key: '848194944323474',
+    api_secret: '-6z9SMUE86RZgYK4UtxLaH1c7oY'
+});
 
 //  Homepage
 exports.homepage = async (req, res) => {
@@ -218,6 +224,7 @@ exports.submitPostArticle = async (req, res) => {
         let imageUploadFile;
         let uploadPath;
         let newImageName;
+        let imageCloudPath;
 
         if (!req.files || Object.keys(req.files).length === 0) {
             console.log('no files were uploaded');
@@ -229,6 +236,14 @@ exports.submitPostArticle = async (req, res) => {
             imageUploadFile.mv(uploadPath, function (err) {
                 if (err) return res.status(500).send(err)
             })
+            const result = await cloudinary.uploader.upload(uploadPath, function (error, result) {
+                console.log(result, error)
+                console.log(result.url);
+                imageCloudPath = result.url;
+                if (!error) {
+                    fs.unlink(uploadPath, () => console.log('succes'))
+                }
+            });
 
 
         }
@@ -242,7 +257,7 @@ exports.submitPostArticle = async (req, res) => {
             city: req.body.city,
             postContent: req.body.postContent,
             list: req.body.list,
-            image: newImageName,
+            image: imageCloudPath,
 
         })
         await newPost.save();
