@@ -588,3 +588,64 @@ exports.panelArticles = async (req, res) => {
         })
     }
 }
+exports.upload = async (req, res) => {
+    try {
+
+
+
+
+
+        res.render('upload', {
+            title: 'Kejtrip-lista',
+
+
+        })
+    } catch (error) {
+        res.status(500).send({
+            message: 'BŁĄD' + error.message || "Error Occured!"
+        })
+    }
+}
+exports.uploadPost = async (req, res) => {
+    try {
+        let imageUploadFile;
+        let uploadPath;
+        let newImageName;
+        let imageCloudPath;
+
+        if (!req.files || Object.keys(req.files).length === 0) {
+            console.log('no files were uploaded');
+        } else {
+            imageUploadFile = req.files.image;
+            newImageName = Date.now() + imageUploadFile.name;
+            uploadPath = require('path').resolve('./') + '/public/uploads/' + newImageName;
+            console.log(uploadPath);
+            imageUploadFile.mv(uploadPath, function (err) {
+                if (err) return res.status(500).send(err)
+            })
+            const result = await cloudinary.uploader.upload(uploadPath, {
+                width: 700,
+                q_auto: 'good'
+            }, function (error, result) {
+
+                imageCloudPath = result.url;
+                if (!error) {
+                    fs.unlink(uploadPath, () => console.log('succes'))
+                } else {
+                    console.log(error);
+                }
+            });
+        }
+
+
+
+
+        res.redirect('/admin-panel/upload')
+
+
+    } catch (error) {
+        res.status(500).send({
+            message: 'BŁĄD' + error.message || "Error Occured!"
+        })
+    }
+}

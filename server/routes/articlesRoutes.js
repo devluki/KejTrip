@@ -44,7 +44,9 @@ router.post('/login', articlesController.loginValidation)
 
 router.get('/admin-panel', articlesController.adminPanel)
 router.get('/admin-panel/list', articlesController.panelArticles)
-
+// Uploads
+router.get('/admin-panel/upload', articlesController.upload);
+router.post('/admin-panel/upload', articlesController.uploadPost);
 
 
 module.exports = router;

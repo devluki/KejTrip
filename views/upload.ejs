@@ -1,0 +1,28 @@
+<section class="header__banner-container">
+
+    <div class="header__banner" style="height:100vh ;">
+
+        <div class="header__panel" style="max-height: 90vh; max-width:1140px; width:70%; height: 80%; ">
+            <div class="panel">
+                <p class="articles__latest-posts-heading heading">
+                    <span class="heading__bar"></span>
+                    <span class="heading-text">Panel admina</span>
+                    <span class="heading__bar"></span></p>
+
+                <div class="input-container">
+                    <form action="/admin-panel/upload" enctype="multipart/form-data" method="POST" class="post__form">
+
+                        <label for="image">Zdjęcie do miniatry i nagłówka</label> <br>
+                        <input type="file" class="form-control" name="image" accept="image/*">
+                        <div class="input-container">
+                            <button type="submit" class="btn" id="addSection">Publikuj post</button>
+                        </div>
+                    </form>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+</section>
