@@ -20,7 +20,7 @@
                     <li class="list-element">
                         <span class="post__title">Tytuł: <%- post.title %></span><a href="/post/edit/<%= post._id%>" class="list__article">Edytuj</a>
                         <form action="/post/delete/<%= post.id %>?_method=DELETE" method="POST">
-                            <button type="submit" class="btn btn-delete">Usuń post</button>
+                            <button type="submit" class="btn-delete">Usuń post</button>
                         </form>
                     </li>
 
@@ -30,7 +30,7 @@
                     <% } %>
                     <!-- <li class="list-element"><a href="" class="list__article"></a></li> -->
                 </ul>
-                <a href="/admin-panel" class="menu__link btn">Wróć do panelu</a>
+                <a href="/admin-panel" class="menu__link ">Wróć do panelu</a>
                 <!--  -->
             </div>
 

@@ -56,10 +56,20 @@ searchLink.addEventListener('click', function (e) {
     e.preventDefault();
     // searchLink.classList.toggle('hidden');
     // searchInput.classList.toggle('hidden');
-    searchLink.classList.toggle('search-active');
-    searchInput.classList.toggle('search-active');
+    if (!searchLink.classList.contains('search-active')) {
+        searchLink.classList.add('search-active');
+        searchInput.classList.remove('search-active');
+    }
 })
 
+
+document.addEventListener('click', function (e) {
+    console.log(e.target);
+    if (searchLink.classList.contains('search-active') && e.target !== searchInput && e.target !== searchLink && !e.target.classList.contains('form__input') && !e.target.classList.contains('btn-search')) {
+        searchLink.classList.remove('search-active');
+        searchInput.classList.add('search-active')
+    }
+})
 
 
 
