@@ -22,7 +22,8 @@
                         <span class="post__title">Tytuł: <%- post.title %></span><span class="post__title">(<%- post.status %>)</span>
                     </div>
                     <div class="btns__container">
-                        <a href="/post/edit/<%= post._id%>" class="list__article">Edytuj</a>
+                        <a href="/post/edit/<%= post._id%>" class="btn-edit">Edytuj</a>
+                        <a class ="article__link" href="/post/<%= post._id %>">Podgląd</a>
                         <form action="/post/delete/<%= post.id %>?_method=DELETE" method="POST">
                             <button type="submit" class="btn-delete">Usuń</button>
                         </form>
@@ -36,7 +37,7 @@
                 <% } %>
                 <!-- <li class="list-element"><a href="" class="list__article"></a></li> -->
             </ul>
-            <a href="/admin-panel" class="menu__link ">Wróć do panelu</a>
+            <a href="/admin-panel" class="menu__link btn">Wróć do panelu</a>
             <!--  -->
         </div>
 

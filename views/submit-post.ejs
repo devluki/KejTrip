@@ -25,13 +25,13 @@
             <form action="/submit-post" enctype="multipart/form-data" method="POST" class="post__form">
                 <div class="input-container">
                     <label for="title">Tytuł artykułu</label> <br>
-                    <input type="text" name="title" id="name">
+                    <input type="text" name="title" id="name" class="form__input">
                 </div>
 
                 <div class="input-container">
                     <label for="category">Kategoria artykułu</label> <br>
                     <small>Wybierz: "Relacja" lub "Poradnik"</small> <br>
-                    <select name="category" name="category" aria-label="kategoria" id="">
+                    <select name="category" name="category" aria-label="kategoria" class="form__input">
                         <!-- <option selected>Wybierz kategorię</option> -->
                         <option value="Relacja">Relacja</option>
                         <!-- <option value="Poradnik">Poradnik</option> -->
@@ -43,10 +43,8 @@
                 <div class="input-container">
                     <label for="category">Status artykułu</label><br>
                     <small>Tylko posty ze statusem "Publikacja" pojawią się na stronie!</small> <br>
-                    <select name="status" name="status" aria-label="status" id="">
+                    <select name="status" name="status" aria-label="status" class="form__input">
 
-                        <!-- <option selected>Wybierz kategorię</option> -->
-                        <!-- <option value="Produkcja">Produkcja</option> -->
                         <option value="Publikacja">Publikacja</option>
                         <option selected="Produkcja">Produkcja</option>
                     </select>
@@ -55,14 +53,14 @@
                 <div class="input-container">
                     <label for="location">Nazwa Państwa</label> <br>
                     <small>Wpisz nazwę kraju</small> <br>
-                    <input type="text" name="location" id="location">
+                    <input type="text" name="location" id="location" class="form__input">
                 </div>
 
 
                 <div class="input-container">
                     <label for="city">Dokładna lokalizacja</label> <br>
                     <small>Wpisz nazwę regionu/miasta</small> <br>
-                    <input type="text" name="city" id="city">
+                    <input type="text" name="city" id="city" class="form__input">
                 </div>
                 <div class="input-container">
                     <label for="image">Zdjęcie do miniatry i nagłówka</label> <br>
@@ -86,7 +84,8 @@
                             <label for="postContent">Treść sekcji</label> <br>
                             <small>Wprowadź tekst sekcji</small> <br>
 
-                            <textarea name="postContent" id="postContent" cols="30" rows="8"></textarea>
+                            <textarea name="postContent" id="postContent" cols="30" rows="8"
+                                class="form__input"></textarea>
                         </div>
                     </div>
                     <!-- <div class="section__content">
@@ -104,9 +103,13 @@
                 <!-- <div class="input-container">
                         <button type="button" class="btn" id="addSection">Dodaj sekcje</button>
                     </div> -->
-                <div class="input-container">
-                    <button type="submit" class="btn" id="addSection">Zapisz</button>
-                    <a href="/admin-panel" class="menu__link btn">Anuluj</a>
+                <div class="btns__container">
+                    <div class="submit-btn__container">
+                        <button type="submit" class="btn" id="addSection">Zapisz post</button>
+                    </div>
+
+                    <a href="/admin-panel" class="btn">Wstecz</a>
+
                 </div>
 
             </form>
