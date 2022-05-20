@@ -1,47 +1,47 @@
 <section class="header__banner-container">
 
-    <div class="header__banner" style="height:100vh ;">
+    <div class="header__banner"> </div>
 
-        <div class="header__panel" style=" max-width:1140px;  ">
+    <div class="header__panel">
 
-            <div class="post__form-container">
+        <div class="post__form-container">
 
-                <% if(infoSubmitObj !='') {%>
-                <div class="message-container" style="background-color:green">
-                    Submit succes!
-                    <!--  -->
-                    <%= infoSubmitObj %>
+            <% if(infoSubmitObj !='') {%>
+            <div class="message-container" style="background-color:green">
+                Submit succes!
+                <!--  -->
+                <%= infoSubmitObj %>
+            </div>
+            <% } %>
+
+            <% if(infoErrorsObj !='') {%>
+            <div class="message-container" style="background-color:red">
+                Error!
+                <!--  -->
+                <%= infoErrorsObj[0].message %>
+                <%= infoErrorsObj%>
+            </div>
+            <% } %>
+
+            <form action="/about/put/6277aa34772ff87e9fe3119c?_method=PUT" enctype="multipart/form-data" method="POST"
+                class="post__form">
+                <div class="input-container">
+                    <label for="title">Tytuł artykułu</label> <br>
+                    <input class="form__input" type="text" name="title" id="name" value="<%=about.title%>">
                 </div>
-                <% } %>
-
-                <% if(infoErrorsObj !='') {%>
-                <div class="message-container" style="background-color:red">
-                    Error!
-                    <!--  -->
-                    <%= infoErrorsObj[0].message %>
-                    <%= infoErrorsObj%>
-                </div>
-                <% } %>
-
-                <form action="/about/put/6277aa34772ff87e9fe3119c?_method=PUT" enctype="multipart/form-data"
-                    method="POST" class="post__form">
-                    <div class="input-container">
-                        <label for="title">Tytuł artykułu</label> <br>
-                        <input class="form__input" type="text" name="title" id="name" value="<%=about.title%>">
-                    </div>
 
 
-                    <div class="post__section-container">
-                        <div class="section__content">
-                            <div class="input-container">
-                                <label for="postContent">Treść sekcji</label> <br>
-                                <small>Wprowadź tekst sekcji</small> <br>
+                <div class="post__section-container">
+                    <div class="section__content">
+                        <div class="input-container">
+                            <label for="postContent">Treść sekcji</label> <br>
+                            <small>Wprowadź tekst sekcji</small> <br>
 
-                                <textarea class="form__input" name="postContent" id="postContent" cols="30"
-                                    rows="8"><%= about.postContent%></textarea>
-                            </div>
+                            <textarea class="form__input" name="postContent" id="postContent" cols="30"
+                                rows="8"><%= about.postContent%></textarea>
                         </div>
-                        <!-- <div class="section__content">
+                    </div>
+                    <!-- <div class="section__content">
                 <div class="input-container">
                     <label for="markdown">Treść sekcji</label> <br>
                     <small>Wprowadź tekst sekcji</small> <br>
@@ -52,20 +52,20 @@
 
 
 
-                    </div>
-                    <!-- <div class="input-container">
+                </div>
+                <!-- <div class="input-container">
             <button type="button" class="btn" id="addSection">Dodaj sekcje</button>
         </div> -->
-                    <div class="input-container">
-                        <button type="submit" class="btn" id="addSection">Zapisz zmiany</button>
-                        <a href="/admin-panel" class="menu__link btn">Menu</a>
-                    </div>
+                <div class="input-container">
+                    <button type="submit" class="btn" id="addSection">Zapisz zmiany</button>
+                    <a href="/admin-panel" class="menu__link btn">Menu</a>
+                </div>
 
-                </form>
+            </form>
 
-
-            </div>
 
         </div>
+
     </div>
+
 </section>

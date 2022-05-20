@@ -14,7 +14,8 @@ let index = 0;
 // Sticky navigation
 const nav = document.querySelector('.nav');
 // const header = document.querySelector('.header')
-const headerBanner = document.querySelector('.header__banner-container')
+const headerBannerContainer = document.querySelector('.header__banner-container')
+const headerBanner = document.querySelector('.header__banner')
 const navHeight = nav.getBoundingClientRect().height;
 // Map Z-index
 const maps = document.getElementById('map')
@@ -71,6 +72,16 @@ document.addEventListener('click', function (e) {
     }
 })
 
+
+const headerPanel = document.querySelector('.header__panel')
+
+if (headerPanel) {
+    headerBanner.style.position = "fixed"
+    headerBanner.style.top = 0;
+    headerBanner.style.left = 0;
+    headerBanner.style.height = '100vh';
+
+}
 
 
 
@@ -243,9 +254,20 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 });
 
 
-headerBanner ? headerObserver.observe(headerBanner) : headerObserver.observe(articlesContainer)
+headerBannerContainer ? headerObserver.observe(headerBannerContainer) : headerObserver.observe(articlesContainer)
 
 
+const mapPins = [{
+    country: 'Meksyk',
+    city: 'Cancún',
+    icon: pinkIcon,
+    coords: [8.976416, -73.85344]
+}, {
+    country: 'Kostaryka',
+    city: 'San José',
+    icon: pinkIcon,
+    coords: [20.214788, -87.430588]
+}]
 
 // Leaflet
 // map ------------------
@@ -296,6 +318,22 @@ if (maps) {
     L.marker([8.976416, -73.85344], {
         icon: pinkIcon
     }).addTo(map).bindPopup("<b>Kostaryka</b><br>brvolcán irazú</br><br>").closePopup();
+
+
+    L.marker([21.161907, -86.851524], {
+        icon: pinkIcon
+    }).addTo(map).bindPopup("<b>Meksyk</b><br>Cancún</br><br>").closePopup();
+
+    L.marker([9.934739, -84.087502], {
+        icon: pinkIcon
+    }).addTo(map).bindPopup("<b>Kostaryka</b><br>San José</br><br>").closePopup();
+    L.marker([20.214788, -87.430588], {
+        icon: greenIcon
+    }).addTo(map).bindPopup("<b>Meksyk</b><br>Tulum</br><br>").closePopup();
+    L.marker([20.214788, -87.430588], {
+        icon: greenIcon
+    }).addTo(map).bindPopup("<b>Meksyk</b><br>Tulum</br><br>").closePopup();
+
 }
 
 // Random quote gnerator

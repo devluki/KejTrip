@@ -26,6 +26,8 @@ const postSchema = new mongoose.Schema({
         // Two types 
         type: String,
         enum: ['Poradnik', 'Relacja'],
+        default: 'Poradnik',
+        required: 'This field is required.',
     },
     data: {
         type: Date,
@@ -47,19 +49,9 @@ const postSchema = new mongoose.Schema({
         type: String,
     },
 
-    // postContent: {
-    //     type: Array,
-    //     // type: Array,
-    //     // required: 'This fild is required.',
-    // },
-
-    // markdown: {
-    //     type: String,
-    //     required: true
-    // },
     postContent: {
         type: String,
-        required: true
+        required: 'This field is required.'
     },
 
     sanitizedHtml: {
@@ -67,13 +59,10 @@ const postSchema = new mongoose.Schema({
         required: true
     },
 
-    list: {
-        type: Array,
-    },
 
     image: {
         type: String,
-        // required: 'This fild is required.',
+        required: 'This field is required.',
     },
     comments: {
         type: Array,
@@ -81,7 +70,14 @@ const postSchema = new mongoose.Schema({
     commentsCount: {
         type: Number,
         default: 0,
-    }
+    },
+
+    status: {
+        // Two types 
+        type: String,
+        enum: ['Produkcja', 'Publikacja'],
+        // required: 'This field is required.',
+    },
 });
 
 
@@ -106,7 +102,7 @@ postSchema.pre('validate', function (next) {
 postSchema.index({
     title: 'text',
     location: 'text',
-    city: 'text'
+    city: 'text',
 });
 // Do wypróbowania wildCard indexing
 // postSchema.index({"$**":'text'}) 

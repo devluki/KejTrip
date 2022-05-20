@@ -1,16 +1,13 @@
-<h1>post</h1>
-
-
-
-
-
 <div class="app-wrapper">
     <section class="section" id="section--1">
         <div class="articles">
             <div class="articles__posts-container">
-                <h1><%=post.title%></h1>
-                <p><%=post.date%></p>
-                <p><%-post.sanitizedHtml%></p>
+
+                <div class="content__markup">
+                    <h1 class="content__title heading-text"><%=post.title%></h1>
+                    <p><span class="date"><%=post.date%></span></p>
+                    <%-post.sanitizedHtml%>
+                </div>
                 <span class="likes-count"><%- post.likes%></span><span class="likes-ico"><i class="fa-regular fa-heart"></i></span></a>
                 <% if(show) {%>
                 <button class="like btn__like" postId="<%=post._id%>">Polub post!</button>

@@ -1,39 +1,45 @@
 <section class="header__banner-container">
 
-    <div class="header__banner" style="height:100vh ;">
+    <div class="header__banner"></div>
 
-        <div class="header__panel" style=" max-width:1140px; ">
-            <div class="panel">
-                <p class="articles__latest-posts-heading heading">
-                    <span class="heading__bar"></span>
-                    <span class="heading-text">Panel admina</span>
-                    <span class="heading__bar"></span></p>
+    <div class="header__panel" style=" max-width:1140px; ">
+        <div class="panel">
+            <p class="articles__latest-posts-heading heading">
+                <span class="heading__bar"></span>
+                <span class="heading-text">Panel admina</span>
+                <span class="heading__bar"></span></p>
 
-                <ul class="articles__list">
-
-
-
-                    <!--  -->
-                    <% if(posts != '') { %>
-                    <% posts.forEach((post,i)=>{  %>
-
-                    <li class="list-element">
-                        <span class="post__title">Tytuł: <%- post.title %></span><a href="/post/edit/<%= post._id%>" class="list__article">Edytuj</a>
-                        <form action="/post/delete/<%= post.id %>?_method=DELETE" method="POST">
-                            <button type="submit" class="btn-delete">Usuń post</button>
-                        </form>
-                    </li>
+            <ul class="articles__list">
 
 
 
-                    <% }) %>
-                    <% } %>
-                    <!-- <li class="list-element"><a href="" class="list__article"></a></li> -->
-                </ul>
-                <a href="/admin-panel" class="menu__link ">Wróć do panelu</a>
                 <!--  -->
-            </div>
+                <% if(posts != '') { %>
+                <% posts.forEach((post,i)=>{  %>
 
+                <li class="list-element">
+                    <div class="title__container">
+                        <span class="post__title">Tytuł: <%- post.title %></span><span class="post__title">(<%- post.status %>)</span>
+                    </div>
+                    <div class="btns__container">
+                        <a href="/post/edit/<%= post._id%>" class="list__article">Edytuj</a>
+                        <form action="/post/delete/<%= post.id %>?_method=DELETE" method="POST">
+                            <button type="submit" class="btn-delete">Usuń</button>
+                        </form>
+                    </div>
+
+                </li>
+
+
+
+                <% }) %>
+                <% } %>
+                <!-- <li class="list-element"><a href="" class="list__article"></a></li> -->
+            </ul>
+            <a href="/admin-panel" class="menu__link ">Wróć do panelu</a>
+            <!--  -->
         </div>
+
     </div>
+
 </section>

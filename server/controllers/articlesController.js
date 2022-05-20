@@ -20,12 +20,16 @@ exports.homepage = async (req, res) => {
     try {
         // Slider latest
         const limitNumberLatest = 4;
-        const postsLatest = await Posts.find({}).sort({
+        const postsLatest = await Posts.find({
+            'status': 'Publikacja'
+        }).sort({
             _id: -1
         }).limit(limitNumberLatest);
         // Most likes
         const limitNumberFeatured = 3
-        const postsFeatured = await Posts.find({}).sort({
+        const postsFeatured = await Posts.find({
+            'status': 'Publikacja'
+        }).sort({
             likes: -1
         }).limit(limitNumberFeatured);
 
@@ -58,7 +62,9 @@ exports.explorePosts = async (req, res) => {
     const numPosts = await Posts.countDocuments()
 
     try {
-        const posts = await Posts.find({}).sort({
+        const posts = await Posts.find({
+            'status': 'Publikacja'
+        }).sort({
             _id: -1
         }).skip(skip).limit(limit);
 
@@ -260,6 +266,7 @@ exports.submitPostArticle = async (req, res) => {
             postContent: req.body.postContent,
             list: req.body.list,
             image: imageCloudPath,
+            status: req.body.status
 
         })
         await newPost.save();
@@ -499,7 +506,9 @@ exports.editPut = async (req, res) => {
                 "category": req.body.category,
                 "location": req.body.location,
                 "city": req.body.city,
-                "postContent": req.body.postContent
+                "postContent": req.body.postContent,
+                "status": req.body.status
+
             },
 
         }, {
