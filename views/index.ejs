@@ -43,7 +43,8 @@
                                     <div class="post__img articles__slide-img--0 " style="background-image: url('<%- post.image%>')">
                                     <!-- <div class="post__img articles__slide-img--0 "> -->
                                         <p class="post__data">
-                                            <%- post.data.getUTCDay()%>-<%- post.data.getUTCDate()%>-<%- post.data.getUTCFullYear()%>
+                                            <%- post.data.toLocaleString()%>
+                                            <!-- <%- post.data.getUTCDay()%>-<%- post.data.getUTCDate()%>-<%- post.data.getUTCFullYear()%> -->
                                             <!-- <%- post.data.getDay()%>-<%- post.data.getMonth()%>-<%- post.data.getYear()%> -->
                                         </p>
                                         <p class="post__likes"><span class="likes-count"><%- post.likes%></span><i class="fa-solid fa-heart"></i></p>

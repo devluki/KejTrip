@@ -19,12 +19,13 @@
 
                 <li class="list-element">
                     <div class="title__container">
-                        <span class="post__title">Tytuł: <%- post.title %></span><span class="post__title">(<%- post.status %>)</span>
+                        <span class="post__title">Tytuł: <%- post.title %></span><span class="post__status">(<%- post.status %>)</span>
                     </div>
                     <div class="btns__container">
                         <a href="/post/edit/<%= post._id%>" class="btn-edit">Edytuj</a>
-                        <a class ="article__link" href="/post/<%= post._id %>">Podgląd</a>
-                        <form action="/post/delete/<%= post.id %>?_method=DELETE" method="POST">
+                        <a class ="btn-view" href="/post/<%= post._id %>">Podgląd</a>
+                        <form action="/post/delete/<%= post.id %>?_method=DELETE" method="POST"
+                            class="btn-delete__container">
                             <button type="submit" class="btn-delete">Usuń</button>
                         </form>
                     </div>
