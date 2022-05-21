@@ -439,13 +439,12 @@ exports.postComment = async (req, res) => {
             }
         })
 
-
         post.commentsCount = post.comments.length + 1;
         post.save();
         res.send({
             text: 'comment successfull',
             user: userName,
-            comment: comment
+            comment: comment,
         })
 
     } catch (error) {

@@ -921,6 +921,23 @@
     align-items: center;
 }
 
+.comment__input {
+    min-height: 100px;
+}
+
+.comment {
+    background-color: var(--menu-active-bgc);
+    /* background-image: url(); */
+    background-image: url('/img/bg_pattern_green_opacity_0_15.svg');
+    border-radius: 30px;
+    margin: 2% auto;
+}
+
+.comments__user,
+.comments__comment {
+    margin: 0% 5%;
+}
+
 
 
 @media (orientation:portrait) and (min-width:280px) {

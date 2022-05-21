@@ -16,12 +16,12 @@
 
                     <div class="form__comments">
                         <form method="POST" class="post__comments">
-                            <input type="text" name="postId" value="<%=post._id%>">
+                            <input type="hidden" name="postId" value="<%=post._id%>">
                 <label for="city">Imię:</label>
-                <input type="text" name="userName">
+                <input type="text" name="userName" class="form__input">
                 <label for="comments">Komentaż:</label>
 
-                <textarea name="comment" cols="50" rows="8"></textarea>
+                <textarea name="comment" cols="50" rows="8" class="form__input comment__input"></textarea>
 
 
                 <button type="submit" class="comments__add btn">Dodaj komentaż</button>
@@ -31,8 +31,12 @@
                     <% if(post.comments) {%>
                     <% post.comments = post.comments.reverse()%>
                     <% post.comments.forEach(comment=> {%>
-                    <p><%=comment.userName%></p>
-                    <p><%=comment.comment%></p>
+                    <div class="comment">
+                        <p class="comments__user"><%=comment.userName%></p>
+                        <p class="comments__comment"><%=comment.comment%></p>
+
+                    </div>
+
 
                     <%} )%>
                     <%}%>
