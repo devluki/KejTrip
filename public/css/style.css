@@ -667,6 +667,10 @@
 
 }
 
+.aside__txt p {
+    width: 100%;
+    text-align: left;
+}
 
 .aside__subscribe,
 .aside__contact,
@@ -716,11 +720,18 @@
     text-align: justify;
 }
 
+.bold {
+    width: 100%;
+    text-align: left;
+    font-weight: bold;
+}
+
 .aside__subscribe-input {
     margin: 2% 0;
 }
 
 .aside__contact-social-container {
+    margin-top: 5%;
     width: 80%;
 }
 
