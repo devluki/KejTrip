@@ -48,5 +48,7 @@ router.get('/admin-panel/list', articlesController.panelArticles)
 router.get('/admin-panel/upload', articlesController.upload);
 router.post('/admin-panel/upload', articlesController.uploadPost);
 
+// Gallery API
+router.get('/admin-panel/upload/gallery', articlesController.gallery)
 
 module.exports = router;

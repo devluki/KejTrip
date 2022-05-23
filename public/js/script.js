@@ -508,11 +508,11 @@ if (commentsForm) {
 
 
 socket.on("newComment", (comment) => {
-    let markup = "";
-    markup += `<p>${comment.userName}</p>`;
-    markup += `<p>${comment.comment}</p>`;
+    let markup = ``;
+    markup += `<p class="comments__comment">${comment.comment}</p>`;
+    markup += `<p class="comments__user">${comment.userName}</p>`;
     console.log(markup);
-    document.querySelector('.comments__container').insertAdjacentHTML('afterbegin', markup)
+    document.querySelector('.comment').insertAdjacentHTML('afterbegin', markup)
     console.log(comment);
 })
 socket.on("newLike", (data) => {

@@ -4,6 +4,7 @@ const Post = require('../models/Post');
 const Posts = require('../models/Post');
 const About = require('../models/About')
 const User = require('../models/User');
+const Image = require('../models/Image')
 const fs = require('fs')
 const cloudinary = require('cloudinary').v2;
 cloudinary.config({
@@ -102,7 +103,9 @@ exports.about = async (req, res) => {
     try {
 
         const limitNumberLatest = 4;
-        const postsLatest = await Posts.find({}).sort({
+        const postsLatest = await Posts.find({
+            'status': 'Publikacja'
+        }).sort({
             _id: -1
         }).limit(limitNumberLatest);
 
@@ -124,7 +127,7 @@ exports.about = async (req, res) => {
 
 // Render post content
 exports.readPost = async (req, res) => {
-    const limitNumberLatest = 4;
+    // const limitNumberLatest = 4;
     let postId = req.params.id;
     let show;
     try {
@@ -139,13 +142,16 @@ exports.readPost = async (req, res) => {
 
         const post = await Posts.findById(postId);
 
-        const postsLatest = await Posts.find({}).sort({
-            _id: -1
-        }).limit(limitNumberLatest);
+        const limitNumberFeatured = 3
+        const postsFeatured = await Posts.find({
+            'status': 'Publikacja'
+        }).sort({
+            likes: -1
+        }).limit(limitNumberFeatured);
         res.render('post', {
             title: 'Kejtrip - post',
             post,
-            postsLatest,
+            postsFeatured,
             show
         });
     } catch (error) {
@@ -644,6 +650,14 @@ exports.uploadPost = async (req, res) => {
                 }
             });
         }
+        const newImage = new Image({
+            path: imageCloudPath,
+            description: req.body.description,
+            location: req.body.location,
+            city: req.body.city,
+        })
+
+        await newImage.save();
 
 
 
@@ -651,6 +665,27 @@ exports.uploadPost = async (req, res) => {
         res.redirect('/admin-panel/upload')
 
 
+    } catch (error) {
+        res.status(500).send({
+            message: 'BŁĄD' + error.message || "Error Occured!"
+        })
+    }
+}
+
+exports.gallery = async (req, res) => {
+    try {
+
+
+        const imgs = await Image.find({
+
+        }).sort({
+            _id: -1
+        })
+
+
+        res.send({
+            imgs: imgs,
+        })
     } catch (error) {
         res.status(500).send({
             message: 'BŁĄD' + error.message || "Error Occured!"

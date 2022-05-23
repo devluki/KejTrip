@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
 
     login: {
         type: String,
-        required: 'This fild is required.',
+        required: 'This field is required.',
 
     },
 

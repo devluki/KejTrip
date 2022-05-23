@@ -8,39 +8,74 @@
                     <p><span class="date"><%=post.date%></span></p>
                     <%-post.sanitizedHtml%>
                 </div>
-                <span class="likes-count"><%- post.likes%></span><span class="likes-ico"><i class="fa-regular fa-heart"></i></span></a>
-                <% if(show) {%>
-                <button class="like btn__like" postId="<%=post._id%>">Polub post!</button>
-                <%}%>
-                
+                <div class="articles-likes__container">
+                    <span class="likes-count"><%- post.likes%></span><span class="likes-ico"><i class="fa-regular fa-heart"></i></span></a>
+                    <% if(show) {%>
+                    <button class="like btn__like" postId="<%=post._id%>">Polub post!</button>
+                    <%}%>
+
+                </div>
+               
+                <!--  -->
+                <div class="articles__featured-posts-container">
+                    <h2 class="articles__featured-posts-heading heading">
+                        <span class="heading__bar"></span><span class="heading-text"><span class="heading-text">Polecane wpisy</span></span>
+                        <span class="heading__bar"></span>
+                    </h2>
+                    <% if(postsFeatured != '') { %>
+                    <% postsFeatured.forEach((post,i)=>{  %>
+                    <div class="post articles__featured-post">
+                        <a class ="article__link" href="/post/<%= post._id %>">
+                        <div class="post__img articles__slide-img--0" style="background-image:  url('<%- post.image%>')">
+                            <p class="post__data">
+                                <%- post.data.getUTCDay()%>-<%- post.data.getUTCDate()%>-<%- post.data.getUTCFullYear()%>
+                                <!-- <%- post.data.getDay()%>-<%- post.data.getMonth()%>-<%- post.data.getYear()%> -->
+                            </p>
+                            <p class="post__likes"><span class="likes-count"><%- post.likes%></span><i class="fa-solid fa-heart"></i></p>
+                        </div>
+                        <div class="post__text">
+                            <p class="post__title"><%- post.title %>
+                            </p>
+
+                        </div>
+                    </a>
+                    </div>
+                    <% }) %>
+                    <% } %>
+
+                    <a href="/posts" class="btn articles__featured--btn">Więcej artykułów</a>
+                </div>
+
+                <!--  -->
                 <div class="post__comments-container">
 
                     <div class="form__comments">
                         <form method="POST" class="post__comments">
                             <input type="hidden" name="postId" value="<%=post._id%>">
-                <label for="city">Imię:</label>
-                <input type="text" name="userName" class="form__input">
-                <label for="comments">Komentaż:</label>
+                            <label for="city" class="form__label">Imię:</label>
+                            <input type="text" name="userName" class="form__input">
+                            <label for="comments" class="form__label">Komentaż:</label>
 
-                <textarea name="comment" cols="50" rows="8" class="form__input comment__input"></textarea>
-
-
-                <button type="submit" class="comments__add btn">Dodaj komentarz</button>
-
-                </form>
-                <div class="comments__container">
-                    <% if(post.comments) {%>
-                    <% post.comments = post.comments.reverse()%>
-                    <% post.comments.forEach(comment=> {%>
-                    <div class="comment">
-                        <p class="comments__user"><%=comment.userName%></p>
-                        <p class="comments__comment"><%=comment.comment%></p>
-
-                    </div>
+                            <textarea name="comment" cols="50" rows="8" class="form__input comment__input"></textarea>
 
 
-                    <%} )%>
-                    <%}%>
+                            <button type="submit" class="comments__add btn">Dodaj komentarz</button>
+
+                        </form>
+                        <div class="comments__container">
+                            <div class="comment"></div>
+                            <% if(post.comments) {%>
+                            <% post.comments = post.comments.reverse()%>
+                            <% post.comments.forEach(comment=> {%>
+                            <div class="comment">
+                                <p class="comments__user"><%=comment.userName%></p>
+                                <p class="comments__comment"><%=comment.comment%></p>
+
+                            </div>
+
+
+                            <%} )%>
+                            <%}%>
                     </div>
                         </div>
                     </div>
