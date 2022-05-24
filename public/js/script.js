@@ -257,17 +257,56 @@ const headerObserver = new IntersectionObserver(stickyNav, {
 headerBannerContainer ? headerObserver.observe(headerBannerContainer) : headerObserver.observe(articlesContainer)
 
 
-const mapPins = [{
-    country: 'Meksyk',
-    city: 'Cancún',
-    icon: pinkIcon,
-    coords: [8.976416, -73.85344]
-}, {
-    country: 'Kostaryka',
-    city: 'San José',
-    icon: pinkIcon,
-    coords: [20.214788, -87.430588]
-}]
+// 
+const locations = [
+    // Mexico
+    ["Cancun", 21.161907, -86.851524],
+    ["San Jose", 9.909580, -84.054062],
+    ["Tulum", 20.104851, -87.478951],
+    ["Reserva de la Biósfera Sian Ka ", 19.225999, -87.471799],
+    ["Tizimin", 21.14284, -88.15119],
+    ["Las Coloradas", 30.0484789, -107.102204],
+    ["Merida", 20.583133, -89.37106],
+    ["Campeche", 18.931225, -90.261807],
+    ["Xpujil", 18.5076, -89.39437],
+    ["Calqkmul", 18.061941, -89.4838984],
+    ["San Cristóbal de las Casas", 16.7317600, -92.6412600],
+    ["Comitan", 16.229960, -92.115569],
+    // Guatemala
+    ["La Mesilla", 15.6166642, -91.9833294],
+    ["Huehuetenango ", 15.308832098, -91.47233],
+    ["Quetzaltenango", 14.83333, -91.5166646],
+    ["Antigua", 14.5666644, -90.7333304],
+    ["San Juan La Laguna", 14.7, -91.28333],
+    ["San Pedro La Laguna", 14.694, -91.272],
+    // Costarica
+    ["Manuel Antonio Park Narodowy", 9.371998512, -84.134832],
+    ["Quepos", 9.42357, -84.16522],
+    ["Santa Elena", 10.31426, -84.82502],
+    ["La Fortuna", 9.2333324, -83.583331],
+    ["Puerto Viejo de Sarapiqui", 10.453987, -84.019386],
+    ["Guápiles", 10.21682, -83.78483],
+    ["Tortuguero", 10.583331, -83.5166646],
+    ["Puerto Limón", 9.99074, -83.03596],
+    ["Cahuita", 9.7347856, -82.8452146],
+    ["Puerto Viejo de Talamanca", 9.6564943, -82.7535654],
+
+
+]
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 
 
 // Leaflet
 // map ------------------
@@ -311,28 +350,33 @@ if (maps) {
         // shadowAnchor: [4, 62], // the same for the shadow
         // popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
     });
-    L.marker([9.976416, -83.85344], {
-        icon: greenIcon
-    }).addTo(map).bindPopup("<b>Kostaryka</b><br>brvolcán irazú</br><br><biutton class='btn'>Zobacz więcej</button>").closePopup();
+    for (var i = 0; i < locations.length; i++) {
+        marker = new L.marker([locations[i][1], locations[i][2]])
+            .bindPopup(locations[i][0])
+            .addTo(map);
+    }
+    // L.marker([9.976416, -83.85344], {
+    //     icon: greenIcon
+    // }).addTo(map).bindPopup("<b>Kostaryka</b><br>brvolcán irazú</br><br><biutton class='btn'>Zobacz więcej</button>").closePopup();
 
-    L.marker([8.976416, -73.85344], {
-        icon: pinkIcon
-    }).addTo(map).bindPopup("<b>Kostaryka</b><br>brvolcán irazú</br><br>").closePopup();
+    // L.marker([8.976416, -73.85344], {
+    //     icon: pinkIcon
+    // }).addTo(map).bindPopup("<b>Kostaryka</b><br>brvolcán irazú</br><br>").closePopup();
 
 
-    L.marker([21.161907, -86.851524], {
-        icon: pinkIcon
-    }).addTo(map).bindPopup("<b>Meksyk</b><br>Cancún</br><br>").closePopup();
+    // L.marker([21.161907, -86.851524], {
+    //     icon: pinkIcon
+    // }).addTo(map).bindPopup("<b>Meksyk</b><br>Cancún</br><br>").closePopup();
 
-    L.marker([9.934739, -84.087502], {
-        icon: pinkIcon
-    }).addTo(map).bindPopup("<b>Kostaryka</b><br>San José</br><br>").closePopup();
-    L.marker([20.214788, -87.430588], {
-        icon: greenIcon
-    }).addTo(map).bindPopup("<b>Meksyk</b><br>Tulum</br><br>").closePopup();
-    L.marker([20.214788, -87.430588], {
-        icon: greenIcon
-    }).addTo(map).bindPopup("<b>Meksyk</b><br>Tulum</br><br>").closePopup();
+    // L.marker([9.934739, -84.087502], {
+    //     icon: pinkIcon
+    // }).addTo(map).bindPopup("<b>Kostaryka</b><br>San José</br><br>").closePopup();
+    // L.marker([20.214788, -87.430588], {
+    //     icon: greenIcon
+    // }).addTo(map).bindPopup("<b>Meksyk</b><br>Tulum</br><br>").closePopup();
+    // L.marker([20.214788, -87.430588], {
+    //     icon: greenIcon
+    // }).addTo(map).bindPopup("<b>Meksyk</b><br>Tulum</br><br>").closePopup();
 
 }
 
