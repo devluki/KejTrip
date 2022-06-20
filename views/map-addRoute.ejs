@@ -1,0 +1,119 @@
+<section class="header__banner-container">
+
+    <div class="header__banner"></div>
+
+    <div class="header__panel" style=" max-width:1140px; ">
+        <div class="post__form-container">
+
+            <% if(infoSubmitObj !='') {%>
+            <div class="message-container" style="background-color:green">
+                Submit succes!
+                <!--  -->
+                <%= infoSubmitObj %>
+            </div>
+            <% } %>
+
+            <% if(infoErrorsObj !='') {%>
+            <div class="message-container" style="background-color:red">
+                Error!
+                <!--  -->
+                <%= infoErrorsObj[0].message %>
+                <%= infoErrorsObj%>
+            </div>
+            <% } %>
+
+            <form action="/admin-panel/map/add-route" enctype="multipart/form-data" method="POST" class="post__form">
+
+
+                <div class="input-container">
+                    <label for="name">Nazwa trasy</label> <br>
+                    <!-- <small>Wpisz nazwę kraju</small> <br> -->
+                    <input type="text" name="name" id="name" class="form__input">
+                </div>
+
+
+                <div class="input-container">
+                    <label for="startLocation">Punkt początkowy</label> <br>
+                    <!-- <small>Wpisz nazwę kraju</small> <br> -->
+                    <input type="text" name="startLocation" id="startLocation" class="form__input">
+                </div>
+
+                <div class="input-container">
+                    <label for="startLongitude">Współrzędne geograficzne - długość</label> <br>
+                    <input type="text" name="startLongitude" id="startLongitude" class="form__input">
+                </div>
+
+                <div class="input-container">
+                    <label for="startLatitude">Współrzędne geograficzne - szerokość</label> <br>
+                    <input type="text" name="startLatitude" id="startLatitude" class="form__input">
+                </div>
+
+                <div class="input-container">
+                    <label for="midPoints">Punkty pośrednie</label> <br>
+                    <small>[długość,szerokość],[długość,szerokość]...</small> <br>
+
+                    <textarea name="midPoints" id="midPoints" cols="30" rows="8" class="form__input"></textarea>
+                </div>
+
+                <div class="input-container">
+                    <label for="endLocation">Punkt końcowy</label> <br>
+                    <!-- <small>Wpisz nazwę kraju</small> <br> -->
+                    <input type="text" name="endLocation" id="endLocation" class="form__input">
+                </div>
+
+                <div class="input-container">
+                    <label for="endLongitude">Współrzędne geograficzne - długość</label> <br>
+                    <input type="text" name="endLongitude" id="endLongitude" class="form__input">
+                </div>
+
+                <div class="input-container">
+                    <label for="endLatitude">Współrzędne geograficzne - szerokość</label> <br>
+                    <input type="text" name="endLatitude" id="pinLatitude" class="form__input">
+                </div>
+
+                <div class="post__section-container">
+                    <div class="section__content">
+                        <div class="input-container">
+                            <label for="routeDescription">Opis trasy</label> <br>
+                            <small>Kilka słów na temat</small> <br>
+
+                            <textarea name="routeDescription" id="routeDescription" cols="30" rows="8"
+                                class="form__input"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="input-container">
+                    <label for="category">Status trasy</label><br>
+                    <small>Tylko trasy ze statusem "Publikacja" pojawią się na stronie!</small> <br>
+                    <select name="status" name="status" aria-label="status" class="form__input">
+
+                        <option value="Publikacja">Publikacja</option>
+                        <option selected="Produkcja">Produkcja</option>
+                    </select>
+                </div>
+
+
+
+
+                <!-- <div class="input-container">
+                        <button type="button" class="btn" id="addSection">Dodaj sekcje</button>
+                    </div> -->
+                <div class="btns__container">
+
+                    <div class="submit-btn__container">
+                        <button type="submit" class="btn">Zapisz</button>
+                    </div>
+
+                    <a href="/admin-panel" class="btn">Wstecz</a>
+
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>

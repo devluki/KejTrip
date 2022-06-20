@@ -1,0 +1,47 @@
+<section class="header__banner-container">
+
+    <div class="header__banner"></div>
+
+    <div class="header__panel" style=" max-width:1140px; ">
+        <div class="panel">
+            <p class="articles__latest-posts-heading heading">
+                <span class="heading__bar"></span>
+                <span class="heading-text">Panel admina</span>
+                <span class="heading__bar"></span></p>
+
+            <ul class="articles__list">
+
+
+
+                <!--  -->
+                <% if(routes != '') { %>
+                <% routes.forEach((route,i)=>{  %>
+
+                <li class="list-element">
+                    <div class="title__container">
+                        <span class="post__title">Tytuł: <%- route.name %></span><span class="post__status">(<%- route.status %>)</span>
+                    </div>
+                    <div class="btns__container">
+                        <a href="/admin-panel/map/edit-route/<%= route.id %>" class="btn-edit">Edytuj</a>
+                        <a class ="btn-view" href="#">Podgląd</a>
+                        <form action="/route/delete/<%= route.id %>?_method=DELETE" method="POST"
+                            class="btn-delete__container">
+                            <button type="submit" class="btn-delete">Usuń</button>
+                        </form>
+                    </div>
+
+                </li>
+
+
+
+                <% }) %>
+                <% } %>
+                <!-- <li class="list-element"><a href="" class="list__article"></a></li> -->
+            </ul>
+            <a href="/admin-panel" class="menu__link btn">Wróć do panelu</a>
+            <!--  -->
+        </div>
+
+    </div>
+
+</section>

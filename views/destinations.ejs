@@ -1,1 +1,77 @@
-<h1>Kierunki</h1>
+<div class="app-wrapper">
+    <section class="section map" id="section--3">
+        <h3 class="destination__heading">
+            <span class="destination__heading-text">Ameryka Centralna</span>
+
+        </h3>
+        <!-- <h3 class="heading destinations__map-heading">
+            <span class="heading__bar"></span><span class="heading-text">Ameryka Centralna</span>
+            <span class="heading__bar"></span>
+        </h3> -->
+
+        <div class="destinatinos__couter">
+            <div class="couter__date-container">
+                <!-- Test -->
+                <div class="counter">
+                    <div class="counter-icon">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+
+                    <span class="date-counter"></span>
+                    <h3 class="counter__txt">Dni w podróży</h3>
+
+
+
+                </div>
+
+
+
+            </div>
+            <div class="couter__km-container">
+                <div class="counter">
+                    <div class="counter-icon">
+                        <i class="fa-solid fa-person-hiking"></i>
+                    </div>
+
+                    <span class="km-counter">1815</span>
+                    <h3 class="counter__txt">Przebytych km</h3>
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+        <div class="routes-container">
+            <% if(routes != '') { %>
+            <% routes.forEach((route,i)=>{  %>
+            <div class="route">
+                <input type="hidden" value="<%=route.name %>" class="route__name">
+                <input type="hidden" value="<%=route.distance %>" class="route__distance">
+                <input type="hidden" value="<%=JSON.stringify(route.routing[0].coordinates) %>" class="routing">
+
+            </div> <% }) %>
+            <% } %>
+        </div>
+
+        <div class="destinations__content">
+            <p class="destinations__map-content text">Wszystkie odwiedzone przeze mnie miejsca, mniej lub
+                bardziej
+                dokładnie zaznaczone.
+                Dużo jeszcze przede mną.
+                Część europejską zwiedzałam nie spisując informacji, a i tam zdarzyły się ciekawe przygody czy
+                piękne momenty.
+                Jeśli potrzebujesz jakichś informacji czy szukasz inspiracji - pisz śmiało tutaj. <i
+                    class="fa-solid fa-face-smile-wink emoticon"></i>!</p>
+            <div class="destinations__map-conteiner">
+                <div class="map__tabs">
+
+                </div>
+                <!-- <div class="map__search"></div> -->
+                <div id="map">
+
+                </div>
+            </div>
+    </section>
+</div>

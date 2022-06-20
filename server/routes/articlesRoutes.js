@@ -7,7 +7,7 @@ const articlesController = require('../controllers/articlesController');
 router.get('/', articlesController.homepage);
 // router.get('/posts', recipeController.explorePosts);
 router.get('/posts', articlesController.explorePosts);
-// O mnie
+// About
 router.get('/about', articlesController.about);
 // Post id
 router.get('/post/:id', articlesController.readPost);
@@ -15,7 +15,7 @@ router.get('/post/:id', articlesController.readPost);
 router.post('/search', articlesController.searchPost);
 // Directions
 router.get('/destinations', articlesController.destinations)
-//  Post a post 
+// Post a post :) 
 router.get('/submit-post', articlesController.submitPost)
 router.post('/submit-post', articlesController.submitPostArticle)
 // Delete post 
@@ -50,5 +50,31 @@ router.post('/admin-panel/upload', articlesController.uploadPost);
 
 // Gallery API
 router.get('/admin-panel/upload/gallery', articlesController.gallery)
+
+// Map
+router.get('/admin-panel/map', articlesController.map)
+// Add pins
+router.get('/admin-panel/map/add-pins', articlesController.addPins)
+router.post('/admin-panel/map/add-pins', articlesController.submitAddPins)
+// Pin list /edit/delete + pin API
+router.get('/admin-panel/map/pins-list', articlesController.pinsList)
+router.delete('/pin/delete/:id', articlesController.deletePin);
+router.get('/admin-panel/map/edit-pin/:id', articlesController.editPin)
+router.put('/admin-panel/map/put-pin/:id', articlesController.editPinPut)
+// API pins
+router.get('/map/pins', articlesController.pinsAPI)
+// Add route
+router.get('/admin-panel/map/add-route', articlesController.addRoute)
+router.post('/admin-panel/map/add-route', articlesController.submitAddRoute)
+// Route list/edit/delete
+router.get('/admin-panel/map/edit-route/:id', articlesController.editRoute)
+router.put('/admin-panel/map/put-route/:id', articlesController.editRoutePut)
+router.get('/admin-panel/map/route-list', articlesController.routeList)
+router.delete('/route/delete/:id', articlesController.deleteRoute);
+
+
+
+
+
 
 module.exports = router;

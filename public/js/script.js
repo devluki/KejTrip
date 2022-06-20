@@ -237,24 +237,24 @@ if (slides.length > 0) {
 // const navHeight = nav.getBoundingClientRect().height;
 console.log(navHeight);
 
-const articlesContainer = document.querySelector('.aside__about')
+// const articlesContainer = document.querySelector('.aside__about')
 
-const stickyNav = function (entries) {
-    const [entry] = entries;
-
-
-    if (!entry.isIntersecting) nav.classList.add('sticky');
-    else nav.classList.remove('sticky');
-};
-
-const headerObserver = new IntersectionObserver(stickyNav, {
-    root: null,
-    threshold: 0,
-    rootMargin: `-${navHeight}px`,
-});
+// const stickyNav = function (entries) {
+//     const [entry] = entries;
 
 
-headerBannerContainer ? headerObserver.observe(headerBannerContainer) : headerObserver.observe(articlesContainer)
+//     if (!entry.isIntersecting) nav.classList.add('sticky');
+//     else nav.classList.remove('sticky');
+// };
+
+// const headerObserver = new IntersectionObserver(stickyNav, {
+//     root: null,
+//     threshold: 0,
+//     rootMargin: `-${navHeight}px`,
+// });
+
+
+// headerBannerContainer ? headerObserver.observe(headerBannerContainer) : headerObserver.observe(articlesContainer)
 
 
 // 
@@ -311,74 +311,74 @@ const locations = [
 // Leaflet
 // map ------------------
 
-if (maps) {
+// if (maps) {
 
-    var map = L.map('map', {
+//     var map = L.map('map', {
 
-        dragging: window.innerWidth < 1024 ? false : true,
-        tap: window.innerWidth < 1024 ? false : true,
+//         dragging: window.innerWidth < 1024 ? false : true,
+//         tap: window.innerWidth < 1024 ? false : true,
 
-        inertia: false,
-        scrollWheelZoom: false,
-    }).setView([10.01, -84.221388888889], 3);
-    L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiemFiaWVnbGkiLCJhIjoiY2t0eGE5NjhkMTJsczMwbXhkb2N0Y2UxZCJ9.9LFCbpbXL3o5trk3NM7WRw', {
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-        maxZoom: 18,
-        minZoom: 3,
-        id: 'mapbox/light-v9',
-        tileSize: 512,
-        zoomOffset: -1,
-        accessToken: 'your.mapbox.access.token'
-    }).addTo(map);
-
-
-    // Pin - icon
-
-    var pinkIcon = L.icon({
-        iconUrl: '/img/Pin2.png',
-        iconSize: [40, 60],
-        iconAnchor: [20, 60],
-    });
-
-    var greenIcon = L.icon({
-        iconUrl: '/img/Pin.png',
-        // shadowUrl: 'leaf-shadow.png',
-
-        iconSize: [40, 60], // size of the icon
-        // shadowSize: [50, 64], // size of the shadow
-        iconAnchor: [20, 60], // point of the icon which will correspond to marker's location
-        // shadowAnchor: [4, 62], // the same for the shadow
-        // popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
-    });
-    for (var i = 0; i < locations.length; i++) {
-        marker = new L.marker([locations[i][1], locations[i][2]])
-            .bindPopup(locations[i][0])
-            .addTo(map);
-    }
-    // L.marker([9.976416, -83.85344], {
-    //     icon: greenIcon
-    // }).addTo(map).bindPopup("<b>Kostaryka</b><br>brvolcán irazú</br><br><biutton class='btn'>Zobacz więcej</button>").closePopup();
-
-    // L.marker([8.976416, -73.85344], {
-    //     icon: pinkIcon
-    // }).addTo(map).bindPopup("<b>Kostaryka</b><br>brvolcán irazú</br><br>").closePopup();
+//         inertia: false,
+//         scrollWheelZoom: false,
+//     }).setView([10.01, -84.221388888889], 3);
+//     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiemFiaWVnbGkiLCJhIjoiY2t0eGE5NjhkMTJsczMwbXhkb2N0Y2UxZCJ9.9LFCbpbXL3o5trk3NM7WRw', {
+//         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+//         maxZoom: 18,
+//         minZoom: 3,
+//         id: 'mapbox/light-v9',
+//         tileSize: 512,
+//         zoomOffset: -1,
+//         accessToken: 'your.mapbox.access.token'
+//     }).addTo(map);
 
 
-    // L.marker([21.161907, -86.851524], {
-    //     icon: pinkIcon
-    // }).addTo(map).bindPopup("<b>Meksyk</b><br>Cancún</br><br>").closePopup();
+//     // Pin - icon
 
-    // L.marker([9.934739, -84.087502], {
-    //     icon: pinkIcon
-    // }).addTo(map).bindPopup("<b>Kostaryka</b><br>San José</br><br>").closePopup();
-    // L.marker([20.214788, -87.430588], {
-    //     icon: greenIcon
-    // }).addTo(map).bindPopup("<b>Meksyk</b><br>Tulum</br><br>").closePopup();
-    // L.marker([20.214788, -87.430588], {
-    //     icon: greenIcon
-    // }).addTo(map).bindPopup("<b>Meksyk</b><br>Tulum</br><br>").closePopup();
+//     var pinkIcon = L.icon({
+//         iconUrl: '/img/Pin2.png',
+//         iconSize: [40, 60],
+//         iconAnchor: [20, 60],
+//     });
 
-}
+//     var greenIcon = L.icon({
+//         iconUrl: '/img/Pin.png',
+//         // shadowUrl: 'leaf-shadow.png',
+
+//         iconSize: [40, 60], // size of the icon
+//         // shadowSize: [50, 64], // size of the shadow
+//         iconAnchor: [20, 60], // point of the icon which will correspond to marker's location
+//         // shadowAnchor: [4, 62], // the same for the shadow
+//         // popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
+//     });
+//     for (var i = 0; i < locations.length; i++) {
+//         marker = new L.marker([locations[i][1], locations[i][2]])
+//             .bindPopup(locations[i][0])
+//             .addTo(map);
+//     }
+//     // L.marker([9.976416, -83.85344], {
+//     //     icon: greenIcon
+//     // }).addTo(map).bindPopup("<b>Kostaryka</b><br>brvolcán irazú</br><br><biutton class='btn'>Zobacz więcej</button>").closePopup();
+
+//     // L.marker([8.976416, -73.85344], {
+//     //     icon: pinkIcon
+//     // }).addTo(map).bindPopup("<b>Kostaryka</b><br>brvolcán irazú</br><br>").closePopup();
+
+
+//     // L.marker([21.161907, -86.851524], {
+//     //     icon: pinkIcon
+//     // }).addTo(map).bindPopup("<b>Meksyk</b><br>Cancún</br><br>").closePopup();
+
+//     // L.marker([9.934739, -84.087502], {
+//     //     icon: pinkIcon
+//     // }).addTo(map).bindPopup("<b>Kostaryka</b><br>San José</br><br>").closePopup();
+//     // L.marker([20.214788, -87.430588], {
+//     //     icon: greenIcon
+//     // }).addTo(map).bindPopup("<b>Meksyk</b><br>Tulum</br><br>").closePopup();
+//     // L.marker([20.214788, -87.430588], {
+//     //     icon: greenIcon
+//     // }).addTo(map).bindPopup("<b>Meksyk</b><br>Tulum</br><br>").closePopup();
+
+// }
 
 // Random quote gnerator
 
@@ -640,4 +640,54 @@ const footer = document.querySelector('.footer')
 
 if (loginPanel) {
     [nav, footer].forEach(el => el.style.display = 'none')
+}
+
+
+// Counters
+const distance = document.querySelectorAll('.route__distance')
+let daysPassed;
+let days = 0;
+let km = 0;
+let sumDistance = 0;
+
+distance.forEach(el => {
+    sumDistance += el.value * 1
+})
+console.log(sumDistance);
+
+const daysCounter = document.querySelector('.date-counter');
+const distanceCounter = document.querySelector('.km-counter')
+if (daysCounter) {
+    // 
+    const startDate = new Date("2022/02/22 15:00:00");
+    const date = new Date();
+    daysPassed = Math.floor(Math.abs(date - startDate) / (1000 * 3600 * 24));
+    daysCounter.textContent = 0
+
+    const incrementDays = function () {
+        days++;
+        daysCounter.textContent = days;
+
+        if (days == daysPassed) {
+            clearInterval(interval)
+        }
+
+    }
+    const incrementDistance = function () {
+        km += 10;
+        distanceCounter.textContent = km;
+
+        if (km > sumDistance - 100) {
+            km++
+
+        }
+        if (km >= sumDistance) {
+            clearInterval(intervalKM)
+        }
+
+    }
+
+    let interval = setInterval(incrementDays, 30)
+    let intervalKM = setInterval(incrementDistance, 25)
+
 }

@@ -1,0 +1,85 @@
+<section class="header__banner-container">
+
+    <div class="header__banner"></div>
+
+    <div class="header__panel" style=" max-width:1140px; ">
+        <div class="post__form-container">
+            <% if(infoSubmitObj !='') {%>
+            <div class="message-container" style="background-color:green">
+                Submit succes!
+                <!--  -->
+                <%= infoSubmitObj %>
+            </div>
+            <% } %>
+
+            <% if(infoErrorsObj !='') {%>
+            <div class="message-container" style="background-color:red">
+                Error!
+                <!--  -->
+                <%= infoErrorsObj[0].message %>
+                <%= infoErrorsObj%>
+            </div>
+            <% } %>
+
+
+            <form action="/admin-panel/map/put-pin/<%= pin.id%>?_method=PUT" enctype="multipart/form-data" method="POST"
+                class="post__form">
+
+
+
+
+
+                <div class="input-container">
+                    <label for="pinLocation">Nazwa lokalizacji</label> <br>
+                    <!-- <small>Wpisz nazwę kraju</small> <br> -->
+                    <input type="text" name="pinLocation" id="pinLocation" class="form__input"
+                        value="<%=pin.pinLocation%>">
+                </div>
+
+                <div class="input-container">
+                    <label for="pinLongitude">Współrzędne geograficzne - długość</label> <br>
+                    <input type="text" name="pinLongitude" id="pinLongitude" class="form__input"
+                        value="<%=pin.pinLongitude%>">
+                </div>
+
+                <div class="input-container">
+                    <label for="pinLatitude">Współrzędne geograficzne - szerokość</label> <br>
+                    <input type="text" name="pinLatitude" id="pinLatitude" class="form__input"
+                        value="<%=pin.pinLatitude%>">
+                </div>
+
+                <div class="input-container">
+                    <label for="category">Status pinezki</label><br>
+                    <small>Tylko pinezki ze statusem "Publikacja" pojawią się na stronie!</small> <br>
+                    <select name="status" name="status" aria-label="status" class="form__input">
+
+                        <option value="<%- pin.status==='Produkcja'?'Publikacja':'Produkcja'%>">
+                            <%- pin.status==='Produkcja'?'Publikacja':'Produkcja'%></option>
+                        <option selected="Produkcja"><%=pin.status%></option>
+                    </select>
+                </div>
+
+
+
+
+                <!-- <div class="input-container">
+                        <button type="button" class="btn" id="addSection">Dodaj sekcje</button>
+                    </div> -->
+                <div class="btns__container">
+
+                    <div class="submit-btn__container">
+                        <button type="submit" class="btn">Zapisz</button>
+                    </div>
+
+                    <a href="/admin-panel" class="btn">Wstecz</a>
+
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>

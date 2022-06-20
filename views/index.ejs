@@ -149,37 +149,6 @@
                         <% }) %>
                         <% } %>
 
-                        <!-- <div class="post articles__featured-post">
-                            <div class="post__img articles__featured-img--0">
-                                <p class="post__data">2022-02-11</p>
-                            </div>
-                            <div class="post__text">
-                                <p class="post__title">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. </p>
-
-                            </div>
-                        </div>
-                        <div class="post articles__featured-post">
-                            <div class="post__img articles__featured-img--1">
-                                <p class="post__data">2022-02-12</p>
-                            </div>
-                            <div class="post__text">
-
-                                <p class="post__title">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. </p>
-                            </div>
-                        </div>
-                        <div class="post articles__featured-post">
-                            <div class="post__img articles__featured-img--2">
-                                <p class="post__data">2022-02-13</p>
-                            </div>
-                            <div class="post__text">
-
-                                <p class="post__title">Lorem ipsum dolor sit amet consectetur adipisicing
-                                    elit. </p>
-                            </div>
-                        </div> -->
-                        <!-- <a href="#" class="btn articles__featured--btn">Więcej artykułów</a> -->
                         <a href="/posts" class="btn articles__featured--btn">Więcej artykułów</a>
                     </div>
                 </div>
@@ -293,7 +262,14 @@
                         class="fa-solid fa-face-smile-wink emoticon"></i>!</p>
                 <div class="destinations__map-conteiner">
                     <!-- <div class="map__search"></div> -->
-                    <div id="map"></div>
+                    <div id="map">
+                        <div class="spinner__container">
+                            <div class="spinner">
+                                <i class="fa-solid fa-earth-americas"></i>
+                            </div>
+                            <p class="spinner__txt">Pobieranie współrzędnych...</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

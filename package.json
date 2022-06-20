@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js"
+    "start": "node app.js",
+    "build": "browserify server/webmap.js -o public/js/webmap.js & cp node_modules/leaflet/dist/leaflet.css public/css/leaflet.css"
   },
   "keywords": [],
   "author": "",
@@ -23,10 +24,12 @@
     "express-fileupload": "^1.3.1",
     "express-session": "^1.17.2",
     "jsdom": "^19.0.0",
+    "leaflet": "^1.8.0",
     "marked": "^4.0.14",
     "method-override": "^3.0.0",
     "mongodb": "^4.5.0",
     "mongoose": "^6.2.10",
+    "request": "^2.88.2",
     "socket.io": "^4.5.0"
   },
   "devDependencies": {
