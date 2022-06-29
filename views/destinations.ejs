@@ -1,4 +1,6 @@
 <div class="app-wrapper">
+    <section class="header__banner-container"
+        style="height: 100vh;position: absolute;left:0;top:0;background-color: transparetnt;z-index: -1;"></section>
     <section class="section map" id="section--3">
         <h3 class="destination__heading">
             <span class="destination__heading-text">Ameryka Centralna</span>
@@ -50,6 +52,7 @@
                 <input type="hidden" value="<%=route.name %>" class="route__name">
                 <input type="hidden" value="<%=route.distance %>" class="route__distance">
                 <input type="hidden" value="<%=JSON.stringify(route.routing[0].coordinates) %>" class="routing">
+                <input type="hidden" value="<%=route.sanitizedHtml%>" class="routeDescription">
 
             </div> <% }) %>
             <% } %>

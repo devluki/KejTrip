@@ -19,10 +19,13 @@ const headerBanner = document.querySelector('.header__banner')
 const navHeight = nav.getBoundingClientRect().height;
 // Map Z-index
 const maps = document.getElementById('map')
+const leafletAttr = document.querySelector('.leaflet-control-attribution.leaflet-control')
+const orsAttributionMarkup = '| © <a href="www.openrouteservice.org">openrouteservice.org</a> by HeiGIT '
 
 // Z-index of map
 if (maps) {
     maps.style.zIndex = 1;
+    leafletAttr.insertAdjacentHTML('beforeend', orsAttributionMarkup)
 }
 
 
@@ -65,7 +68,7 @@ searchLink.addEventListener('click', function (e) {
 
 
 document.addEventListener('click', function (e) {
-    console.log(e.target);
+    // console.log(e.target);
     if (searchLink.classList.contains('search-active') && e.target !== searchInput && e.target !== searchLink && !e.target.classList.contains('form__input') && !e.target.classList.contains('btn-search')) {
         searchLink.classList.remove('search-active');
         searchInput.classList.add('search-active')
@@ -237,22 +240,22 @@ if (slides.length > 0) {
 // const navHeight = nav.getBoundingClientRect().height;
 console.log(navHeight);
 
-// const articlesContainer = document.querySelector('.aside__about')
+const articlesContainer = document.querySelector('.aside__about')
 
-// const stickyNav = function (entries) {
-//     const [entry] = entries;
+const stickyNav = function (entries) {
+    const [entry] = entries;
 
 
-//     if (!entry.isIntersecting) nav.classList.add('sticky');
-//     else nav.classList.remove('sticky');
-// };
+    if (!entry.isIntersecting) nav.classList.add('sticky');
+    else nav.classList.remove('sticky');
+};
 
-// const headerObserver = new IntersectionObserver(stickyNav, {
-//     root: null,
-//     threshold: 0,
-//     rootMargin: `-${navHeight}px`,
-// });
-
+const headerObserver = new IntersectionObserver(stickyNav, {
+    root: null,
+    threshold: 0,
+    rootMargin: `-${navHeight}px`,
+});
+headerObserver.observe(headerBannerContainer)
 
 // headerBannerContainer ? headerObserver.observe(headerBannerContainer) : headerObserver.observe(articlesContainer)
 
@@ -674,14 +677,14 @@ if (daysCounter) {
 
     }
     const incrementDistance = function () {
-        km += 10;
+        km += 100;
         distanceCounter.textContent = km;
 
-        if (km > sumDistance - 100) {
+        if (km > sumDistance + 5000 - 100) {
             km++
 
         }
-        if (km >= sumDistance) {
+        if (km >= sumDistance + 8000) {
             clearInterval(intervalKM)
         }
 

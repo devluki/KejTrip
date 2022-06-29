@@ -60,6 +60,7 @@
     z-index: 4;
     background-color: rgba(222, 222, 222, 0.6);
     left: 0;
+    max-height: 65px;
 }
 
 .nav__burger-container {
@@ -555,8 +556,9 @@
 
 .post__img {
     position: relative;
-    height: 80%;
+    height: 70%;
     width: 100%;
+    max-height: 500px;
     /* background-image: url('/img/post.jpg'); */
     background-repeat: no-repeat;
     background-size: cover;
@@ -605,7 +607,7 @@
 
 .post__title {
     text-align: center;
-    text-align: justify;
+    /* text-align: justify; */
 }
 
 .articles__featured-posts-container {
@@ -775,9 +777,10 @@
     flex-direction: column;
     align-items: center;
     /* background-color: var(--sticky-nav-bgc); */
-    background-image: url('/img/bg_pattern_green_opacity_0_15.svg'), url('../img/svg.png');
+    /* background-image: url('/img/bg_pattern_green_opacity_0_15.svg'), url('../img/svg.png'); */
     /* background-size: 75%; */
-    background-color: #EFF0EB;
+    /* background-color: #CAD2D3; */
+    background-color: #42484d;
     /* background-image: url('../img/svg.png'); */
     background-repeat: no-repeat;
     background-size: cover;
@@ -981,51 +984,12 @@
     width: 100%;
 }
 
-/* .counter {
-    color: var(--primary-color);
-    background: var(--gradient-primary);
-    text-align: center;
-    width: 200px;
-    height: 200px;
-    padding: 30px 25px 10px;
-    margin: 0 auto;
-    box-shadow: 0 10px 6px -3px rgba(0, 0, 0, 0.2);
-    border-radius: 100% 0 100% 100%;
-    position: relative;
-    z-index: 1;
-    transition: all 0.3s;
-}
 
-.counter:before,
-.counter:after {
-    content: '';
-    background: #fff;
-    border-radius: 100% 0 100% 100%;
-    position: absolute;
-    left: 12px;
-    right: 12px;
-    top: 12px;
-    bottom: 12px;
-    z-index: -1;
-}
-
-.counter:after {
-    background-color: transparent;
-    border: 3px solid var(--primary-color);
-    left: 16px;
-    right: 16px;
-    top: 16px;
-    bottom: 16px;
-}
-
-.counter .counter-icon {
-    font-size: 30px;
-    margin: 0 0 7px;
-} */
 .counter {
     color: var(--primary-color);
     font-family: var(--font-family);
     text-align: center;
+    font-style: italic;
     width: 200px;
     height: 200px;
     padding: 33px 10px 0;
@@ -1041,29 +1005,7 @@
     color: var(--primary-color)
 }
 
-.counter:before,
-.counter:after {
-    content: '';
-    background: linear-gradient(to top left, #DCE35B, #45B649, transparent);
-    height: 59%;
-    width: 59%;
-    border-radius: 0 50% 50%;
-    opacity: 0.2;
-    position: absolute;
-    left: 0;
-    top: 0;
-    z-index: -1;
-    transition: all 0.3s ease 0s;
-}
 
-.counter:after {
-    background: linear-gradient(to right bottom, #DCE35B, #45B649, transparent);
-    border-radius: 50% 50% 0;
-    top: auto;
-    bottom: 0;
-    left: auto;
-    right: 0;
-}
 
 .counter .counter-icon i.fa-solid {
     transform: rotateY(0deg);
@@ -1089,18 +1031,6 @@
 }
 
 
-.counter.purple:after {
-    border-color: #3c1053;
-}
-
-/* .counter.purple {
-    color: #3c1053;
-    background: linear-gradient(45deg, #ad5389, #3c1053);
-}
-
-.counter.purple:after {
-    border-color: #3c1053;
-} */
 
 .spinner__container {
     position: absolute;
@@ -1129,11 +1059,10 @@
 }
 
 .map__tabs {
-    /* position: absolute;
-    z-index: 401;
-    left: 0;
-    top: -10%;
-    /* width: 100%; */
+    /* border-radius: 8px 0px 0px 0px;
+    background-color: rgb(216, 216, 216); */
+    box-shadow: 0px 8px 15px rgba(54, 31, 84, .4);
+    background-image: url('../img/bg_pattern_gray_opacity_0_15.svg');
     width: 80%;
     display: flex;
 }
@@ -1141,30 +1070,27 @@
 .map__tab {
 
 
-
-    /* background-color: var(--primary-color); */
     background-color: darkgrey;
-    /* background-color: var(--btn-background-color); */
     border: none;
-    /* margin: 4% 0 5% 0; */
     font-family: var(--font-family);
     line-height: 30px;
     color: white;
     text-transform: uppercase;
-    /* border-radius: 30px; */
+    border-radius: 8px 0px 0px 0px;
     padding: 5px 10px;
     letter-spacing: .1rem;
     cursor: pointer;
     box-shadow: 0px 8px 15px rgba(54, 31, 84, .4);
-    min-width: 40%;
-    margin: 5% auto;
     text-decoration: none;
     text-align: center;
 }
 
+
+
 .map__tab.active {
-    background-color: var(--primary-color);
+    background-color: #42484d;
 }
+
 
 .destination__heading {
     width: 100%;
