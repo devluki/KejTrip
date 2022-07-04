@@ -2,79 +2,204 @@
     <section class="header__banner-container"
         style="height: 100vh;position: absolute;left:0;top:0;background-color: transparetnt;z-index: -1;"></section>
     <section class="section map" id="section--3">
-        <h3 class="destination__heading">
-            <span class="destination__heading-text">Ameryka Centralna</span>
+        <div class="articles">
+            <div class="map__content">
+                <h3 class="destination__heading">
+                    <span class="destination__heading-text">Ameryka Centralna</span>
 
-        </h3>
-        <!-- <h3 class="heading destinations__map-heading">
-            <span class="heading__bar"></span><span class="heading-text">Ameryka Centralna</span>
-            <span class="heading__bar"></span>
-        </h3> -->
+                </h3>
+                <div class="content__trip-info">
+                    <p class="text">Moja obecna podróż w pigułce, czas trwania oraz pokonane kilometry aktulizowane na
+                        bieżąco. Zaznaczone główne trasy, które pokonałam wszlkimi możliwymi formami transportu, od
+                        roweru, przez autostop oraz różnego rodzaju busy </p>
+                </div>
+                <!-- <h3 class="heading destinations__map-heading">
+                    <span class="heading__bar"></span><span class="heading-text">Ameryka Centralna</span>
+                    <span class="heading__bar"></span>
+                </h3> -->
 
-        <div class="destinatinos__couter">
-            <div class="couter__date-container">
-                <!-- Test -->
-                <div class="counter">
-                    <div class="counter-icon">
-                        <i class="fa-solid fa-calendar-check"></i>
+                <div class="destinatinos__couter">
+                    <div class="couter__date-container">
+                        <!-- Test -->
+                        <div class="counter heading-text">
+                            <div class="counter-icon">
+                                <i class="fa-solid fa-calendar-check heading-text"></i>
+                            </div>
+
+                            <span class="date-counter"></span>
+                            <h3 class="counter__txt">Dni w podróży</h3>
+
+
+
+                        </div>
+
+
+
+                    </div>
+                    <div class="couter__km-container">
+                        <div class="counter heading-text">
+                            <div class="counter-icon">
+                                <i class="fa-solid fa-person-hiking heading-text"></i>
+                            </div>
+
+                            <span class="km-counter">1815</span>
+                            <h3 class="counter__txt">Przebytych km</h3>
+                        </div>
+
+
                     </div>
 
-                    <span class="date-counter"></span>
-                    <h3 class="counter__txt">Dni w podróży</h3>
-
-
 
                 </div>
 
+                <div class="routes-container">
+                    <% if(routes != '') { %>
+                    <% routes.forEach((route,i)=>{  %>
+                    <div class="route">
+                        <input type="hidden" value="<%=route.name %>" class="route__name">
+                        <input type="hidden" value="<%=route.distance %>" class="route__distance">
+                        <input type="hidden" value="<%=JSON.stringify(route.routing[0].coordinates) %>" class="routing">
+                        <input type="hidden" value="<%=route.sanitizedHtml%>" class="routeDescription">
 
+                    </div> <% }) %>
+                    <% } %>
+                </div>
 
-            </div>
-            <div class="couter__km-container">
-                <div class="counter">
-                    <div class="counter-icon">
-                        <i class="fa-solid fa-person-hiking"></i>
+                <div class="destinations__content ">
+                    <p class="destinations__map-content text">Wszystkie odwiedzone przeze mnie miejsca, mniej lub
+                        bardziej
+                        dokładnie zaznaczone.
+                        Dużo jeszcze przede mną.
+                        Część europejską zwiedzałam nie spisując informacji, a i tam zdarzyły się ciekawe przygody czy
+                        piękne momenty.
+                        Jeśli potrzebujesz jakichś informacji czy szukasz inspiracji - pisz śmiało tutaj. <i
+                            class="fa-solid fa-face-smile-wink emoticon"></i>!</p>
+                    <div class="destinations__map-conteiner">
+                        <div class="map__tabs">
+
+                        </div>
+                        <!-- <div class="map__search"></div> -->
+                        <div id="map">
+
+                        </div>
                     </div>
+                    <div class="articles__featured-posts-container">
+                        <h2 class="articles__featured-posts-heading heading">
+                            <span class="heading__bar"></span><span class="heading-text"><span class="heading-text">Polecane wpisy</span></span>
+                            <span class="heading__bar"></span>
+                        </h2>
+                        <% if(postsFeatured != '') { %>
+                        <% postsFeatured.forEach((post,i)=>{  %>
+                        <div class="post articles__featured-post">
+                            <a class ="article__link" href="/post/<%= post._id %>">
+                            <div class="post__img articles__slide-img--0" style="background-image:  url('<%- post.image%>')">
+                                
+                            </div>
+                            <div class="post__text">
+                                <p class="post__title"><%- post.title %>
+                                </p>
 
-                    <span class="km-counter">1815</span>
-                    <h3 class="counter__txt">Przebytych km</h3>
+                            </div>
+                            <div class="post-data__container">
+                                <p class="post__data">
+                                    <%- post.data.toLocaleString()%>
+                                    
+                                </p>
+                                <p class="post__likes"><span class="likes-count"><%- post.likes%></span><i class="fa-solid fa-heart"></i></p>
+                              </div>
+                        </a>
+                        </div>
+                        <% }) %>
+                        <% } %>
+
+                        <a href="/posts" class="btn articles__featured--btn">Więcej artykułów</a>
+                    </div>
                 </div>
-
 
             </div>
 
+            <aside class="aside" id="section--4">
+                <!-- test -->
 
+                <p class="aside__about-heading heading">
+                    <span class="heading__bar"></span><span class="heading-text">O mnie</span><span class="heading__bar"></span>
+                </p>
+                <div class="aside__about">
+                    <div class="aside__content">
+                        <div class="about__pic-container">
+
+                            <div class="about-pic"></div>
+                        </div>
+                        <div class="about__short-text">
+                            <p class="aside__txt">Uzależniona od nowosci i zmiany.
+                                Urodzona w Dąbrowie Górniczej, wakacje spędzane ze
+                                Ślązakami, po studiach zamieszkała w Krakowie i w Gdańsku. Wychodzę na zewnątrz i tam
+                                najlepiej się czuję. Wśród zieleni i w ruchu. Szukam swojego miejsca. Spisuję
+                                wspomnienia, przygody i praktyczne wskazówki.</p>
+                            <a href="/about" class="btn aside__btn--about">Więcej</a>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="aside__subscribe-heading heading"><span class="heading__bar"></span>
+                    <span class="heading-text">Wsparcie</span>
+                    <span class="heading__bar"></span></p>
+                <div class="aside__subscribe">
+
+
+                    <div class="aside__content">
+                        <p class="aside__txt">Przez liczne pytania bliższych i dalszych znajomych z
+                            lekkim zażenowaniem założyłam <a href=""class="paypal__link" >PayPal</a>
+                            , gdzie możecie wrzucić jakąś złotówkę czy dowolną walutę.
+                            Jeśli chcecie pomóc, spodobał Wam się jakiś tekst, skorzystaliście z info, a może tylko
+                            skutecznie
+                            zmarnowaliście ze mną czas :D Dziękuję!
+                        </p>
+                        <a class="footer__link" href="#"><i class="fa-brands fa-paypal"></i></a>
+                    </div>
+                </div>
         </div>
 
-        <div class="routes-container">
-            <% if(routes != '') { %>
-            <% routes.forEach((route,i)=>{  %>
-            <div class="route">
-                <input type="hidden" value="<%=route.name %>" class="route__name">
-                <input type="hidden" value="<%=route.distance %>" class="route__distance">
-                <input type="hidden" value="<%=JSON.stringify(route.routing[0].coordinates) %>" class="routing">
-                <input type="hidden" value="<%=route.sanitizedHtml%>" class="routeDescription">
+        <p class="aside__contact-heading heading" id="section--2">
+            <span class="heading__bar"></span><span class="heading-text">Kontakt</span>
+            <span class="heading__bar"></span></p>
+        <div class="aside__contact">
+            <!-- <a href=""></a> -->
 
-            </div> <% }) %>
-            <% } %>
-        </div>
+            <div class="aside__content">
+                <div class="aside__txt">
+                    <p>Jeśli:</p>
+                    <p>- masz info, pomysły, sugestie</p>
+                    <p>- potrzebujesz info czy kontaktu do osoby na miejscu</p>
+                    <p>- chcesz, żebym zaplanowała Twoją wycieczkę</p>
+                    <p>- a może chcesz do mnie dołączyć</p>
+                    <p> PISZ!!!</p>
+                    <p>Nie mam dużego doświadczenia więc jakakolwiek interakcja z Wami przyniesie mi satysfakcję
+                        i
+                        radość! Będę wiedziała, że spisywanie tego w notatniku na komórce w najdziwniejszych
+                        miejscach nie poszło na marne!</p>
 
-        <div class="destinations__content">
-            <p class="destinations__map-content text">Wszystkie odwiedzone przeze mnie miejsca, mniej lub
-                bardziej
-                dokładnie zaznaczone.
-                Dużo jeszcze przede mną.
-                Część europejską zwiedzałam nie spisując informacji, a i tam zdarzyły się ciekawe przygody czy
-                piękne momenty.
-                Jeśli potrzebujesz jakichś informacji czy szukasz inspiracji - pisz śmiało tutaj. <i
-                    class="fa-solid fa-face-smile-wink emoticon"></i>!</p>
-            <div class="destinations__map-conteiner">
-                <div class="map__tabs">
 
                 </div>
-                <!-- <div class="map__search"></div> -->
-                <div id="map">
+                <div class="aside__contact-social-container">
+
+                    <ul class="aside__contact-links">
+                        <li><a class="aside__contact-link" href="#"><i
+                            class="fa-brands fa-facebook-square"></i></a></li>
+                        <li><a class="aside__contact-link" href="#"><i class="fa-brands fa-instagram-square"></i></a>
+                        </li>
+                        <li><a class="aside__contact-link" href="#"><i
+                            class="fas fa-envelope"></i></a></li>
+                    </ul>
+
+
 
                 </div>
             </div>
+            </aside>
+        </div>
+
+
+
     </section>
 </div>

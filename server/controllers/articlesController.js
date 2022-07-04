@@ -258,7 +258,7 @@ exports.searchPost = async (req, res) => {
 
 // Destinations ??? TO DO
 exports.destinations = async (req, res) => {
-
+    const limitNumberFeatured = 3
     try {
 
         const routes = await Route.find({
@@ -267,9 +267,16 @@ exports.destinations = async (req, res) => {
             id: -1
         })
 
+        const postsFeatured = await Posts.find({
+            'status': 'Publikacja'
+        }).sort({
+            likes: -1
+        }).limit(limitNumberFeatured);
+
         res.render('destinations', {
             title: 'Kejtrip - kierunki',
             routes: routes,
+            postsFeatured,
 
         })
 

@@ -36,6 +36,10 @@
     display: none;
 }
 
+.shadow {
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+
 .wrapper {
     position: relative;
     display: flex;
@@ -583,16 +587,25 @@
 }
 
 
-.post__data {
+.post-data__container {
+
     display: flex;
-    width: 100;
-    background-color: rgba(190, 190, 190, .5);
-    /* box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset; */
+    justify-content: space-between;
+    width: 100%;
+    /* font-weight: bold; */
+    font-style: italic;
+
+}
+
+.post__data {
+    margin-left: 3%;
 }
 
 .post__likes {
+    margin-right: 3%;
+    font-weight: bold;
     display: block;
-    /* width: 100; */
+
 }
 
 .post__text {
@@ -772,24 +785,19 @@
 }
 
 .footer {
-    width: 100%;
+
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* background-color: var(--sticky-nav-bgc); */
-    /* background-image: url('/img/bg_pattern_green_opacity_0_15.svg'), url('../img/svg.png'); */
-    /* background-size: 75%; */
-    /* background-color: #CAD2D3; */
-    background-color: #42484d;
-    /* background-image: url('../img/svg.png'); */
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
-    background-position-y: 35%;
-    /* color: black; */
-    color: #EFF0EB;
-    /* mix-blend-mode: color; */
-    border-top: var(--menu-active-bgc) solid .5px;
+
+    background-image: url('/img/bg_pattern_green_opacity_0_15.svg');
+    background-size: 140%;
+    text-align: justify;
+    font-style: italic;
+    font-weight: bold;
+    background-color: rgba(222, 222, 222, 0.6);
+
+
 }
 
 .text {
@@ -797,20 +805,21 @@
 
 }
 
-.footer__content-question {
-    font-weight: bold;
-    font-size: 1.2em;
-    margin: 3% 0%;
+.footer__content {
+
+    font-size: 1.3em;
+    margin: 4% 0%;
+
     color: var(--primary-color);
-    /* color: black; */
-    mix-blend-mode: multiply;
-    opacity: .9;
+
+
+
 }
 
 .footer__content-text {
     text-align: justify;
     font-style: italic;
-    mix-blend-mode: hard-light;
+
 }
 
 .footer__social-heading {
@@ -822,17 +831,31 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    background-color: black;
     list-style: none;
     color: #EFF0EB;
-
+    max-width: 500px;
+    min-width: 400px;
 
 
 }
 
 .footer__links-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 100%;
-    max-width: 500px;
+    background-color: black;
+    margin-top: 4%;
+    /* max-width: 500px; */
 
+}
+
+.paypal__link {
+    color: var(--primary-color);
+    font-style: italic;
+    font-weight: bold;
+    text-decoration: none;
 }
 
 .footer__link {
@@ -947,11 +970,23 @@
 }
 
 .comment {
-    background-color: var(--menu-active-bgc);
-    background-image: url('/img/bg_pattern_green_opacity_0_15.svg');
+
     border-radius: 20px;
     margin: 2% auto;
     width: 90%;
+    border-bottom: 2px solid var(--aside-border--color);
+}
+
+.comments__container {
+    /* border-radius: 20px;
+    background-color: var(--sticky-nav-bgc); */
+
+    margin: 0 3%;
+    padding: 3% 0;
+}
+
+.comments__user {
+    font-weight: bold;
 }
 
 .comments__user,
@@ -959,11 +994,23 @@
     margin: 0% 5%;
 }
 
+.comment__date {
+    font-weight: normal;
+}
+
+.form__container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
 .post__comments {
     margin: 8% 5%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+
+    /* align-items: center; */
 
 }
 
@@ -1002,7 +1049,7 @@
 .counter__txt {
     font-size: 30px;
     margin: 0 0 7px;
-    color: var(--primary-color)
+
 }
 
 
@@ -1112,13 +1159,14 @@
     background-position: 0%;
     width: 80%;
     margin: 3% auto;
-    font-size: 4em;
+    /* font-size: 4em; */
     animation: moving infinite 220s;
     animation-fill-mode: forwards;
     animation-play-state: running;
     animation-timing-function: linear;
     text-align: center;
 }
+
 
 @keyframes moving {
     0% {
@@ -1149,10 +1197,21 @@
     }
 }
 
+.destinations__map-content,
+.content__trip-info {
+    margin-bottom: 3%;
+    text-align: justify;
+    /* max-width: 45%; */
+}
+
 @media (orientation:portrait) and (min-width:280px) {
     .heading {
 
         font-weight: 100;
+    }
+
+    .destination__heading-text {
+        font-size: 3em;
     }
 
     .motivation__quote-author {
@@ -1651,11 +1710,10 @@
         width: 100%;
     }
 
-    .destinations__map-content {
-        margin-bottom: 3%;
-        text-align: justify;
-        /* max-width: 45%; */
+    .map__content {
+        max-width: 70%;
     }
+
 
     .destinations__content {
         margin-top: var(--nav-height);
@@ -1709,13 +1767,18 @@
     }
 
     .footer {
-
+        background-size: 28%;
         width: 100%;
 
     }
 
-    .footer__content-question {
+    .footer__content {
         margin: 1% 0%;
+
+    }
+
+    .footer__links-container {
+        margin-top: 1%;
     }
 
     .nav {
@@ -1757,6 +1820,12 @@
     .destinatinos__couter {
         flex-direction: row;
         margin: 4% 0%;
+    }
+
+    .destination__heading-text {
+
+        font-size: 4em;
+
     }
 
 

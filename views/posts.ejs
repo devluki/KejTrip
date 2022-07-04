@@ -1,13 +1,6 @@
-<h1>Posts all - zmienić nav i wywalić banner!!! Dodać pagination</h1>
-
-
-
-
-<!--  -->
-
-
-<!--  -->
 <div class="app-wrapper">
+    <section class="header__banner-container"
+        style="height: 100vh;position: absolute;left:0;top:0;background-color: transparetnt;z-index: -1;"></section>
     <section class="section" id="section--1">
         <div class="articles">
             <div class="articles__posts-container">
@@ -26,17 +19,20 @@
                             <a class ="article__link" href="/post/<%= post._id%>">
                             <div class="post__img articles__slide-img--0"
                                 style=" background-image: url('<%- post.image%>')">
-                                <p class="post__data">
-                                    <%- post.data.getUTCDay()%>-<%- post.data.getUTCDate()%>-<%- post.data.getUTCFullYear()%>
-                                    <!-- <%- post.data.getDay()%>-<%- post.data.getMonth()%>-<%- post.data.getYear()%> -->
-                                </p>
-                                <p class="post__likes"><span class="likes-count"><%- post.likes%></span><i class="fa-solid fa-heart"></i></p>
+                                
                             </div>
                             <div class="post__text">
                                 <p class="post__title"><%- post.title %>
                                 </p>
 
                             </div>
+                            <div class="post-data__container">
+                                <p class="post__data">
+                                    <%- post.data.toLocaleString()%>
+                                    
+                                </p>
+                                <p class="post__likes"><span class="likes-count"><%- post.likes%></span><i class="fa-solid fa-heart"></i></p>
+                              </div>
                             </a>
                         </div>
 
@@ -68,8 +64,7 @@
                         </div>
                         <div class="about__short-text">
                             <p class="aside__txt">Uzależniona od nowosci i zmiany.
-                                Urodzona w Dąbrowie Górniczej (Zagłębie, ale nie Sosnowiec <i
-                                    class="fa-solid fa-face-smile-wink emoticon"></i>), wakacje spędzane ze
+                                Urodzona w Dąbrowie Górniczej, wakacje spędzane ze
                                 Ślązakami, po studiach zamieszkała w Krakowie. Wychodzę na zewnątrz i tam
                                 najlepiej się czuję. Wśród zieleni i w ruchu. Szukam swojego miejsca. Spisuję
                                 wspomnienia, przygody i praktyczne wskazówki.</p>
@@ -79,27 +74,20 @@
                 </div>
 
                 <p class="aside__subscribe-heading heading"><span class="heading__bar"></span>
-                    <span class="heading-text">Subskrypcja</span>
+                    <span class="heading-text">Wsparcie</span>
                     <span class="heading__bar"></span></p>
                 <div class="aside__subscribe">
 
-                    <div class="aside__content">
-                        <p class="aside__txt">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Atque,
-                            nulla
-                            sit
-                            fugiat officia
-                            eveniet
-                            ab dolor sed omnis cum id accusantium aut quam quis quas voluptate vitae sunt porro
-                            impedit!
-                        </p>
-                        <!-- <div class="aside__subscribe-inputs"> -->
-                        <form action="" class="aside__subscribe-inputs">
-                            <input class="aside__subscribe-input" placeholder="Imię" type="email" name="" id="">
-                            <input class="aside__subscribe-input" placeholder="M@il" type="email" name="" id="">
-                            <input type="submit" class="btn aside__subscribe--btn">
-                        </form>
 
-                        <!-- </div> -->
+                    <div class="aside__content">
+                        <p class="aside__txt">Przez liczne pytania bliższych i dalszych znajomych z
+                            lekkim zażenowaniem założyłam <a href=""class="paypal__link" >PayPal</a>
+                            , gdzie możecie wrzucić jakąś złotówkę czy dowolną walutę.
+                            Jeśli chcecie pomóc, spodobał Wam się jakiś tekst, skorzystaliście z info, a może tylko
+                            skutecznie
+                            zmarnowaliście ze mną czas :D Dziękuję!
+                        </p>
+                        <a class="footer__link" href="#"><i class="fa-brands fa-paypal"></i></a>
                     </div>
                 </div>
                 <!-- <p class="heading__contact heading"><span class="heading__bar"></span>Kontakt
