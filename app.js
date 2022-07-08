@@ -37,10 +37,7 @@ app.use(cookieParser('TravelBlogSecure'));
 
 app.use(cookieSession({
     name: 'session',
-    // keys: ['123456'],
-    // maxAge: 24 * 60 * 60 * 1000
-    // keys: config.keySession,
-    // maxAge: config.maxAgeSession
+    overwrite: false,
     keys: ['123456'],
     maxAge: 24 * 60 * 60 * 1000
 }))

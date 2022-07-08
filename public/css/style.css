@@ -834,8 +834,9 @@
     background-color: black;
     list-style: none;
     color: #EFF0EB;
-    max-width: 500px;
-    min-width: 400px;
+    width: 100%;
+    /* max-width: 500px;
+    min-width: 250px; */
 
 
 }
@@ -942,6 +943,7 @@
 
 .content__markup li {
     margin-left: 3%;
+    text-align: justify;
 }
 
 .content__title {

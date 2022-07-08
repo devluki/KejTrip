@@ -5,8 +5,9 @@ const Posts = require('../models/Post');
 const About = require('../models/About')
 const User = require('../models/User');
 const Image = require('../models/Image');
-const Pin = require('../models/Pin')
-const fs = require('fs')
+const Pin = require('../models/Pin');
+const fs = require('fs');
+const cookieParser = require('cookie-parser');
 const cloudinary = require('cloudinary').v2;
 cloudinary.config({
     cloud_name: 'devluki',
@@ -16,6 +17,9 @@ cloudinary.config({
 const ResTest = require('../models/ResTest')
 const Route = require('../models/Route')
 const request = require('request');
+const {
+    post
+} = require('request');
 
 
 
@@ -194,13 +198,20 @@ exports.about = async (req, res) => {
 // Render post content
 exports.readPost = async (req, res) => {
     // const limitNumberLatest = 4;
-    let postId = req.params.id;
+
+
+
+    const postId = req.params.id;
+    const cookiesId = 'a' + req.params.id;
+
+    const cookies = req.cookies;
+    console.log(req.cookies['a' + req.params.id], cookies[cookiesId]);
     let show;
     try {
 
         // Cookie
-        if (req.session.id === postId) {
-            show = !req.session.like;
+        if (!cookies[cookiesId]) {
+            show = 0;
         } else {
             show = 1;
         }
@@ -480,26 +491,65 @@ exports.editPutAbout = async (req, res) => {
 ////////////////////////////////////////////
 
 
-exports.addLikes = async (req, res) => {
+exports.addLikes = async (req, res, next) => {
     try {
 
         const id = req.params.id;
+
+        // console.log(post.likes);
         const post = await Posts.findById(id);
         post.likes++;
-        req.session.like = 1;
-        req.session.id = id;
+        // req.session.like = 1;
+        // req.session.id = id;
         post.save();
 
+
+        res.cookie('a' + id, `${id}`, {
+            maxAge: 360000
+        })
         res.send({
             likes: post.likes,
             postId: id
         })
+        res.end()
+
+
+
+
+
     } catch (error) {
         res.status(500).send({
             message: 'BŁĄD' + error.message || "Error Occured!"
         })
     }
 }
+// exports.addLikes = async (req, res, next) => {
+//     try {
+
+//         const id = req.params.id;
+
+//         // console.log(post.likes);
+//         const post = await Posts.findById(id);
+//         post.likes++;
+//         req.session.like = 1;
+//         req.session.id = id;
+//         post.save();
+
+//         res.send({
+//             likes: post.likes,
+//             postId: id
+//         })
+
+
+
+
+
+//     } catch (error) {
+//         res.status(500).send({
+//             message: 'BŁĄD' + error.message || "Error Occured!"
+//         })
+//     }
+// }
 
 
 
@@ -819,6 +869,7 @@ exports.submitAddPins = async (req, res) => {
 
         const newPin = new Pin({
             pinLocation: req.body.pinLocation,
+            pinLink: req.body.pinLink,
             pinLongitude: req.body.pinLongitude,
             pinLatitude: req.body.pinLatitude,
             status: req.body.status,

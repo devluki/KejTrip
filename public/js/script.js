@@ -491,11 +491,13 @@ if (commentsForm && !likeBtn) {
 
 
 if (likeBtn) {
+
     likeBtn.addEventListener('click', async function () {
-        likeIco.innerHTML = '<i class="fa-solid fa-heart"></i>'
+        likeIco.innerHTML = '<i class="fa-solid fa-heart"></i>';
         const postId = likeBtn.getAttribute('postId');
         console.log(postId);
         console.log('click');
+        let flag = document.cookie.indexOf('a' + commentsForm.postId.value)
         fetch('/post/' + postId, {
                 method: 'POST'
             })
@@ -564,12 +566,13 @@ socket.on("newComment", (comment) => {
 })
 socket.on("newLike", (data) => {
     console.log(data);
-    likesCounter.textContent = `${data.likes}`
 
-    if (data.postId === commentsForm.postId.value) {
+
+    let flag = document.cookie.indexOf('a' + commentsForm.postId.value)
+    if (flag !== -1) {
         likeBtn.style.display = 'none';
-
-
+        likesCounter.textContent = `${data.likes}`
+        likeIco.innerHTML = '<i class="fa-solid fa-heart"></i>'
     };
 
 })

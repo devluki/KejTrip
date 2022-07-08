@@ -10,15 +10,16 @@
                     <p><span class="date"><%=post.date%></span></p>
                     <%-post.sanitizedHtml%>
                 </div>
+
                 <div class="articles-likes__container">
                     <span class="likes-count"><%- post.likes%></span><span class="likes-ico"><i class="fa-regular fa-heart"></i></span></a>
-                    <% if(show) {%>
+                    <% if(show===0) {%>
                     <button class="like btn__like" postId="<%=post._id%>">Polub post!</button>
                     <%}%>
 
                 </div>
-               
-                <!--  -->
+
+
                 <div class="articles__featured-posts-container">
                     <h2 class="articles__featured-posts-heading heading">
                         <span class="heading__bar"></span><span class="heading-text"><span class="heading-text">Polecane wpisy</span></span>
@@ -51,12 +52,12 @@
                     <a href="/posts" class="btn articles__featured--btn">Więcej artykułów</a>
                 </div>
 
-                <!--  -->
+
                 <div class="post__comments-container">
                     <div class="form__container">
                         <div class="form__comments">
                             <form method="POST" class="post__comments">
-                                <input type="hidden" name="postId" value="<%=post._id%>">
+                                <input type="text" name="postId" value="<%=post._id%>">
                                 <label for="city" class="form__label">Imię:</label>
                                 <input type="text" name="userName" class="form__input">
                                 <label for="comments" class="form__label">Komentaż:</label>
@@ -133,8 +134,7 @@
                                 <a class="footer__link" href="#"><i class="fa-brands fa-paypal"></i></a>
                             </div>
                         </div>
-                    <!-- <p class="heading__contact heading"><span class="heading__bar"></span>Kontakt
-            <span class="heading__bar"></span></p> -->
+                 
                     <p class="aside__contact-heading heading" id="section--2">
                         <span class="heading__bar"></span><span class="heading-text">Kontakt</span>
                         <span class="heading__bar"></span></p>

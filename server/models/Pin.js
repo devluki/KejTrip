@@ -8,20 +8,25 @@ const pinSchema = new mongoose.Schema({
 
     pinLocation: {
         type: String,
-        required: 'This fild is required.',
+        required: 'This field is required.',
+
+    },
+    pinLink: {
+        type: String,
+        required: 'This field is required.',
 
     },
 
-
+    // Dodać kraj - jako link???
 
     pinLongitude: {
         type: Number,
-        required: 'This fild is required.',
+        required: 'This field is required.',
     },
 
     pinLatitude: {
         type: Number,
-        required: 'This fild is required.',
+        required: 'This field is required.',
     },
 
 
