@@ -14142,6 +14142,8 @@ const parentEl = document.querySelector('.map__tabs')
 let routeCoords = [];
 let locations = [];
 const routes = [];
+
+
 console.log('routeparentEl:', routeDescriptionParentEl);
 
 const grayMarker = L.icon({
@@ -14161,7 +14163,12 @@ const greenMarker = L.icon({
 var lineLayer;
 let markerGroup;
 
+const popupEventListener = function () {
+    const searchLink = document.querySelector('.search__link');
+    // searchLink.addEventListener('click',function(){
 
+    // })
+}
 
 
 const createStartEndPoints = (coords) => {
@@ -14301,7 +14308,8 @@ const getPins = async function () {
     console.log(data);
     let pinData = [];
     await data.forEach(pin => {
-        pinData.push(pin.pinLocation);
+        pinData.push(`<a class="search__link" href="/search?searchTerm=${pin.pinLink}">${pin.pinLocation}</a>`);
+        // pinData.push(pin.pinLocation);
         pinData.push(pin.pinLatitude);
         pinData.push(pin.pinLongitude);
         locations.push(pinData);
@@ -14310,8 +14318,12 @@ const getPins = async function () {
     })
     console.log('locations:', locations);
 
-    createMarkers(locations, grayMarker)
-
+    createMarkers(locations, grayMarker);
+    // Add event listener on markers
+    const markers = document.querySelectorAll('.leaflet-marker-icon')
+    markers.forEach(marker => marker.addEventListener('click', function () {
+        console.log('marker kliknięty');
+    }))
 
 }
 
@@ -14346,6 +14358,8 @@ if (maps) {
 
     if (!daysCounter) {
         getPins()
+
+
     }
 
     if (daysCounter) {

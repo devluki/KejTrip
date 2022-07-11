@@ -34,6 +34,4 @@ const imageSchema = new mongoose.Schema({
 
 
 
-// Do wypróbowania wildCard indexing
-// postSchema.index({"$**":'text'}) 
 module.exports = mongoose.model('image', imageSchema);

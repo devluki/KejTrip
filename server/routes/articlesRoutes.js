@@ -13,6 +13,7 @@ router.get('/about', articlesController.about);
 router.get('/post/:id', articlesController.readPost);
 // Search
 router.post('/search', articlesController.searchPost);
+router.get('/search', articlesController.searchPostQuery);
 // Directions
 router.get('/destinations', articlesController.destinations)
 // Post a post :) 

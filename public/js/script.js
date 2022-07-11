@@ -22,6 +22,12 @@ const maps = document.getElementById('map')
 const leafletAttr = document.querySelector('.leaflet-control-attribution.leaflet-control')
 const orsAttributionMarkup = '| © <a href="www.openrouteservice.org">openrouteservice.org</a> by HeiGIT '
 
+const galleryBtn = document.querySelector('.gallery__btn');
+const galleryContainer = document.querySelector('.gallery__container')
+const imgsContainer = document.querySelector('.gallery__imgs')
+
+const galleryCloseBtn = document.querySelector('.close-btn__container')
+
 // Z-index of map
 if (maps) {
     maps.style.zIndex = 1;
@@ -119,8 +125,7 @@ if (headerPanel) {
 
 
 // Hoover/blur - navlinks
-// 
-// || 
+
 const blurLinksOnHoover = function (event) {
     navLinks.forEach(navlink => navlink.addEventListener(`${event}`, function (e) {
 
@@ -697,3 +702,118 @@ if (daysCounter) {
     let intervalKM = setInterval(incrementDistance, 25)
 
 }
+
+let galleryEnd = 4;
+let galleryStart = 0
+const galleryIndex = 4;
+let imgs;
+const galleryNextPage = document.querySelector('.gallery__next');
+const galleryPrevPage = document.querySelector('.gallery__prev');
+let galleryCurPage = document.querySelector('.gallery__cur-page');
+let makrdownImageText = document.querySelector('.gallery__markdown-img')
+let galleryPage = 1;
+
+// Oppen/close popup gallery
+
+const galleryPopUp = function (data) {
+    galleryContainer.classList.toggle('hidden')
+
+}
+
+// Event delegation for copy btns
+
+imgsContainer.addEventListener('click', function (e) {
+    const copyBtn = e.target.closest('copy__link');
+    if (!e.target.classList.contains('copy__link')) return;
+    const index = e.target.getAttribute('data-index');
+    // copy text
+    navigator.clipboard.writeText(`![${imgs[index].description}](${imgs[index].path})`)
+
+    // e.target.textContent = 'Skopiowano!'
+
+})
+
+// Generate gallery
+
+const gnenerateMarkupGallery = function (imgs) {
+    for (let i = galleryStart; i < galleryEnd; i++) {
+        imgsContainer.insertAdjacentHTML('beforeend', ` <div class="gallery__img" style="background-image:url('${imgs[i].path}'); background-size:cover; "><button class="btn copy__link" data-index="${i}">Kopiuj</button>
+        <p class="gallery__img-txt">${imgs[i].description}</p></div>  <input class="gallery__makrdown-img" type="hidden" value="![${imgs[i].description}](${imgs[i].path})">`)
+    }
+
+
+}
+
+
+
+const getGallery = async function () {
+    try {
+
+        const res = await fetch('/admin-panel/upload/gallery');
+        const data = await res.json();
+        imgs = await data.imgs
+        gnenerateMarkupGallery(imgs);
+
+
+        console.log(data);
+    } catch (error) {
+        console.log(error);
+    }
+
+
+}
+
+galleryNextPage.addEventListener('click', function (e) {
+    e.preventDefault();
+    if (imgs.length === galleryEnd) return
+    galleryStart += galleryIndex;
+    galleryEnd += galleryIndex;
+
+    if (imgs.length < galleryEnd) {
+        galleryEnd = imgs.length
+    }
+    console.log('----start:', galleryStart, '-----end:', galleryEnd);
+    imgsContainer.textContent = '';
+    // galleryCurPage.textContent = galleryPage++;
+    gnenerateMarkupGallery(imgs);
+
+
+})
+
+
+
+
+
+galleryPrevPage.addEventListener('click', function (e) {
+    e.preventDefault();
+    galleryStart -= galleryIndex;
+    galleryEnd -= galleryIndex - 1;
+
+    if (galleryStart < 0) {
+        galleryStart = 0;
+        galleryEnd = 4;
+    }
+    console.log('----start:', galleryStart, '-----end:', galleryEnd);
+    imgsContainer.textContent = '';
+    // galleryCurPage.textContent = galleryPage--;
+
+    gnenerateMarkupGallery(imgs)
+
+})
+
+
+galleryBtn.addEventListener('click', function (e) {
+    e.preventDefault();
+    galleryPopUp();
+    getGallery()
+
+})
+
+galleryCloseBtn.addEventListener('click', function () {
+    imgsContainer.textContent = '';
+    imgs = '';
+    galleryEnd = 4;
+    galleryStart = 0
+    galleryPage = 1
+    galleryPopUp()
+})

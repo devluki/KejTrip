@@ -14,8 +14,8 @@ cloudinary.config({
     api_key: '848194944323474',
     api_secret: '-6z9SMUE86RZgYK4UtxLaH1c7oY'
 });
-const ResTest = require('../models/ResTest')
-const Route = require('../models/Route')
+// const ResTest = require('../models/ResTest')
+const Route = require('../models/Route');
 const request = require('request');
 const {
     post
@@ -28,29 +28,6 @@ const {
 
 
 
-// async function makeRequest() {
-
-//     const config = {
-//         method: 'POST',
-//         url: 'https://api.openrouteservice.org/v2/directions/foot-walking/geojson',
-
-//         headers: {
-//             'Accept': 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8',
-//             'Authorization': '5b3ce3597851110001cf6248760b2fe52b484167892f758fd156fa66',
-//             'Content-Type': 'application/json; charset=utf-8'
-//         },
-//         data: {
-//             coordinates: `[[-91.9833294,15.6166642],[ -91.47233,15.308832098],[-91.5166646,14.83333],[-90.7333304,14.5666644],[-91.28333,14.7],[-91.272,14.694]]}`,
-//         }
-//     }
-
-//     let res = await axios(config)
-
-//     console.log(res.request._header);
-//     console.log(res);
-// }
-
-// makeRequest();
 
 const getRouteGeometry = async function (coords) {
 
@@ -76,12 +53,7 @@ const getRouteGeometry = async function (coords) {
 }
 
 
-// getRouteGeometry(coords)
 
-// Routing function test
-
-
-// end of test
 
 
 
@@ -247,6 +219,30 @@ exports.searchPost = async (req, res) => {
 
     try {
         let searchTerm = req.body.searchTerm;
+        let posts = await Post.find({
+            $text: {
+                $search: searchTerm,
+                $diacriticSensitive: true
+            }
+        })
+        res.render('search', {
+            title: 'Kejtrip - post',
+            posts
+        })
+
+    } catch (error) {
+        res.status(500).send({
+            message: error.message || "Error Occured!"
+        })
+
+    }
+
+}
+
+exports.searchPostQuery = async (req, res) => {
+
+    try {
+        let searchTerm = req.query.searchTerm;
         let posts = await Post.find({
             $text: {
                 $search: searchTerm,

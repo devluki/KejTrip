@@ -8,42 +8,44 @@
                 <span class="heading__bar"></span>
                 <span class="heading-text">Panel admina</span>
                 <span class="heading__bar"></span></p>
-            <div class="btns__container">
-                <div class="input-container">
-                    <form action="/admin-panel/upload" enctype="multipart/form-data" method="POST" class="post__form">
 
-                        <label for="image">Zdjęcia do treści artykułów</label> <br>
-                        <input type="file" class="form-control" name="image" accept="image/*">
-                        <div class="input-container">
-                            <label for="location">Nazwa Państwa</label> <br>
-                            <small>Wpisz nazwę kraju</small> <br>
-                            <input type="text" name="location" id="location" class="form__input">
-                        </div>
+            <div class="inputs-container">
+                <form action="/admin-panel/upload" enctype="multipart/form-data" method="POST" class="post__form">
+
+                    <label for="image">Zdjęcia do treści artykułów</label> <br>
+                    <input type="file" class="form-control" name="image" accept="image/*">
+                    <div class="input-container">
+                        <label for="location">Nazwa Państwa</label> <br>
+                        <small>Wpisz nazwę kraju</small> <br>
+                        <input type="text" name="location" id="location" class="form__input">
+                    </div>
 
 
-                        <div class="input-container">
-                            <label for="city">Dokładna lokalizacja</label> <br>
-                            <small>Wpisz nazwę regionu/miasta</small> <br>
-                            <input type="text" name="city" id="city" class="form__input">
-                        </div>
-                        <div class="input-container">
-                            <label for="description">Opis</label> <br>
-                            <small>Napisz co jest na zdjęciu</small> <br>
-                            <input type="text" name="description" id="description" class="form__input">
-                        </div>
+                    <div class="input-container">
+                        <label for="city">Dokładna lokalizacja</label> <br>
+                        <small>Wpisz nazwę regionu/miasta</small> <br>
+                        <input type="text" name="city" id="city" class="form__input">
+                    </div>
+                    <div class="input-container">
+                        <label for="description">Opis</label> <br>
+                        <small>Napisz co jest na zdjęciu</small> <br>
+                        <input type="text" name="description" id="description" class="form__input">
+                    </div>
+                    <div class="btns__container">
                         <div class="input-container">
                             <button type="submit" class="btn" id="addSection">Prześlij zdjęcie</button>
-
+                            <a href="/admin-panel" class="menu__link btn">Menu</a>
                         </div>
-                    </form>
+                    </div>
+                </form>
 
-                </div>
-                <a href="/admin-panel" class="menu__link btn">Menu</a>
             </div>
 
-
-
         </div>
+
+
+
+    </div>
 
     </div>
 

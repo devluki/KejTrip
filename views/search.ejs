@@ -16,20 +16,23 @@
                         <% posts.forEach((post,i)=>{  %>
 
                         <div class="post articles__featured-post">
-                            <a class ="article__link" href="/post/<%= post._id%>">
-                            <div class="post__img articles__slide-img--0"
-                                style=" background-image: url('<%- post.image%>')">
-                                <p class="post__data">
-                                    <%- post.data.getUTCDay()%>-<%- post.data.getUTCDate()%>-<%- post.data.getUTCFullYear()%>
-                                    <!-- <%- post.data.getDay()%>-<%- post.data.getMonth()%>-<%- post.data.getYear()%> -->
-                                </p>
-                                <p class="post__likes"><span class="likes-count"><%- post.likes%></span><i class="fa-solid fa-heart"></i></p>
-                            </div>
-                            <div class="post__text">
-                                <p class="post__title"><%- post.title %>
-                                </p>
-
-                            </div>
+                            <a class ="article__link" href="/post/<%= post._id %>">
+                                <div class="post__img articles__slide-img--0" style="background-image:  url('<%- post.image%>')">
+                                    
+                                </div>
+                                
+                                <div class="post__text">
+                                    <p class="post__title"><%- post.title %>
+                                    </p>
+    
+                                </div>
+                                <div class="post-data__container">
+                                    <p class="post__data">
+                                        <%- post.data.toLocaleString()%>
+                                        
+                                    </p>
+                                    <p class="post__likes"><span class="likes-count"><%- post.likes%></span><i class="fa-solid fa-heart"></i></p>
+                                  </div>
                             </a>
                         </div>
 
