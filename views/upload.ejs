@@ -9,7 +9,31 @@
                 <span class="heading-text">Panel admina</span>
                 <span class="heading__bar"></span></p>
 
+
+            <% if(infoSubmitObj !='') {%>
+            <div class="message-container" style="background-color:green">
+                Submit succes!
+                <!--  -->
+                <%= infoSubmitObj %>
+            </div>
+            <% } %>
+
+            <% if(infoErrorsObj !='') {%>
+            <div class="message-container" style="background-color:red">
+                Error!
+                <!--  -->
+                <%= infoErrorsObj[0].message %>
+                <%= infoErrorsObj%>
+            </div>
+            <% } %>
+
             <div class="inputs-container">
+                <div class="panel__spinner-overlay">
+                    <div class="panel__spinner-container">
+                        <i class="fa-solid fa-spinner panel__spinner"></i>
+                    </div>
+                </div>
+
                 <form action="/admin-panel/upload" enctype="multipart/form-data" method="POST" class="post__form">
 
                     <label for="image">Zdjęcia do treści artykułów</label> <br>
@@ -33,7 +57,7 @@
                     </div>
                     <div class="btns__container">
                         <div class="input-container">
-                            <button type="submit" class="btn" id="addSection">Prześlij zdjęcie</button>
+                            <button type="submit" class="btn btn__submit" id="btn__submit">Prześlij zdjęcie</button>
                             <a href="/admin-panel" class="menu__link btn">Menu</a>
                         </div>
                     </div>

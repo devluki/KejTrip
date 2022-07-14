@@ -64,8 +64,7 @@ const searchLink = document.querySelector('.nav__search');
 
 searchLink.addEventListener('click', function (e) {
     e.preventDefault();
-    // searchLink.classList.toggle('hidden');
-    // searchInput.classList.toggle('hidden');
+
     if (!searchLink.classList.contains('search-active')) {
         searchLink.classList.add('search-active');
         searchInput.classList.remove('search-active');
@@ -74,7 +73,7 @@ searchLink.addEventListener('click', function (e) {
 
 
 document.addEventListener('click', function (e) {
-    // console.log(e.target);
+
     if (searchLink.classList.contains('search-active') && e.target !== searchInput && e.target !== searchLink && !e.target.classList.contains('form__input') && !e.target.classList.contains('btn-search')) {
         searchLink.classList.remove('search-active');
         searchInput.classList.add('search-active')
@@ -242,8 +241,7 @@ if (slides.length > 0) {
 
 //Sticky navigation -> OBSERVER API
 
-// const navHeight = nav.getBoundingClientRect().height;
-console.log(navHeight);
+
 
 const articlesContainer = document.querySelector('.aside__about')
 
@@ -261,136 +259,6 @@ const headerObserver = new IntersectionObserver(stickyNav, {
     rootMargin: `-${navHeight}px`,
 });
 headerObserver.observe(headerBannerContainer)
-
-// headerBannerContainer ? headerObserver.observe(headerBannerContainer) : headerObserver.observe(articlesContainer)
-
-
-// 
-const locations = [
-    // Mexico
-    ["Cancun", 21.161907, -86.851524],
-    ["San Jose", 9.909580, -84.054062],
-    ["Tulum", 20.104851, -87.478951],
-    ["Reserva de la Biósfera Sian Ka ", 19.225999, -87.471799],
-    ["Tizimin", 21.14284, -88.15119],
-    ["Las Coloradas", 30.0484789, -107.102204],
-    ["Merida", 20.583133, -89.37106],
-    ["Campeche", 18.931225, -90.261807],
-    ["Xpujil", 18.5076, -89.39437],
-    ["Calqkmul", 18.061941, -89.4838984],
-    ["San Cristóbal de las Casas", 16.7317600, -92.6412600],
-    ["Comitan", 16.229960, -92.115569],
-    // Guatemala
-    ["La Mesilla", 15.6166642, -91.9833294],
-    ["Huehuetenango ", 15.308832098, -91.47233],
-    ["Quetzaltenango", 14.83333, -91.5166646],
-    ["Antigua", 14.5666644, -90.7333304],
-    ["San Juan La Laguna", 14.7, -91.28333],
-    ["San Pedro La Laguna", 14.694, -91.272],
-    // Costarica
-    ["Manuel Antonio Park Narodowy", 9.371998512, -84.134832],
-    ["Quepos", 9.42357, -84.16522],
-    ["Santa Elena", 10.31426, -84.82502],
-    ["La Fortuna", 9.2333324, -83.583331],
-    ["Puerto Viejo de Sarapiqui", 10.453987, -84.019386],
-    ["Guápiles", 10.21682, -83.78483],
-    ["Tortuguero", 10.583331, -83.5166646],
-    ["Puerto Limón", 9.99074, -83.03596],
-    ["Cahuita", 9.7347856, -82.8452146],
-    ["Puerto Viejo de Talamanca", 9.6564943, -82.7535654],
-
-
-]
-
-
-
-
-
-
-
-
-
-
-
-
-
-// 
-
-// Leaflet
-// map ------------------
-
-// if (maps) {
-
-//     var map = L.map('map', {
-
-//         dragging: window.innerWidth < 1024 ? false : true,
-//         tap: window.innerWidth < 1024 ? false : true,
-
-//         inertia: false,
-//         scrollWheelZoom: false,
-//     }).setView([10.01, -84.221388888889], 3);
-//     L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiemFiaWVnbGkiLCJhIjoiY2t0eGE5NjhkMTJsczMwbXhkb2N0Y2UxZCJ9.9LFCbpbXL3o5trk3NM7WRw', {
-//         attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-//         maxZoom: 18,
-//         minZoom: 3,
-//         id: 'mapbox/light-v9',
-//         tileSize: 512,
-//         zoomOffset: -1,
-//         accessToken: 'your.mapbox.access.token'
-//     }).addTo(map);
-
-
-//     // Pin - icon
-
-//     var pinkIcon = L.icon({
-//         iconUrl: '/img/Pin2.png',
-//         iconSize: [40, 60],
-//         iconAnchor: [20, 60],
-//     });
-
-//     var greenIcon = L.icon({
-//         iconUrl: '/img/Pin.png',
-//         // shadowUrl: 'leaf-shadow.png',
-
-//         iconSize: [40, 60], // size of the icon
-//         // shadowSize: [50, 64], // size of the shadow
-//         iconAnchor: [20, 60], // point of the icon which will correspond to marker's location
-//         // shadowAnchor: [4, 62], // the same for the shadow
-//         // popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
-//     });
-//     for (var i = 0; i < locations.length; i++) {
-//         marker = new L.marker([locations[i][1], locations[i][2]])
-//             .bindPopup(locations[i][0])
-//             .addTo(map);
-//     }
-//     // L.marker([9.976416, -83.85344], {
-//     //     icon: greenIcon
-//     // }).addTo(map).bindPopup("<b>Kostaryka</b><br>brvolcán irazú</br><br><biutton class='btn'>Zobacz więcej</button>").closePopup();
-
-//     // L.marker([8.976416, -73.85344], {
-//     //     icon: pinkIcon
-//     // }).addTo(map).bindPopup("<b>Kostaryka</b><br>brvolcán irazú</br><br>").closePopup();
-
-
-//     // L.marker([21.161907, -86.851524], {
-//     //     icon: pinkIcon
-//     // }).addTo(map).bindPopup("<b>Meksyk</b><br>Cancún</br><br>").closePopup();
-
-//     // L.marker([9.934739, -84.087502], {
-//     //     icon: pinkIcon
-//     // }).addTo(map).bindPopup("<b>Kostaryka</b><br>San José</br><br>").closePopup();
-//     // L.marker([20.214788, -87.430588], {
-//     //     icon: greenIcon
-//     // }).addTo(map).bindPopup("<b>Meksyk</b><br>Tulum</br><br>").closePopup();
-//     // L.marker([20.214788, -87.430588], {
-//     //     icon: greenIcon
-//     // }).addTo(map).bindPopup("<b>Meksyk</b><br>Tulum</br><br>").closePopup();
-
-// }
-
-// Random quote gnerator
-
-
 
 
 const motivationQuote = [{
@@ -450,7 +318,7 @@ if (markupParentEl) {
     <p class="motivation__quote-author">${quote.author}</p>
     `;
 
-        // console.log(markup);
+
 
         markupParentEl.insertAdjacentHTML('afterbegin', markup);
     }
@@ -467,21 +335,7 @@ const postFormContainer = document.querySelector('.post__form-container')
 let addSectionBtn = document.getElementById('addSection');
 let postContent = document.querySelector('.section__content');
 let sectionParentEl = document.querySelector('.post__section-container');
-// let addListElBtn = document.getElementById('addListElement');
-// let listParentEl = document.querySelector('.list-container')
-// let listEl = document.querySelector('.list-element')
 
-// addListElBtn.addEventListener('click', function () {
-//     let newListEl = listEl.cloneNode(false);
-//     listParentEl.appendChild(newListEl)
-// })
-
-
-// addSectionBtn.addEventListener('click', function () {
-//     let newSection = postContent.cloneNode(true);
-//     // newSection.te = '';
-//     sectionParentEl.appendChild(newSection)
-// })
 let socket = io();
 
 
@@ -504,17 +358,11 @@ if (likeBtn) {
         console.log('click');
         let flag = document.cookie.indexOf('a' + commentsForm.postId.value)
         fetch('/post/' + postId, {
-                method: 'POST'
-            })
-            // .then(res => res.json()).then(data => likesCounter.textContent = data.likes)
-            .then(res => res.json()).then(data => socket.emit("newLike", data))
-
-            // throw new Error('Request failed.');
-
-            .catch(function (error) {
-                likesCounter.textContent = error;
-                console.log(error);
-            });
+            method: 'POST'
+        }).then(res => res.json()).then(data => socket.emit("newLike", data)).catch(function (error) {
+            likesCounter.textContent = error;
+            console.log(error);
+        });
     });
 
 }
@@ -607,19 +455,16 @@ if (paginationBtnsContainer) {
     if (curPage === 1) {
         btnPrev.classList.add('hidden')
     }
-    // console.log(noOfPosts, limit * 1);
-    // console.log(Math.round(noOfPosts * 1 / limit * 1));
+
 
     btnNext.addEventListener('click', function () {
 
         let page = curPage + 1;
 
         console.log(page, max);
-        // console.log('page++', page);
-        // urlParams.delete('page')
+
         updateQueryString(urlParams, page)
-        // urlParams.set('page', page)
-        // window.location.search = urlParams;
+
 
     })
 
@@ -628,8 +473,7 @@ if (paginationBtnsContainer) {
         let page = curPage - 1;
 
         console.log(page, max);
-        // console.log('page++', page);
-        // urlParams.delete('page')
+
         updateQueryString(urlParams, page)
 
 
@@ -637,13 +481,6 @@ if (paginationBtnsContainer) {
 
 
 }
-// Test - api pagination
-
-// const btnExplore = document.querySelector('.articles__featured--btn');
-
-// btnExplore.addEventListener('click', async function (skip, limit) {
-//     fetch(`//posts?skip=${skip}&limit=${limit}`).then(res => console.log(res))
-// })
 
 
 const loginPanel = document.querySelector('.header__panel')
@@ -703,6 +540,9 @@ if (daysCounter) {
 
 }
 
+// Panel gallery spinner
+const panelSpinnerContainer = document.querySelector('.panel__spinner-container')
+const galleryBtnsContainer = document.querySelector('.gallery-btns__container')
 let galleryEnd = 4;
 let galleryStart = 0
 const galleryIndex = 4;
@@ -710,6 +550,7 @@ let imgs;
 const galleryNextPage = document.querySelector('.gallery__next');
 const galleryPrevPage = document.querySelector('.gallery__prev');
 let galleryCurPage = document.querySelector('.gallery__cur-page');
+const galleryMaxPage = document.querySelector('.gallery__max-page')
 let makrdownImageText = document.querySelector('.gallery__markdown-img')
 let galleryPage = 1;
 
@@ -719,26 +560,51 @@ const galleryPopUp = function (data) {
     galleryContainer.classList.toggle('hidden')
 
 }
+// Function to change copy btns text content
+const restoreContent = function (el) {
+    el.textContent = 'Kopiuj'
+}
+
 
 // Event delegation for copy btns
+if (imgsContainer) {
+    imgsContainer.addEventListener('click', function (e) {
+        const copyBtn = e.target.closest('copy__link');
+        if (!e.target.classList.contains('copy__link')) return;
+        const index = e.target.getAttribute('data-index');
+        // copy text
+        navigator.clipboard.writeText(`![${imgs[index].description}](${imgs[index].path})`)
+        const target = e.target;
+        console.log(target);
+        target.textContent = 'Skopiowano!'
 
-imgsContainer.addEventListener('click', function (e) {
-    const copyBtn = e.target.closest('copy__link');
-    if (!e.target.classList.contains('copy__link')) return;
-    const index = e.target.getAttribute('data-index');
-    // copy text
-    navigator.clipboard.writeText(`![${imgs[index].description}](${imgs[index].path})`)
+        setTimeout(restoreContent.bind(null, target), 1500)
 
-    // e.target.textContent = 'Skopiowano!'
 
-})
-
+    })
+}
 // Generate gallery
 
 const gnenerateMarkupGallery = function (imgs) {
     for (let i = galleryStart; i < galleryEnd; i++) {
         imgsContainer.insertAdjacentHTML('beforeend', ` <div class="gallery__img" style="background-image:url('${imgs[i].path}'); background-size:cover; "><button class="btn copy__link" data-index="${i}">Kopiuj</button>
         <p class="gallery__img-txt">${imgs[i].description}</p></div>  <input class="gallery__makrdown-img" type="hidden" value="![${imgs[i].description}](${imgs[i].path})">`)
+    }
+
+    // Calc max page of gallery
+    let maxPage = Math.ceil(imgs.length / galleryIndex)
+    // Update current page (default = 1) and max page
+    galleryCurPage.textContent = galleryPage
+    galleryMaxPage.textContent = maxPage
+    // Redeclarete display property for next page and prev page btns
+    galleryPrevPage.style.display = 'inline';
+    galleryNextPage.style.display = 'inline';
+    // Hidding next or prev page btns according to the current page
+    if (galleryPage === 1) {
+        galleryPrevPage.style.display = 'none';
+    }
+    if (galleryPage === maxPage) {
+        galleryNextPage.style.display = 'none'
     }
 
 
@@ -750,6 +616,8 @@ const getGallery = async function () {
     try {
 
         const res = await fetch('/admin-panel/upload/gallery');
+        res.status === 200 ? panelSpinnerContainer.style.display = 'none' : panelSpinnerContainer.style.display = 'flex';
+        galleryBtnsContainer.classList.remove('hidden')
         const data = await res.json();
         imgs = await data.imgs
         gnenerateMarkupGallery(imgs);
@@ -762,58 +630,73 @@ const getGallery = async function () {
 
 
 }
+if (imgsContainer) {
+    galleryNextPage.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (imgs.length === galleryEnd) return
 
-galleryNextPage.addEventListener('click', function (e) {
-    e.preventDefault();
-    if (imgs.length === galleryEnd) return
-    galleryStart += galleryIndex;
-    galleryEnd += galleryIndex;
+        galleryStart += galleryIndex;
+        galleryEnd += galleryIndex;
+        galleryPage++
+        galleryCurPage.textContent = galleryPage;
+        if (imgs.length < galleryEnd) {
+            galleryEnd = imgs.length
+        }
+        console.log('----start:', galleryStart, '-----end:', galleryEnd);
+        imgsContainer.textContent = '';
 
-    if (imgs.length < galleryEnd) {
-        galleryEnd = imgs.length
-    }
-    console.log('----start:', galleryStart, '-----end:', galleryEnd);
-    imgsContainer.textContent = '';
-    // galleryCurPage.textContent = galleryPage++;
-    gnenerateMarkupGallery(imgs);
-
-
-})
-
+        gnenerateMarkupGallery(imgs);
 
 
+    })
 
 
-galleryPrevPage.addEventListener('click', function (e) {
-    e.preventDefault();
-    galleryStart -= galleryIndex;
-    galleryEnd -= galleryIndex - 1;
 
-    if (galleryStart < 0) {
-        galleryStart = 0;
+
+
+    galleryPrevPage.addEventListener('click', function (e) {
+        e.preventDefault();
+        galleryStart -= galleryIndex;
+        galleryEnd -= galleryIndex - 1;
+        galleryPage--;
+        galleryCurPage.textContent = galleryPage;
+        if (galleryStart < 0) {
+            galleryStart = 0;
+            galleryEnd = 4;
+        }
+        console.log('----start:', galleryStart, '-----end:', galleryEnd);
+        imgsContainer.textContent = '';
+
+
+        gnenerateMarkupGallery(imgs)
+
+    })
+
+
+    galleryBtn.addEventListener('click', function (e) {
+        e.preventDefault();
+        galleryPopUp();
+        getGallery()
+
+    })
+
+    galleryCloseBtn.addEventListener('click', function () {
+        // starting conditions
+        imgsContainer.textContent = '';
+        imgs = '';
         galleryEnd = 4;
-    }
-    console.log('----start:', galleryStart, '-----end:', galleryEnd);
-    imgsContainer.textContent = '';
-    // galleryCurPage.textContent = galleryPage--;
+        galleryStart = 0
+        galleryPage = 1
+        galleryBtnsContainer.classList.add('hidden')
+        galleryPopUp()
+    })
+}
 
-    gnenerateMarkupGallery(imgs)
-
-})
-
-
-galleryBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    galleryPopUp();
-    getGallery()
-
-})
-
-galleryCloseBtn.addEventListener('click', function () {
-    imgsContainer.textContent = '';
-    imgs = '';
-    galleryEnd = 4;
-    galleryStart = 0
-    galleryPage = 1
-    galleryPopUp()
-})
+// Upload spinner
+const btnSubmit = document.querySelector('.btn__submit');
+const spinnerOverlay = document.querySelector('.panel__spinner-overlay')
+if (btnSubmit) {
+    btnSubmit.addEventListener('click', function () {
+        spinnerOverlay.style.display = 'block';
+    })
+}

@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const articlesController = require('../controllers/articlesController');
+const mapController = require('../controllers/mapController')
 
 //  App Routes - linked to recipe contoller
 //  po kropce nazwa strony np. home itd
@@ -53,25 +54,25 @@ router.post('/admin-panel/upload', articlesController.uploadPost);
 router.get('/admin-panel/upload/gallery', articlesController.gallery)
 
 // Map
-router.get('/admin-panel/map', articlesController.map)
+router.get('/admin-panel/map', mapController.map)
 // Add pins
-router.get('/admin-panel/map/add-pins', articlesController.addPins)
-router.post('/admin-panel/map/add-pins', articlesController.submitAddPins)
+router.get('/admin-panel/map/add-pins', mapController.addPins)
+router.post('/admin-panel/map/add-pins', mapController.submitAddPins)
 // Pin list /edit/delete + pin API
-router.get('/admin-panel/map/pins-list', articlesController.pinsList)
-router.delete('/pin/delete/:id', articlesController.deletePin);
-router.get('/admin-panel/map/edit-pin/:id', articlesController.editPin)
-router.put('/admin-panel/map/put-pin/:id', articlesController.editPinPut)
+router.get('/admin-panel/map/pins-list', mapController.pinsList)
+router.delete('/pin/delete/:id', mapController.deletePin);
+router.get('/admin-panel/map/edit-pin/:id', mapController.editPin)
+router.put('/admin-panel/map/put-pin/:id', mapController.editPinPut)
 // API pins
-router.get('/map/pins', articlesController.pinsAPI)
+router.get('/map/pins', mapController.pinsAPI)
 // Add route
-router.get('/admin-panel/map/add-route', articlesController.addRoute)
-router.post('/admin-panel/map/add-route', articlesController.submitAddRoute)
+router.get('/admin-panel/map/add-route', mapController.addRoute)
+router.post('/admin-panel/map/add-route', mapController.submitAddRoute)
 // Route list/edit/delete
-router.get('/admin-panel/map/edit-route/:id', articlesController.editRoute)
-router.put('/admin-panel/map/put-route/:id', articlesController.editRoutePut)
-router.get('/admin-panel/map/route-list', articlesController.routeList)
-router.delete('/route/delete/:id', articlesController.deleteRoute);
+router.get('/admin-panel/map/edit-route/:id', mapController.editRoute)
+router.put('/admin-panel/map/put-route/:id', mapController.editRoutePut)
+router.get('/admin-panel/map/route-list', mapController.routeList)
+router.delete('/route/delete/:id', mapController.deleteRoute);
 
 
 

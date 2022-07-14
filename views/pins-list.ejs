@@ -8,7 +8,13 @@
                 <span class="heading__bar"></span>
                 <span class="heading-text">Panel admina</span>
                 <span class="heading__bar"></span></p>
-
+            <% if(infoSubmitObj !='') {%>
+            <div class="message-container" style="background-color:green">
+                Submit succes!
+                <!--  -->
+                <%= infoSubmitObj %>
+            </div>
+            <% } %>
             <ul class="articles__list">
 
 
@@ -23,7 +29,7 @@
                     </div>
                     <div class="btns__container">
                         <a href="/admin-panel/map/edit-pin/<%= pin.id %>" class="btn-edit">Edytuj</a>
-                        <a class ="btn-view" href="#">Podgląd</a>
+                        <!-- <a class ="btn-view" href="#">Podgląd</a> -->
                         <form action="/pin/delete/<%= pin.id %>?_method=DELETE" method="POST"
                             class="btn-delete__container">
                             <button type="submit" class="btn-delete">Usuń</button>

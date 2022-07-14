@@ -5,27 +5,11 @@
         </div>
 
         <div class="gallery__imgs">
-            <!-- <div class="gallery__img">
-                <button class="btn">Kopiuj</button>
-                <p class="gallery__img-txt">Lokalizacja</p>
-            </div>
-            <div class="gallery__img">
-                <button class="btn">Kopiuj</button>
-                <p class="gallery__img-txt">Lokalizacja</p>
-            </div>
-            <div class="gallery__img">
-                <button class="btn">Kopiuj</button>
-                <p class="gallery__img-txt">Lokalizacja</p>
-            </div>
-            <div class="gallery__img">
-                <button class="btn">Kopiuj</button>
-                <p class="gallery__img-txt">Lokalizacja</p>
-            </div> -->
-
-
+            <div class="panel__spinner-container">
+                <i class="fa-solid fa-spinner panel__spinner"></i></div>
 
         </div>
-        <div class="gallery-btns__container">
+        <div class="gallery-btns__container hidden">
             <a href="#" class="gallery__prev"><i class="fa-solid fa-arrow-left gallery__page"></i></a>
             <span class="gallery__cur-page">1</span><span>/</span><span class="gallery__max-page">2</span>
             <a href="#" class="gallery__next"><i class="fa-solid fa-arrow-right gallery__page"></i></a>
@@ -42,106 +26,117 @@
     </div>
 
     <div class="header__panel" style=" max-width:1140px; ">
-
-        <div class="post__form-container">
-
-
-            <% if(infoSubmitObj !='') {%>
-            <div class="message-container" style="background-color:green">
-                Submit succes!
-                <!--  -->
-                <%= infoSubmitObj %>
-            </div>
-            <% } %>
-
-            <% if(infoErrorsObj !='') {%>
-            <div class="message-container" style="background-color:red">
-                Error!
-                <!--  -->
-                <%= infoErrorsObj[0].message %>
-                <%= infoErrorsObj%>
-            </div>
-            <% } %>
-
-            <form action="/submit-post" enctype="multipart/form-data" method="POST" class="post__form">
-                <div class="input-container">
-                    <label for="title">Tytuł artykułu</label> <br>
-                    <input type="text" name="title" id="name" class="form__input">
-                </div>
-
-                <div class="input-container">
-                    <label for="category">Kategoria artykułu</label> <br>
-                    <small>Wybierz: "Relacja" lub "Poradnik"</small> <br>
-                    <select name="category" name="category" aria-label="kategoria" class="form__input">
-                        <!-- <option selected>Wybierz kategorię</option> -->
-                        <option value="Relacja">Relacja</option>
-                        <!-- <option value="Poradnik">Poradnik</option> -->
-                        <option selected="Poradnik">Poradnik</option>
-                    </select><br>
-
-                    <!-- <input type="text" name="name" id="name"> -->
-                </div>
-                <div class="input-container">
-                    <label for="category">Status artykułu</label><br>
-                    <small>Tylko posty ze statusem "Publikacja" pojawią się na stronie!</small> <br>
-                    <select name="status" name="status" aria-label="status" class="form__input">
-
-                        <option value="Publikacja">Publikacja</option>
-                        <option selected="Produkcja">Produkcja</option>
-                    </select>
-                </div>
-
-                <div class="input-container">
-                    <label for="location">Nazwa Państwa</label> <br>
-                    <small>Wpisz nazwę kraju</small> <br>
-                    <input type="text" name="location" id="location" class="form__input">
+        <div class="panel">
+            <p class="articles__latest-posts-heading heading">
+                <span class="heading__bar"></span>
+                <span class="heading-text">Panel admina</span>
+                <span class="heading__bar"></span></p>
+            <div class="post__form-container">
+                <div class="panel__spinner-overlay">
+                    <div class="panel__spinner-container">
+                        <i class="fa-solid fa-spinner panel__spinner"></i>
+                    </div>
                 </div>
 
 
-                <div class="input-container">
-                    <label for="city">Dokładna lokalizacja</label> <br>
-                    <small>Wpisz nazwę regionu/miasta</small> <br>
-                    <input type="text" name="city" id="city" class="form__input">
+                <% if(infoSubmitObj !='') {%>
+                <div class="message-container" style="background-color:green">
+                    Submit succes!
+                    <!--  -->
+                    <%= infoSubmitObj %>
                 </div>
-                <div class="input-container">
-                    <label for="image">Zdjęcie do miniatry i nagłówka</label> <br>
-                    <input type="file" class="form-control" name="image" accept="image/*">
+                <% } %>
+
+                <% if(infoErrorsObj !='') {%>
+                <div class="message-container" style="background-color:red">
+                    Error!
+                    <!--  -->
+                    <%= infoErrorsObj[0].message %>
+                    <%= infoErrorsObj%>
                 </div>
+                <% } %>
+
+                <form action="/submit-post" enctype="multipart/form-data" method="POST" class="post__form">
+                    <div class="input-container">
+                        <label for="title">Tytuł artykułu</label> <br>
+                        <input type="text" name="title" id="name" class="form__input">
+                    </div>
+
+                    <div class="input-container">
+                        <label for="category">Kategoria artykułu</label> <br>
+                        <small>Wybierz: "Relacja" lub "Poradnik"</small> <br>
+                        <select name="category" name="category" aria-label="kategoria" class="form__input">
+                            <!-- <option selected>Wybierz kategorię</option> -->
+                            <option value="Relacja">Relacja</option>
+                            <!-- <option value="Poradnik">Poradnik</option> -->
+                            <option selected="Poradnik">Poradnik</option>
+                        </select><br>
+
+                        <!-- <input type="text" name="name" id="name"> -->
+                    </div>
+                    <div class="input-container">
+                        <label for="category">Status artykułu</label><br>
+                        <small>Tylko posty ze statusem "Publikacja" pojawią się na stronie!</small> <br>
+                        <select name="status" name="status" aria-label="status" class="form__input">
+
+                            <option value="Publikacja">Publikacja</option>
+                            <option selected="Produkcja">Produkcja</option>
+                        </select>
+                    </div>
+
+                    <div class="input-container">
+                        <label for="location">Nazwa Państwa</label> <br>
+                        <small>Wpisz nazwę kraju</small> <br>
+                        <input type="text" name="location" id="location" class="form__input">
+                    </div>
+
+
+                    <div class="input-container">
+                        <label for="city">Dokładna lokalizacja</label> <br>
+                        <small>Wpisz nazwę regionu/miasta</small> <br>
+                        <input type="text" name="city" id="city" class="form__input">
+                    </div>
+                    <div class="input-container">
+                        <label for="image">Zdjęcie do miniatry i nagłówka</label> <br>
+                        <input type="file" class="form-control" name="image" accept="image/*">
+                    </div>
 
 
 
-                <div class="post__section-container">
-                    <div class="section__content">
-                        <div class="input-container">
-                            <label for="postContent">Treść sekcji</label> <br>
-                            <small>Wprowadź tekst sekcji</small> <br>
+                    <div class="post__section-container">
+                        <div class="section__content">
+                            <div class="input-container">
+                                <label for="postContent">Treść sekcji</label> <br>
+                                <small>Wprowadź tekst sekcji</small> <br>
 
-                            <textarea name="postContent" id="postContent" cols="30" rows="8"
-                                class="form__input"></textarea>
+                                <textarea name="postContent" id="postContent" cols="30" rows="8"
+                                    class="form__input"></textarea>
+                            </div>
                         </div>
+
+
+
+
+                    </div>
+                    <!-- <div class="input-container">
+                                <button type="button" class="btn" id="addSection">Dodaj sekcje</button>
+                            </div> -->
+                    <div class="btns__container">
+                        <a href=""class="gallery__btn"><i class="fa-solid fa-camera"></i></a>
+                        <div class="submit-btn__container">
+                            <button type="submit" class="btn btn__submit" id="btn__submit">Zapisz post</button>
+                        </div>
+
+                        <a href="/admin-panel" class="btn">Wstecz</a>
+
+
                     </div>
 
+                </form>
 
-
-
-                </div>
-                <!-- <div class="input-container">
-                        <button type="button" class="btn" id="addSection">Dodaj sekcje</button>
-                    </div> -->
-                <div class="btns__container">
-                    <a href=""class="gallery__btn"><i class="fa-solid fa-camera"></i></a>
-                    <div class="submit-btn__container">
-                        <button type="submit" class="btn" id="addSection">Zapisz post</button>
-                    </div>
-
-                    <a href="/admin-panel" class="btn">Wstecz</a>
-
-
-                </div>
-
-            </form>
-
+            </div>
         </div>
+
 
     </div>
 

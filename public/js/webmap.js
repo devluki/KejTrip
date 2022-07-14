@@ -14165,9 +14165,7 @@ let markerGroup;
 
 const popupEventListener = function () {
     const searchLink = document.querySelector('.search__link');
-    // searchLink.addEventListener('click',function(){
 
-    // })
 }
 
 
@@ -14212,7 +14210,7 @@ const createRoutes = () => {
 }
 
 const createDescription = (index = routes.length - 1) => {
-    console.log(routeDescription[index]);
+    // console.log(routeDescription[index]);
     let data = routeDescription[index].value;
     routeDescriptionParentEl.textContent = '';
     routeDescriptionParentEl.insertAdjacentHTML('afterbegin', `<p>${data}</p>`)
@@ -14302,13 +14300,13 @@ tabs.forEach(tab => tab.addEventListener('click', function (e) {
 // Get pins from API
 const getPins = async function () {
     let res = await fetch('/map/pins');
-    console.log(res);
+    // console.log(res);
     res.status === 200 ? spinner.style.display = 'none' : spinner.style.display = 'flex';
     let data = await res.json();
-    console.log(data);
+    // console.log(data);
     let pinData = [];
     await data.forEach(pin => {
-        pinData.push(`<a class="search__link" href="/search?searchTerm=${pin.pinLink}">${pin.pinLocation}</a>`);
+        pinData.push(`<a class="search__link" href="/search/?searchTerm=${pin.pinLink}">${pin.pinLocation}</a>`);
         // pinData.push(pin.pinLocation);
         pinData.push(pin.pinLatitude);
         pinData.push(pin.pinLongitude);
@@ -14316,13 +14314,13 @@ const getPins = async function () {
         pinData = []
 
     })
-    console.log('locations:', locations);
+    // console.log('locations:', locations);
 
     createMarkers(locations, grayMarker);
     // Add event listener on markers
     const markers = document.querySelectorAll('.leaflet-marker-icon')
     markers.forEach(marker => marker.addEventListener('click', function () {
-        console.log('marker kliknięty');
+        // console.log('marker kliknięty');
     }))
 
 }
