@@ -934,6 +934,7 @@
     font-style: italic;
     font-weight: bold;
     background-color: rgba(222, 222, 222, 0.6);
+    box-shadow: rgb(50 50 93 / 25%) 0px -6px 12px -2px, rgb(0 0 0 / 30%) 0px -3px 7px -3px;
 
 
 }

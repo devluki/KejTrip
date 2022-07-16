@@ -378,7 +378,8 @@ if (commentsForm) {
         const data = {
             userName: commentsForm.userName.value,
             comment: commentsForm.comment.value,
-            id: commentsForm.postId.value
+            id: commentsForm.postId.value,
+            data: `${new Date().getDate()}.${(new Date().getMonth()+1)}.${new Date().getFullYear()}`,
         };
         if (commentsForm.userName.value === '') {
             alert('Podaj imię')
@@ -399,7 +400,7 @@ if (commentsForm) {
             body: JSON.stringify(data),
 
         }).then(res => res.json()).then(res => {
-            console.log(res)
+            // console.log(res)
             socket.emit("newComment", data)
             alert(res.text)
         }).catch(err => console.log(err))
@@ -560,9 +561,37 @@ const galleryPopUp = function (data) {
     galleryContainer.classList.toggle('hidden')
 
 }
-// Function to change copy btns text content
+// Change copy btns text content
 const restoreContent = function (el) {
     el.textContent = 'Kopiuj'
+}
+
+// 
+const getGalleryPage = function (page) {
+    const start = (page - 1) * galleryIndex;
+    const end = page * galleryIndex;
+    let scope = imgs.slice(start, end);
+    console.log(start, end, scope);
+    imgsContainer.textContent = '';
+    scope.forEach((img, i) => {
+        imgsContainer.insertAdjacentHTML('beforeend', ` <div class="gallery__img" style="background-image:url('${img.path}'); background-size:cover; "><button class="btn copy__link" data-index="${i}">Kopiuj</button>
+        <p class="gallery__img-txt">${img.description}</p></div>  <input class="gallery__makrdown-img" type="hidden" value="![${img.description}](${img.path})">`)
+    });
+    // Calc max page of gallery
+    let maxPage = Math.ceil(imgs.length / galleryIndex)
+    // Update current page (default = 1) and max page
+    galleryCurPage.textContent = galleryPage
+    galleryMaxPage.textContent = maxPage
+    // Redeclarete display property for next page and prev page btns
+    galleryPrevPage.style.display = 'inline';
+    galleryNextPage.style.display = 'inline';
+    // Hidding next or prev page btns according to the current page
+    if (galleryPage === 1) {
+        galleryPrevPage.style.display = 'none';
+    }
+    if (galleryPage === maxPage) {
+        galleryNextPage.style.display = 'none'
+    }
 }
 
 
@@ -585,32 +614,6 @@ if (imgsContainer) {
 }
 // Generate gallery
 
-const gnenerateMarkupGallery = function (imgs) {
-    for (let i = galleryStart; i < galleryEnd; i++) {
-        imgsContainer.insertAdjacentHTML('beforeend', ` <div class="gallery__img" style="background-image:url('${imgs[i].path}'); background-size:cover; "><button class="btn copy__link" data-index="${i}">Kopiuj</button>
-        <p class="gallery__img-txt">${imgs[i].description}</p></div>  <input class="gallery__makrdown-img" type="hidden" value="![${imgs[i].description}](${imgs[i].path})">`)
-    }
-
-    // Calc max page of gallery
-    let maxPage = Math.ceil(imgs.length / galleryIndex)
-    // Update current page (default = 1) and max page
-    galleryCurPage.textContent = galleryPage
-    galleryMaxPage.textContent = maxPage
-    // Redeclarete display property for next page and prev page btns
-    galleryPrevPage.style.display = 'inline';
-    galleryNextPage.style.display = 'inline';
-    // Hidding next or prev page btns according to the current page
-    if (galleryPage === 1) {
-        galleryPrevPage.style.display = 'none';
-    }
-    if (galleryPage === maxPage) {
-        galleryNextPage.style.display = 'none'
-    }
-
-
-}
-
-
 
 const getGallery = async function () {
     try {
@@ -620,7 +623,7 @@ const getGallery = async function () {
         galleryBtnsContainer.classList.remove('hidden')
         const data = await res.json();
         imgs = await data.imgs
-        gnenerateMarkupGallery(imgs);
+        getGalleryPage(page = 1)
 
 
         console.log(data);
@@ -635,18 +638,9 @@ if (imgsContainer) {
         e.preventDefault();
         if (imgs.length === galleryEnd) return
 
-        galleryStart += galleryIndex;
-        galleryEnd += galleryIndex;
         galleryPage++
         galleryCurPage.textContent = galleryPage;
-        if (imgs.length < galleryEnd) {
-            galleryEnd = imgs.length
-        }
-        console.log('----start:', galleryStart, '-----end:', galleryEnd);
-        imgsContainer.textContent = '';
-
-        gnenerateMarkupGallery(imgs);
-
+        getGalleryPage(galleryPage)
 
     })
 
@@ -656,19 +650,13 @@ if (imgsContainer) {
 
     galleryPrevPage.addEventListener('click', function (e) {
         e.preventDefault();
-        galleryStart -= galleryIndex;
-        galleryEnd -= galleryIndex - 1;
-        galleryPage--;
-        galleryCurPage.textContent = galleryPage;
-        if (galleryStart < 0) {
-            galleryStart = 0;
-            galleryEnd = 4;
-        }
-        console.log('----start:', galleryStart, '-----end:', galleryEnd);
+        galleryPage--
+        if (galleryPage === 0) return
         imgsContainer.textContent = '';
+        galleryCurPage.textContent = galleryPage;
+        getGalleryPage(galleryPage)
 
 
-        gnenerateMarkupGallery(imgs)
 
     })
 
@@ -682,10 +670,7 @@ if (imgsContainer) {
 
     galleryCloseBtn.addEventListener('click', function () {
         // starting conditions
-        imgsContainer.textContent = '';
-        imgs = '';
-        galleryEnd = 4;
-        galleryStart = 0
+
         galleryPage = 1
         galleryBtnsContainer.classList.add('hidden')
         galleryPopUp()

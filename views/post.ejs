@@ -80,7 +80,7 @@
                         <% post.comments.forEach(comment=> {%>
                         <div class="comment">
                             <p class="comments__user">
-                                <%=comment.userName%><span class="comment__date"> <%=new Date().getDate()%>.<%=(new Date().getMonth()+1)%>.<%=new Date().getFullYear()%></span>
+                                <%=comment.userName%><span class="comment__date"> <%=comment.data%></span>
                             </p>
                             <p class="comments__comment"><%=comment.comment%></p>
 

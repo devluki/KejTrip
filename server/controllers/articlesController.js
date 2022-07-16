@@ -5,15 +5,18 @@ const Posts = require('../models/Post');
 const About = require('../models/About')
 const User = require('../models/User');
 const Image = require('../models/Image');
-const Pin = require('../models/Pin');
 const fs = require('fs');
 const cookieParser = require('cookie-parser');
 const cloudinary = require('cloudinary').v2;
+
+
 cloudinary.config({
     cloud_name: 'devluki',
     api_key: '848194944323474',
     api_secret: '-6z9SMUE86RZgYK4UtxLaH1c7oY'
 });
+
+
 // const ResTest = require('../models/ResTest')
 const Route = require('../models/Route');
 const request = require('request');
@@ -29,28 +32,6 @@ const {
 
 
 
-const getRouteGeometry = async function (coords) {
-
-    const res = await axios({
-            method: 'POST',
-            url: 'https://api.openrouteservice.org/v2/directions/foot-walking/geojson',
-            headers: {
-                'Accept': 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8',
-                'Authorization': '5b3ce3597851110001cf6248760b2fe52b484167892f758fd156fa66',
-                'Content-Type': 'application/json; charset=utf-8'
-            },
-            data: {
-                'coordinates': `[[-91.9833294,15.6166642],[ -91.47233,15.308832098],[-91.5166646,14.83333],[-90.7333304,14.5666644],[-91.28333,14.7],[-91.272,14.694]]}`,
-            }
-        })
-        .then(function (response) {
-            console.log(response);
-        }).catch(function (error) {
-            console.log(error)
-        })
-    console.log(res);
-
-}
 
 
 
@@ -193,7 +174,16 @@ exports.readPost = async (req, res) => {
 
         const limitNumberFeatured = 3
         const postsFeatured = await Posts.find({
-            'status': 'Publikacja'
+            $and: [{
+                    _id: {
+                        $ne: postId
+                    }
+                },
+                {
+                    'status': 'Publikacja'
+                }
+            ]
+
         }).sort({
             likes: -1
         }).limit(limitNumberFeatured);
@@ -354,7 +344,7 @@ exports.submitPostArticle = async (req, res) => {
         const newPost = new Post({
             title: req.body.title,
             category: req.body.category,
-            data: req.body.data,
+            data: req.body.data || `${new Date().getDate()}.${(new Date().getMonth()+1)}.${new Date().getFullYear()}`,
             location: req.body.location,
             city: req.body.city,
             postContent: req.body.postContent,
@@ -560,15 +550,17 @@ exports.postComment = async (req, res) => {
         const {
             id,
             userName,
-            comment
+            comment,
+            data,
         } = req.body;
-        console.log(id, userName, comment);
+        // console.log(id, userName, comment);
 
         const post = await Posts.findByIdAndUpdate(id, {
             $push: {
                 "comments": {
                     userName,
-                    comment
+                    comment,
+                    data
                 }
             }
         })
