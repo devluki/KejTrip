@@ -80,7 +80,7 @@ exports.explorePosts = async (req, res) => {
 
     // default values
     const page = req.query.page * 1 || 1;
-    const limit = req.query.limit * 1 || 2;
+    const limit = req.query.limit * 1 || 10;
 
     const skip = (page - 1) * limit;
     const numPosts = await Posts.countDocuments()
@@ -300,7 +300,11 @@ exports.submitPost = async (req, res) => {
             infoSubmitObj,
 
         })
+        // req.flash('infoSubmit', 'Artykuł został dodany!');
+        // res.redirect('/submit-post');
+
     } catch (error) {
+
         res.status(500).send({
             message: error.message || "Error Occured!"
         })
@@ -344,7 +348,8 @@ exports.submitPostArticle = async (req, res) => {
         const newPost = new Post({
             title: req.body.title,
             category: req.body.category,
-            data: req.body.data || `${new Date().getDate()}.${(new Date().getMonth()+1)}.${new Date().getFullYear()}`,
+            // data: req.body.data || `${new Date().getDate()}.${(new Date().getMonth()+1)}.${new Date().getFullYear()}`,
+            data: req.body.data,
             location: req.body.location,
             city: req.body.city,
             postContent: req.body.postContent,

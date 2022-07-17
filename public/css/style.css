@@ -774,7 +774,8 @@
 .btn,
 .btn-edit,
 .btn-view,
-.btn-delete {
+.btn-delete,
+.btn__like {
     font-weight: normal;
     border: none;
     margin: 4% 0 5% 0;
@@ -796,7 +797,10 @@
 
 }
 
-
+.btn__like {
+    background-color: #B0008A;
+    margin: 0 0;
+}
 
 .btn-delete {
     background-color: red;
