@@ -207,7 +207,7 @@
     height: 90%;
     width: 80%;
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
@@ -262,6 +262,7 @@
     background-color: #fff;
     width: 30%;
     text-align: center;
+    margin: 0 4%;
     /* height: auto; */
 }
 
@@ -1423,6 +1424,19 @@
 
     .map__tabs {
         width: 100%;
+    }
+
+    .gallery__imgs {
+        flex-direction: column;
+        /* flex-wrap: nowrap; */
+    }
+
+    .gallery__img {
+        /* width: 70%;
+        height: auto; */
+        height: auto;
+        width: 45%;
+        margin: 5% 2%;
     }
 
 }
