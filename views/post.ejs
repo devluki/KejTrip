@@ -57,8 +57,8 @@
                     <div class="form__container">
                         <div class="form__comments">
                             <form method="POST" class="post__comments">
-                                <input type="text" name="postId" value="<%=post._id%>">
-                                <label for="city" class="form__label">Imię:</label>
+                                <input type="hidden" name="postId" value="<%=post._id%>">
+                                <label for="name" class="form__label">Imię:</label>
                                 <input type="text" name="userName" class="form__input">
                                 <label for="comments" class="form__label">Komentaż:</label>
 
