@@ -172,6 +172,23 @@ exports.readPost = async (req, res) => {
 
         const post = await Posts.findById(postId);
 
+        const nextPost = await Posts.findOne({
+            _id: {
+                $gt: postId
+            }
+        }).sort({
+            _id: 1
+        }).limit(1);
+
+        const prevPost = await Posts.findOne({
+            _id: {
+                $lt: postId
+            }
+        }).sort({
+            _id: -1
+        }).limit(1);
+        console.log('next/prev', nextPost);
+
         const limitNumberFeatured = 3
         const postsFeatured = await Posts.find({
             $and: [{
@@ -191,7 +208,9 @@ exports.readPost = async (req, res) => {
             title: 'Kejtrip - post',
             post,
             postsFeatured,
-            show
+            show,
+            nextPost,
+            prevPost
         });
     } catch (error) {
         res.status(500).send({

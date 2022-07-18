@@ -9,16 +9,15 @@
     --headding-font-family: 'Fasthand', cursive, sans-serif;
     --font-family: 'Poppins', arial, sans-serif;
     --primary-color: #226312;
-    --secondary-color: #631252;
-    /* --gradient-primary: linear-gradient(to right, #45B649, #DCE35B); */
+    /* --secondary-color: #631252; */
+    --secondary-color: #B0008A;
+    ;
     --gradient-primary: linear-gradient(to left, #45B649, #226312);
-    /* For old browsers */
-    /* --gradient-primary-color--1: #DCE35B; */
+
     --gradient-primary-color--1: #226312;
     ;
     --gradient-primary-color--2: #45B649, ;
-    /* Complementary */
-    /* --btn-background-color: #631252; */
+
     --btn-background-color: #226312;
     ;
     --menu-active-bgc: rgb(222, 222, 222);
@@ -799,8 +798,13 @@
 }
 
 .btn__like {
-    background-color: #B0008A;
+    background-color: var(--secondary-color);
     margin: 0 0;
+    transition: .3s;
+}
+
+.btn__like:hover {
+    background-color: #631252;
 }
 
 .btn-delete {
@@ -922,7 +926,7 @@
 .articles-likes__container {
     display: flex;
     width: 100%;
-    justify-content: flex-end;
+    justify-content: space-between;
     align-items: center;
     padding: 0% 3%;
 }
@@ -1349,6 +1353,58 @@
     margin-bottom: 3%;
     text-align: justify;
     /* max-width: 45%; */
+}
+
+
+.post__navigation {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 0 3%;
+    margin: 3% 0;
+}
+
+.post__navigation__container {
+    display: flex;
+    /* align-items: center; */
+    justify-content: space-between;
+    width: 100%;
+    margin: 3% 0;
+}
+
+.post__navigation-label {
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+/* .navigation__label {
+    font-weight: bold;
+} */
+
+.navigation__previous,
+.navigation__next {
+    max-width: 40%;
+}
+
+.label__prev {
+    text-align: left;
+}
+
+.label__next {
+    text-align: right;
+}
+
+.navigation__link {
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--primary-color);
+    transition: .3s;
+}
+
+.navigation__link:hover {
+    color: var(--secondary-color)
 }
 
 @media (orientation:portrait) and (min-width:280px) {
