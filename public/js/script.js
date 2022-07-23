@@ -221,8 +221,10 @@ if (slides.length > 0) {
         slide.addEventListener('touchmove', moveTouch, false);
     });
 
-    arrowRight.addEventListener('click', moveSlideRight);
-    arrowLeft.addEventListener('click', moveSlideLeft);
+
+    arrowRight.addEventListener('click', moveSlideLeft);
+    arrowLeft.addEventListener('click', moveSlideRight);
+
 
     dots.forEach((dot, i) => dot.addEventListener('click', function () {
         index = i;
