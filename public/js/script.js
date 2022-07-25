@@ -549,7 +549,7 @@ if (daysCounter) {
 const panelSpinnerContainer = document.querySelector('.panel__spinner-container')
 const galleryBtnsContainer = document.querySelector('.gallery-btns__container')
 let galleryEnd = 4;
-let galleryStart = 0
+// let galleryStart = 0
 const galleryIndex = 4;
 let imgs;
 const galleryNextPage = document.querySelector('.gallery__next');
@@ -578,7 +578,7 @@ const getGalleryPage = function (page) {
     console.log(start, end, scope);
     imgsContainer.textContent = '';
     scope.forEach((img, i) => {
-        imgsContainer.insertAdjacentHTML('beforeend', ` <div class="gallery__img" style="background-image:url('${img.path}'); background-size:cover; "><button class="btn copy__link" data-index="${i}">Kopiuj</button>
+        imgsContainer.insertAdjacentHTML('beforeend', ` <div class="gallery__img" style="background-image:url('${img.path}'); background-size:cover; "><button class="btn copy__link" data-index="${start+i}">Kopiuj</button>
         <p class="gallery__img-txt">${img.description}</p></div>  <input class="gallery__makrdown-img" type="hidden" value="![${img.description}](${img.path})">`)
     });
     // Calc max page of gallery
