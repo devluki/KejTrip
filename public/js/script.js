@@ -6,6 +6,7 @@ const navIcons = document.querySelectorAll('.nav-icon')
 const navLogo = document.querySelector('.nav__logo-img');
 // Slider constraints
 const slides = document.querySelectorAll('.articles__slide');
+const sliderWrapper = document.querySelector('.articles__slider-wrapper');
 
 const arrowLeft = document.querySelector('.btn__slide--left');
 const arrowRight = document.querySelector('.btn__slide--right');
@@ -158,7 +159,7 @@ blurLinksOnHoover('mouseover');
 blurLinksOnHoover('mouseout');
 blurLinksOnHoover('focus');
 
-if(slides){
+if(sliderWrapper){
 // if (slides.length !== 0) {
     // Slider
     // Basic function to organize slider layout and change slides
