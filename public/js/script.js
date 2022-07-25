@@ -171,7 +171,7 @@ if (slides.length !== 0) {
 
     slidePosition();
 
-
+}
 
     const moveSlideRight = function () {
         if (index === slides.length - 1) return
@@ -233,7 +233,7 @@ if (slides.length !== 0) {
 
     // TO DO INFINITE SLIDER??
 
-}
+
 
 
 
