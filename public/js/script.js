@@ -6,7 +6,6 @@ const navIcons = document.querySelectorAll('.nav-icon')
 const navLogo = document.querySelector('.nav__logo-img');
 // Slider 
 const slides = document.querySelectorAll('.articles__slide');
-const sliderWrapper = document.querySelector('.articles__slider-wrapper');
 
 let initialX = null;
 let initialY = null;

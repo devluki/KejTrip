@@ -324,29 +324,20 @@
 }
 
 .nav__logo-img {
-    transform: translateX(-50%) rotate(-25deg);
-    position: absolute;
-    top: 0;
-    left: -50%;
-    transition: .4s;
+  
+    transform: rotate(-25deg);
     max-width: var(--nav-height);
     max-height: var(--nav-height);
 
 }
 
-/* 
-.nav__logo-img,
-.nav__logo-img.menu--active {
-
-    max-width: 100%;
-    max-height: var(--nav-height);
-} */
 
 
 .nav__logo-img.menu--active {
-    transform: translateX(-50%) rotate(-385deg);
-    left: 50%;
+   
     position: fixed;
+    left: 50%;
+    top:0%;
     max-width: calc(1.5*var(--nav-height));
     max-height: calc(1.5*var(--nav-height));
 
@@ -1421,6 +1412,14 @@
         font-weight: 100;
     }
 
+    .nav__logo-img{
+        position: absolute;
+        left: -50%;
+        top: 0;
+        transform: translateX(-50%) rotate(-385deg);
+
+    }
+
     .destination__heading-text {
         font-size: 3em;
     }
@@ -1520,19 +1519,13 @@
 
 
 
-    /* .nav__logo-img.menu--active {
-
-        width: 25%;
-
-    } */
+  
 }
 
-/* 540 */
+
 @media (orientation:portrait) and (min-width:540px) {
 
-    /* .nav__logo-img {
-        width: 15%;
-    } */
+  
 
     .nav__burger-container {
 
@@ -1545,12 +1538,7 @@
 
     }
 
-    /* .nav__logo-img.menu--active {
-
-        width: 20%;
-
-    } */
-
+   
     .heading {
 
         font-size: 2.5em;
@@ -1789,38 +1777,6 @@
     }
 }
 
-/* @media (orientation:landscape) and (min-width: 667px) {
-
-    .nav,
-    .footer {
-        height: 15vh;
-    }
-
-    .nav__logo-img,
-    .nav__logo-img.menu--active {
-        width: 10%;
-        transform: rotate(0deg);
-    }
-
-    .nav__logo-img.menu--active {
-        left: 10%;
-    }
-
-    .post {
-        width: 50%;
-    }
-
-    .aside__content {
-        flex-direction: row;
-        padding: 0 5%;
-    }
-
-    .about-pic {
-        width: 30vw;
-    }
-
-
-} */
 
 
 @media (orientation:landscape) and (min-width: 1024px) {
@@ -1856,7 +1812,7 @@
     }
 
     .nav__logo-img {
-        /* width: 50%; */
+        
         position: relative;
         left: 0;
     }
@@ -1875,9 +1831,7 @@
         font-size: 1.5em;
     }
 
-    /* .header__welcome #section--1 {
-        height: 170vh;
-    } */
+    
 
     .articles {
         flex-direction: row;
