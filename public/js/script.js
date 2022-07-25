@@ -162,15 +162,15 @@ blurLinksOnHoover('mouseover');
 blurLinksOnHoover('mouseout');
 blurLinksOnHoover('focus');
 
-if(slides.length!==0){
+
 // if (slides.length !== 0) {
     // Slider
     // Basic function to organize slider layout and change slides
     const slidePosition = function () {
         slides.forEach((slide, i) => slide.style.transform = `translateX(${(index - i)*250-50}%)`)
-
+if(dots.length!==0){
         dots.forEach(dot => dot.classList.remove('slider__dot--active'));
-        dots[index].classList.add('slider__dot--active');
+        dots[index].classList.add('slider__dot--active');}
     }
 
     slidePosition();
@@ -224,16 +224,15 @@ if(slides.length!==0){
         slide.addEventListener('touchmove', moveTouch, false);
     });
 
-
+if(dots.length!==0){
     arrowRight.addEventListener('click', moveSlideLeft);
     arrowLeft.addEventListener('click', moveSlideRight);
-
+}
 
     dots.forEach((dot, i) => dot.addEventListener('click', function () {
         index = i;
         slidePosition();
     }));
-}
     // TO DO INFINITE SLIDER??
 
 
