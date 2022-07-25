@@ -159,7 +159,7 @@ blurLinksOnHoover('mouseout');
 blurLinksOnHoover('focus');
 
 
-// if (slides.length > 0) {
+if (slides.length !== 0) {
     // Slider
     // Basic function to organize slider layout and change slides
     const slidePosition = function () {
@@ -233,7 +233,7 @@ blurLinksOnHoover('focus');
 
     // TO DO INFINITE SLIDER??
 
-// }
+}
 
 
 
