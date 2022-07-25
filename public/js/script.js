@@ -4,9 +4,12 @@ const navLinksContainer = document.querySelector('.nav__links');
 const navLinks = document.querySelectorAll('.nav__link');
 const navIcons = document.querySelectorAll('.nav-icon')
 const navLogo = document.querySelector('.nav__logo-img');
-// Slider constraints
+// Slider 
 const slides = document.querySelectorAll('.articles__slide');
 const sliderWrapper = document.querySelector('.articles__slider-wrapper');
+
+let initialX = null;
+let initialY = null;
 
 const arrowLeft = document.querySelector('.btn__slide--left');
 const arrowRight = document.querySelector('.btn__slide--right');
@@ -159,7 +162,7 @@ blurLinksOnHoover('mouseover');
 blurLinksOnHoover('mouseout');
 blurLinksOnHoover('focus');
 
-if(sliderWrapper){
+if(slides.length!==0){
 // if (slides.length !== 0) {
     // Slider
     // Basic function to organize slider layout and change slides
@@ -192,8 +195,7 @@ if(sliderWrapper){
 
     // Swipe posts
 
-    let initialX = null;
-    let initialY = null;
+    
 
     const startTouch = function (e) {
         initialX = e.touches[0].clientX;
