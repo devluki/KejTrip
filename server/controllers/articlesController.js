@@ -550,6 +550,40 @@ exports.editPut = async (req, res) => {
   let id = req.params.id;
 
   try {
+    //
+    let imageUploadFile;
+    let uploadPath;
+    let newImageName;
+    let imageCloudPath;
+
+    if (!req.files || Object.keys(req.files).length === 0) {
+      console.log("no files were uploaded");
+    } else {
+      imageUploadFile = req.files.image;
+      newImageName = Date.now() + imageUploadFile.name;
+      uploadPath =
+        require("path").resolve("./") + "/public/uploads/" + newImageName;
+      console.log(uploadPath);
+      imageUploadFile.mv(uploadPath, function (err) {
+        if (err) return res.status(500).send(err);
+      });
+      const result = await cloudinary.uploader.upload(
+        uploadPath,
+        {
+          width: 700,
+          q_auto: "good",
+        },
+        function (error, result) {
+          imageCloudPath = result.url;
+          if (!error) {
+            fs.unlink(uploadPath, () => console.log("succes"));
+          }
+        }
+      );
+    }
+
+    //
+
     const post = await Post.findByIdAndUpdate(
       id,
       {
@@ -560,6 +594,9 @@ exports.editPut = async (req, res) => {
           city: req.body.city,
           postContent: req.body.postContent,
           status: req.body.status,
+          //
+          image: imageCloudPath,
+          //
         },
       },
       {
