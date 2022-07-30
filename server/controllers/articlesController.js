@@ -15,7 +15,6 @@ cloudinary.config({
   api_secret: "-6z9SMUE86RZgYK4UtxLaH1c7oY",
 });
 
-// const ResTest = require('../models/ResTest')
 const Route = require("../models/Route");
 const request = require("request");
 const { post } = require("request");
