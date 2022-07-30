@@ -42,9 +42,10 @@
 
                     </div>
                     <div class="pagination__panel-container ">
-                        <button class="btn__slide previous-page "><i class="fa-solid fa-circle-arrow-left"></i></button>
-                        <span>Strona <%=page%></span><span>/</span><span class="last-page"></span><span class="no-of__posts hidden"><%=numPosts%></span><span class="limit-of__posts hidden"><%=limit%></span>
-                        <button class="btn__slide next-page "><i class="fa-solid fa-circle-arrow-right"></i></button>
+                        <button class="btn__swipe previous-page btn__slide--left"><i class="fa-solid fa-circle-arrow-left"></i></button>
+                        <p class="pagination__page-counter"> <span>Strona <%=page%></span><span>/</span><span class="last-page"></span><span class="no-of__posts hidden"><%=numPosts%></span><span class="limit-of__posts hidden"><%=limit%></span></p>
+                       
+                        <button class="btn__swipe next-page btn__slide--right"><i class="fa-solid fa-circle-arrow-right"></i></button>
                     </div>
 
                 </div>
