@@ -10,18 +10,26 @@ const cookieParser = require("cookie-parser");
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
-  cloud_name: "devluki",
-  api_key: "848194944323474",
-  api_secret: "-6z9SMUE86RZgYK4UtxLaH1c7oY",
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
 });
 
 const Route = require("../models/Route");
 const request = require("request");
 const { post } = require("request");
+const { render } = require("ejs");
 
 //  Homepage
 exports.homepage = async (req, res) => {
   try {
+    let showCookies;
+    const cookies = req.cookies;
+    if (!cookies["Cookies"]) {
+      showCookies = 0;
+    } else {
+      showCookies = 1;
+    }
     // Slider latest
     const limitNumberLatest = 4;
     const postsLatest = await Posts.find({
@@ -45,6 +53,7 @@ exports.homepage = async (req, res) => {
       title: "Kejtrip - Home",
       postsLatest,
       postsFeatured,
+      showCookies,
     });
   } catch (error) {
     res.status(500).send({
@@ -63,6 +72,14 @@ exports.explorePosts = async (req, res) => {
   const numPosts = await Posts.countDocuments();
 
   try {
+    let showCookies;
+
+    const cookies = req.cookies;
+    if (!cookies["Cookies"]) {
+      showCookies = 0;
+    } else {
+      showCookies = 1;
+    }
     const posts = await Posts.find({
       status: "Publikacja",
     })
@@ -83,6 +100,7 @@ exports.explorePosts = async (req, res) => {
       page,
       numPosts,
       limit,
+      showCookies,
     });
   } catch (error) {
     res.status(404).json({
@@ -94,10 +112,17 @@ exports.explorePosts = async (req, res) => {
 
 exports.about = async (req, res) => {
   // const id -> only one about article
-  const id = "6277aa34772ff87e9fe3119c";
-  let show;
+  // const id = "6277aa34772ff87e9fe3119c";
+  const id = "62e6772615591d139a1b0e50";
 
   try {
+    let showCookies;
+    const cookies = req.cookies;
+    if (!cookies["Cookies"]) {
+      showCookies = 0;
+    } else {
+      showCookies = 1;
+    }
     const limitNumberLatest = 4;
     const postsLatest = await Posts.find({
       status: "Publikacja",
@@ -113,6 +138,7 @@ exports.about = async (req, res) => {
       title: "Kejtrip - O mnie",
       about,
       postsLatest,
+      showCookies,
     });
   } catch (error) {
     res.status(500).send({
@@ -130,13 +156,20 @@ exports.readPost = async (req, res) => {
 
   const cookies = req.cookies;
   console.log(req.cookies["a" + req.params.id], cookies[cookiesId]);
-  let show;
+  let showLikes;
+  let showCookies;
   try {
     // Cookie
     if (!cookies[cookiesId]) {
-      show = 0;
+      showLikes = 0;
     } else {
-      show = 1;
+      showLikes = 1;
+    }
+
+    if (!cookies["Cookies"]) {
+      showCookies = 0;
+    } else {
+      showCookies = 1;
     }
 
     const post = await Posts.findById(postId);
@@ -183,7 +216,8 @@ exports.readPost = async (req, res) => {
       title: "Kejtrip - post",
       post,
       postsFeatured,
-      show,
+      showLikes,
+      showCookies,
       nextPost,
       prevPost,
     });
@@ -198,6 +232,14 @@ exports.readPost = async (req, res) => {
 
 exports.searchPost = async (req, res) => {
   try {
+    let showCookies;
+
+    const cookies = req.cookies;
+    if (!cookies["Cookies"]) {
+      showCookies = 0;
+    } else {
+      showCookies = 1;
+    }
     let searchTerm = req.body.searchTerm;
     let posts = await Post.find({
       $text: {
@@ -208,6 +250,7 @@ exports.searchPost = async (req, res) => {
     res.render("search", {
       title: "Kejtrip - post",
       posts,
+      showCookies,
     });
   } catch (error) {
     res.status(500).send({
@@ -218,6 +261,14 @@ exports.searchPost = async (req, res) => {
 
 exports.searchPostQuery = async (req, res) => {
   try {
+    let showCookies;
+
+    const cookies = req.cookies;
+    if (!cookies["Cookies"]) {
+      showCookies = 0;
+    } else {
+      showCookies = 1;
+    }
     let searchTerm = req.query.searchTerm;
     let posts = await Post.find({
       $text: {
@@ -228,6 +279,7 @@ exports.searchPostQuery = async (req, res) => {
     res.render("search", {
       title: "Kejtrip - post",
       posts,
+      showCookies,
       // searchTerm
     });
   } catch (error) {
@@ -241,6 +293,14 @@ exports.searchPostQuery = async (req, res) => {
 exports.destinations = async (req, res) => {
   const limitNumberFeatured = 3;
   try {
+    let showCookies;
+
+    const cookies = req.cookies;
+    if (!cookies["Cookies"]) {
+      showCookies = 0;
+    } else {
+      showCookies = 1;
+    }
     const routes = await Route.find({
       status: "Publikacja",
     }).sort({
@@ -259,6 +319,7 @@ exports.destinations = async (req, res) => {
       title: "Kejtrip - kierunki",
       routes: routes,
       postsFeatured,
+      showCookies,
     });
   } catch (error) {
     res.status(500).send({
@@ -362,6 +423,7 @@ exports.submitAbout = async (req, res) => {
 };
 
 // Post about article
+
 exports.submitAboutArticle = async (req, res) => {
   try {
     const newAbout = new About({
@@ -381,7 +443,9 @@ exports.submitAboutArticle = async (req, res) => {
 // Edit about article
 
 exports.editAbout = async (req, res) => {
-  const id = "6277aa34772ff87e9fe3119c";
+  // Public MongoDB id
+  // const id = "6277aa34772ff87e9fe3119c";
+  const id = "62e6772615591d139a1b0e50";
   try {
     const infoErrorsObj = req.flash("infoErrors");
     const infoSubmitObj = req.flash("infoSubmit");
@@ -404,7 +468,8 @@ exports.editAbout = async (req, res) => {
 };
 
 exports.editPutAbout = async (req, res) => {
-  const id = "6277aa34772ff87e9fe3119c";
+  // const id = "6277aa34772ff87e9fe3119c";
+  const id = "62e6772615591d139a1b0e50";
 
   try {
     const about = await About.findByIdAndUpdate(
@@ -423,10 +488,10 @@ exports.editPutAbout = async (req, res) => {
     await about.save();
 
     req.flash("infoSubmit", "Post has been edited.");
-    res.redirect("/submit-about");
+    res.redirect("/admin-panel");
   } catch (error) {
     req.flash("infoErrors", error, error.message);
-    res.redirect("/submit-about");
+    res.redirect("/admin-panel");
   }
 };
 
@@ -458,29 +523,6 @@ exports.addLikes = async (req, res, next) => {
     });
   }
 };
-// exports.addLikes = async (req, res, next) => {
-//     try {
-
-//         const id = req.params.id;
-
-//         // console.log(post.likes);
-//         const post = await Posts.findById(id);
-//         post.likes++;
-//         req.session.like = 1;
-//         req.session.id = id;
-//         post.save();
-
-//         res.send({
-//             likes: post.likes,
-//             postId: id
-//         })
-
-//     } catch (error) {
-//         res.status(500).send({
-//             message: 'BŁĄD' + error.message || "Error Occured!"
-//         })
-//     }
-// }
 
 // Comemnts
 
@@ -756,6 +798,27 @@ exports.gallery = async (req, res) => {
     res.send({
       imgs: imgs,
     });
+  } catch (error) {
+    res.status(500).send({
+      message: "BŁĄD" + error.message || "Error Occured!",
+    });
+  }
+};
+
+// Cookies
+
+exports.cookies = async (req, res) => {
+  try {
+    res.cookie("Cookies", `true`, {
+      // One month
+      maxAge: 31 * 24 * 60 * 60 * 1000,
+    });
+
+    res.send({
+      cookies: true,
+    });
+
+    res.end();
   } catch (error) {
     res.status(500).send({
       message: "BŁĄD" + error.message || "Error Occured!",

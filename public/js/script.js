@@ -35,6 +35,10 @@ const galleryContainer = document.querySelector(".gallery__container");
 const imgsContainer = document.querySelector(".gallery__imgs");
 
 const galleryCloseBtn = document.querySelector(".close-btn__container");
+// Cookies
+const cookiesBtn = document.querySelector(".cookies__btn");
+const cookies = document.querySelector(".cookies");
+const cookiesContainer = document.querySelector(".cookies__container");
 
 // Z-index of map
 if (maps) {
@@ -288,6 +292,22 @@ if (markupParentEl) {
   setInterval(randomQuoteGenerator, 6000);
 }
 
+// Cookies
+
+if (cookiesBtn) {
+  cookiesBtn.addEventListener("click", async function () {
+    fetch("/cookies", {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => socket.emit("cookies", data))
+      .catch(function (error) {
+        //   likesCounter.textContent = error;
+        console.log(error);
+      });
+  });
+}
+
 // Submit-form
 const postFormContainer = document.querySelector(".post__form-container");
 
@@ -356,7 +376,7 @@ if (commentsForm) {
     })
       .then((res) => res.json())
       .then((res) => {
-        // console.log(res)
+        console.log(res);
         socket.emit("newComment", data);
         alert(res.text);
       })
@@ -384,6 +404,16 @@ socket.on("newLike", (data) => {
   }
 });
 
+//
+socket.on("cookies", (data) => {
+  console.log(data, data.cookies);
+
+  let cookies = data.cookies;
+  if (cookies) {
+    cookiesContainer.style.display = "none";
+  }
+});
+//
 const updateQueryString = function (urlParams, page) {
   urlParams.set("page", page);
   return (window.location.search = urlParams);
