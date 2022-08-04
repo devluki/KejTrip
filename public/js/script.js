@@ -142,7 +142,7 @@ blurLinksOnHoover("focus");
 const slidePosition = function () {
   slides.forEach(
     (slide, i) =>
-      (slide.style.transform = `translateX(${(index - i) * 250 - 50}%)`)
+      (slide.style.transform = `translateX(${(index + i) * 250 - 50}%)`)
   );
   if (dots.length !== 0) {
     dots.forEach((dot) => dot.classList.remove("slider__dot--active"));
