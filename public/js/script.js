@@ -182,7 +182,7 @@ function moveTouch(e) {
   let diffX = initialX - currentX;
   let diffY = initialY - currentY;
   if (Math.abs(diffX) > Math.abs(diffY)) {
-    diffX > 0 ? moveSlideLeft() : moveSlideRight();
+    diffX > 0 ? moveSlideRight() : moveSlideLeft();
   }
   initialX = initialY = null;
   e.preventDefault();
@@ -425,13 +425,14 @@ const paginationBtnsContainer = document.querySelector(
 if (paginationBtnsContainer) {
   const btnPrev = document.querySelector(".previous-page");
   const btnNext = document.querySelector(".next-page");
-  const limit = document.querySelector(".limit-of__posts").textContent;
-  const noOfPosts = document.querySelector(".no-of__posts").textContent;
+  const limit = document.querySelector(".limit-of__posts").textContent * 1;
+  const noOfPosts = document.querySelector(".no-of__posts").textContent * 1;
   const lastPage = document.querySelector(".last-page");
-  const max = Math.round(((noOfPosts * 1) / limit) * 1);
+  const max = Math.ceil(((noOfPosts * 1) / limit) * 1);
   const urlParams = new URLSearchParams(window.location.search);
   const curPage = urlParams.get("page") * 1 || 1;
   lastPage.textContent = max;
+  console.log("max", max, "no of", noOfPosts, "limit", limit);
   if (curPage === max) {
     btnNext.classList.add("hidden");
   }

@@ -74,6 +74,3 @@ http.listen(port, (req, res) => {
   console.log(`Listening to port ${port}`);
   console.log("io:port", port);
 });
-// app.listen(port, (req, res) => {
-//     console.log(`Listening to port ${port}`);
-// })

@@ -70,6 +70,7 @@ exports.explorePosts = async (req, res) => {
 
   const skip = (page - 1) * limit;
   const numPosts = await Posts.countDocuments();
+  console.log("POst no:", numPosts);
 
   try {
     let showCookies;
