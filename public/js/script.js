@@ -154,14 +154,14 @@ slidePosition();
 
 const moveSlideRight = function () {
   if (index === slides.length - 1) return;
-  index++;
+  index--;
   slidePosition();
 
   console.log("click right", index);
 };
 const moveSlideLeft = function () {
   if (index === 0) return;
-  index--;
+  index++;
   slidePosition();
 
   console.log("click left", index);
