@@ -13,7 +13,7 @@ let initialY = null;
 const arrowLeft = document.querySelector(".btn__slide--left");
 const arrowRight = document.querySelector(".btn__slide--right");
 const dots = document.querySelectorAll(".articles__slider-dot");
-let index = 0;
+let index = 4;
 // Sticky navigation
 const nav = document.querySelector(".nav");
 // const header = document.querySelector('.header')
@@ -142,7 +142,7 @@ blurLinksOnHoover("focus");
 const slidePosition = function () {
   slides.forEach(
     (slide, i) =>
-      (slide.style.transform = `translateX(${(index + i) * 250 + 50}%)`)
+      (slide.style.transform = `translateX(${(index - i) * 250 - 50}%)`)
   );
   if (dots.length !== 0) {
     dots.forEach((dot) => dot.classList.remove("slider__dot--active"));
@@ -153,14 +153,14 @@ const slidePosition = function () {
 slidePosition();
 
 const moveSlideRight = function () {
-  if (index === slides.length - 1) return;
+  if (index === 0) return;
   index--;
   slidePosition();
 
   console.log("click right", index);
 };
 const moveSlideLeft = function () {
-  if (index === 0) return;
+  if (index === slides.length - 1) return;
   index++;
   slidePosition();
 
