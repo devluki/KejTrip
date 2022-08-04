@@ -146,25 +146,26 @@ const slidePosition = function () {
   );
   if (dots.length !== 0) {
     dots.forEach((dot) => dot.classList.remove("slider__dot--active"));
-    dots[index].classList.add("slider__dot--active");
+    dots[index * -1].classList.add("slider__dot--active");
   }
 };
 
 slidePosition();
 
-const moveSlideRight = function () {
+const moveSlideLeft = function () {
   if (index === 0) return;
+  index++;
+  console.log(index);
+  slidePosition();
+
+  console.log("click left", index);
+};
+const moveSlideRight = function () {
+  if (index === -1 * slides.length + 1) return;
   index--;
   slidePosition();
 
   console.log("click right", index);
-};
-const moveSlideLeft = function () {
-  if (index === slides.length - 1) return;
-  index++;
-  slidePosition();
-
-  console.log("click left", index);
 };
 
 // Swipe posts
@@ -194,8 +195,8 @@ slides.forEach((slide) => {
 });
 
 if (dots.length !== 0) {
-  arrowRight.addEventListener("click", moveSlideLeft);
-  arrowLeft.addEventListener("click", moveSlideRight);
+  arrowRight.addEventListener("click", moveSlideRight);
+  arrowLeft.addEventListener("click", moveSlideLeft);
 }
 
 dots.forEach((dot, i) =>
