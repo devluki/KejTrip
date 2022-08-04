@@ -13,7 +13,7 @@ let initialY = null;
 const arrowLeft = document.querySelector(".btn__slide--left");
 const arrowRight = document.querySelector(".btn__slide--right");
 const dots = document.querySelectorAll(".articles__slider-dot");
-let index = 4;
+let index = 0;
 // Sticky navigation
 const nav = document.querySelector(".nav");
 // const header = document.querySelector('.header')
