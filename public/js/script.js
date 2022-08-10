@@ -195,8 +195,8 @@ slides.forEach((slide) => {
 });
 
 if (dots.length !== 0) {
-  arrowRight.addEventListener("click", moveSlideRight);
-  arrowLeft.addEventListener("click", moveSlideLeft);
+  arrowRight.addEventListener("click", moveSlideLeft);
+  arrowLeft.addEventListener("click", moveSlideRight);
 }
 
 dots.forEach((dot, i) =>
