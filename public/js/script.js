@@ -273,24 +273,25 @@ const markupParentEl = document.querySelector(
 if (markupParentEl) {
   let quote = "";
 
-  const randomNumberGenerator = function (min, max) {
-    return Math.floor(Math.random() * (max - min) + min);
-  };
+  let quoteNumber = 0;
 
   const randomQuoteGenerator = function () {
+    if (quoteNumber === motivationQuote.length) {
+      quoteNumber = 0;
+    }
     markupParentEl.innerHTML = "";
 
-    const quoteIndex = randomNumberGenerator(0, motivationQuote.length);
-    quote = motivationQuote[quoteIndex];
+    quote = motivationQuote[quoteNumber];
     const markup = `
         <p class="header__motivation-quote">  ${quote.quote}</p>
     <p class="motivation__quote-author">${quote.author}</p>
     `;
 
     markupParentEl.insertAdjacentHTML("afterbegin", markup);
+    quoteNumber++;
   };
 
-  setInterval(randomQuoteGenerator, 6000);
+  setInterval(randomQuoteGenerator, 8500);
 }
 
 // Cookies
