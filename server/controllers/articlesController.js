@@ -112,9 +112,7 @@ exports.explorePosts = async (req, res) => {
 };
 
 exports.about = async (req, res) => {
-  // const id -> only one about article
-  // const id = "6277aa34772ff87e9fe3119c";
-  const id = "62e6772615591d139a1b0e50";
+  const id = process.env.ABOUT_ID;
 
   try {
     let showCookies;
@@ -332,20 +330,25 @@ exports.destinations = async (req, res) => {
 // Submit post
 // Post article -> admin route??
 exports.submitPost = async (req, res) => {
-  try {
-    const infoErrorsObj = req.flash("infoErrors");
-    const infoSubmitObj = req.flash("infoSubmit");
-    res.render("submit-post", {
-      title: "Kejtrip",
-      infoErrorsObj,
-      infoSubmitObj,
-    });
-    // req.flash('infoSubmit', 'Artykuł został dodany!');
-    // res.redirect('/submit-post');
-  } catch (error) {
-    res.status(500).send({
-      message: error.message || "Error Occured!",
-    });
+  const cookies = req.cookies;
+  if (cookies.user__sesion) {
+    try {
+      const infoErrorsObj = req.flash("infoErrors");
+      const infoSubmitObj = req.flash("infoSubmit");
+      res.render("submit-post", {
+        title: "Kejtrip",
+        infoErrorsObj,
+        infoSubmitObj,
+      });
+      // req.flash('infoSubmit', 'Artykuł został dodany!');
+      // res.redirect('/submit-post');
+    } catch (error) {
+      res.status(500).send({
+        message: error.message || "Error Occured!",
+      });
+    }
+  } else {
+    res.redirect("/login");
   }
 };
 
@@ -424,53 +427,56 @@ exports.submitAbout = async (req, res) => {
 };
 
 // Post about article
+// Use this only once!
+// ------------------------------
+// exports.submitAboutArticle = async (req, res) => {
+//   try {
+//     const newAbout = new About({
+//       title: req.body.title,
+//       postContent: req.body.postContent,
+//     });
+//     await newAbout.save();
 
-exports.submitAboutArticle = async (req, res) => {
-  try {
-    const newAbout = new About({
-      title: req.body.title,
-      postContent: req.body.postContent,
-    });
-    await newAbout.save();
-
-    req.flash("infoSubmit", "Post has been added.");
-    res.redirect("/submit-about");
-  } catch (error) {
-    req.flash("infoErrors", error, error.message);
-    res.redirect("/submit-about");
-  }
-};
-
+//     req.flash("infoSubmit", "Post has been added.");
+//     res.redirect("/submit-about");
+//   } catch (error) {
+//     req.flash("infoErrors", error, error.message);
+//     res.redirect("/submit-about");
+//   }
+// };
+// ----------------------------
 // Edit about article
 
 exports.editAbout = async (req, res) => {
-  // Public MongoDB id
-  // const id = "6277aa34772ff87e9fe3119c";
-  const id = "62e6772615591d139a1b0e50";
-  try {
-    const infoErrorsObj = req.flash("infoErrors");
-    const infoSubmitObj = req.flash("infoSubmit");
-    // console.log(req.params.id);
-    const about = await About.findById(id);
-    // console.log(post);
-    res.render("edit-about", {
-      title: "Kejtrip-edycja",
+  const cookies = req.cookies;
+  if (cookies.user__sesion) {
+    const id = process.env.ABOUT_ID;
+    try {
+      const infoErrorsObj = req.flash("infoErrors");
+      const infoSubmitObj = req.flash("infoSubmit");
+      // console.log(req.params.id);
+      const about = await About.findById(id);
+      // console.log(post);
+      res.render("edit-about", {
+        title: "Kejtrip-edycja",
 
-      about: about,
+        about: about,
 
-      infoErrorsObj,
-      infoSubmitObj,
-    });
-  } catch (error) {
-    res.status(500).send({
-      message: "BŁĄD" + error.message || "Error Occured!",
-    });
+        infoErrorsObj,
+        infoSubmitObj,
+      });
+    } catch (error) {
+      res.status(500).send({
+        message: "BŁĄD" + error.message || "Error Occured!",
+      });
+    }
+  } else {
+    res.redirect("/login");
   }
 };
 
 exports.editPutAbout = async (req, res) => {
-  // const id = "6277aa34772ff87e9fe3119c";
-  const id = "62e6772615591d139a1b0e50";
+  const id = process.env.ABOUT_ID;
 
   try {
     const about = await About.findByIdAndUpdate(
@@ -668,12 +674,18 @@ exports.login = async (req, res) => {
 
 exports.loginValidation = async (req, res) => {
   const data = req.body;
-  const id = "62796ea9f2271d8e26aad268";
+  const id = process.env.USER_ID;
+
   try {
     const userData = await User.findById(id);
+    console.log("DATA:", data);
     if (userData.login === data.login && userData.password === data.password) {
       //
       console.log("Logowanie udane!!!!!");
+      res.cookie("user__sesion", true, {
+        // 45 mins session
+        maxAge: 45 * 60 * 1000,
+      });
       res.redirect("/admin-panel");
     } else {
       console.log("Nie udało się zalogować!!!");
@@ -688,47 +700,62 @@ exports.loginValidation = async (req, res) => {
 };
 
 exports.adminPanel = async (req, res) => {
-  try {
-    res.render("admin-panel", {
-      title: "Kejtrip-panel",
-    });
-  } catch (error) {
-    res.status(500).send({
-      message: "BŁĄD" + error.message || "Error Occured!",
-    });
+  const cookies = req.cookies;
+  if (cookies.user__sesion) {
+    try {
+      res.render("admin-panel", {
+        title: "Kejtrip-panel",
+      });
+    } catch (error) {
+      res.status(500).send({
+        message: "BŁĄD" + error.message || "Error Occured!",
+      });
+    }
+  } else {
+    res.redirect("/login");
   }
 };
 
 exports.panelArticles = async (req, res) => {
-  try {
-    const posts = await Posts.find({}).sort({
-      _id: -1,
-    });
+  const cookies = req.cookies;
+  if (cookies.user__sesion) {
+    try {
+      const posts = await Posts.find({}).sort({
+        _id: -1,
+      });
 
-    res.render("panel-list", {
-      title: "Kejtrip-lista",
-      posts,
-    });
-  } catch (error) {
-    res.status(500).send({
-      message: "BŁĄD" + error.message || "Error Occured!",
-    });
+      res.render("panel-list", {
+        title: "Kejtrip-lista",
+        posts,
+      });
+    } catch (error) {
+      res.status(500).send({
+        message: "BŁĄD" + error.message || "Error Occured!",
+      });
+    }
+  } else {
+    res.redirect("/login");
   }
 };
 exports.upload = async (req, res) => {
-  try {
-    const infoErrorsObj = req.flash("infoErrors");
-    const infoSubmitObj = req.flash("infoSubmit");
+  const cookies = req.cookies;
+  if (cookies.user__sesion) {
+    try {
+      const infoErrorsObj = req.flash("infoErrors");
+      const infoSubmitObj = req.flash("infoSubmit");
 
-    res.render("upload", {
-      title: "Kejtrip-upload",
-      infoErrorsObj,
-      infoSubmitObj,
-    });
-  } catch (error) {
-    res.status(500).send({
-      message: "BŁĄD" + error.message || "Error Occured!",
-    });
+      res.render("upload", {
+        title: "Kejtrip-upload",
+        infoErrorsObj,
+        infoSubmitObj,
+      });
+    } catch (error) {
+      res.status(500).send({
+        message: "BŁĄD" + error.message || "Error Occured!",
+      });
+    }
+  } else {
+    res.redirect("/login");
   }
 };
 exports.uploadPost = async (req, res) => {
@@ -791,18 +818,23 @@ exports.uploadPost = async (req, res) => {
 };
 
 exports.gallery = async (req, res) => {
-  try {
-    const imgs = await Image.find({}).sort({
-      _id: -1,
-    });
+  const cookies = req.cookies;
+  if (cookies.user__sesion) {
+    try {
+      const imgs = await Image.find({}).sort({
+        _id: -1,
+      });
 
-    res.send({
-      imgs: imgs,
-    });
-  } catch (error) {
-    res.status(500).send({
-      message: "BŁĄD" + error.message || "Error Occured!",
-    });
+      res.send({
+        imgs: imgs,
+      });
+    } catch (error) {
+      res.status(500).send({
+        message: "BŁĄD" + error.message || "Error Occured!",
+      });
+    }
+  } else {
+    res.redirect("/login");
   }
 };
 

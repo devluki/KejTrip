@@ -6,31 +6,41 @@ const { post } = require("request");
 
 // map
 exports.map = async (req, res) => {
-  try {
-    res.render("map-menu", {
-      title: "Kejtrip - mapa",
-    });
-  } catch (error) {
-    res.status(500).send({
-      message: error.message || "Error Occured!",
-    });
+  const cookies = req.cookies;
+  if (cookies.user__sesion) {
+    try {
+      res.render("map-menu", {
+        title: "Kejtrip - mapa",
+      });
+    } catch (error) {
+      res.status(500).send({
+        message: error.message || "Error Occured!",
+      });
+    }
+  } else {
+    res.redirect("/login");
   }
 };
 // Map add pins view
 exports.addPins = async (req, res) => {
-  const infoErrorsObj = req.flash("infoErrors");
-  const infoSubmitObj = req.flash("infoSubmit");
+  const cookies = req.cookies;
+  if (cookies.user__sesion) {
+    const infoErrorsObj = req.flash("infoErrors");
+    const infoSubmitObj = req.flash("infoSubmit");
 
-  try {
-    res.render("map-addPins", {
-      title: "Kejtrip - mapa/dodawania punktów",
-      infoErrorsObj,
-      infoSubmitObj,
-    });
-  } catch (error) {
-    res.status(500).send({
-      message: error.message || "Error Occured!",
-    });
+    try {
+      res.render("map-addPins", {
+        title: "Kejtrip - mapa/dodawania punktów",
+        infoErrorsObj,
+        infoSubmitObj,
+      });
+    } catch (error) {
+      res.status(500).send({
+        message: error.message || "Error Occured!",
+      });
+    }
+  } else {
+    res.redirect("/login");
   }
 };
 
@@ -58,23 +68,28 @@ exports.submitAddPins = async (req, res) => {
 };
 
 exports.pinsList = async (req, res) => {
-  try {
-    const infoErrorsObj = req.flash("infoErrors");
-    const infoSubmitObj = req.flash("infoSubmit");
-    const pins = await Pin.find({}).sort({
-      _id: -1,
-    });
+  const cookies = req.cookies;
+  if (cookies.user__sesion) {
+    try {
+      const infoErrorsObj = req.flash("infoErrors");
+      const infoSubmitObj = req.flash("infoSubmit");
+      const pins = await Pin.find({}).sort({
+        _id: -1,
+      });
 
-    res.render("pins-list", {
-      title: "Kejtrip-lista",
-      pins,
-      infoErrorsObj,
-      infoSubmitObj,
-    });
-  } catch (error) {
-    res.status(500).send({
-      message: "BŁĄD" + error.message || "Error Occured!",
-    });
+      res.render("pins-list", {
+        title: "Kejtrip-lista",
+        pins,
+        infoErrorsObj,
+        infoSubmitObj,
+      });
+    } catch (error) {
+      res.status(500).send({
+        message: "BŁĄD" + error.message || "Error Occured!",
+      });
+    }
+  } else {
+    res.redirect("/login");
   }
 };
 
@@ -96,22 +111,27 @@ exports.deletePin = async (req, res) => {
 ///
 
 exports.editPin = async (req, res) => {
-  let id = req.params.id;
-  const infoErrorsObj = req.flash("infoErrors");
-  const infoSubmitObj = req.flash("infoSubmit");
-  try {
-    const pin = await Pin.findById(req.params.id);
-    // console.log(pin);
+  const cookies = req.cookies;
+  if (cookies.user__sesion) {
+    let id = req.params.id;
+    const infoErrorsObj = req.flash("infoErrors");
+    const infoSubmitObj = req.flash("infoSubmit");
+    try {
+      const pin = await Pin.findById(req.params.id);
+      // console.log(pin);
 
-    res.render("map-editPins", {
-      title: "Kejtrip-edycja",
-      pin: pin,
-      infoErrorsObj,
-      infoSubmitObj,
-    });
-  } catch (error) {
-    req.flash("infoErrors", error, error.message);
-    res.redirect("/admin-panel/map/pins-list");
+      res.render("map-editPins", {
+        title: "Kejtrip-edycja",
+        pin: pin,
+        infoErrorsObj,
+        infoSubmitObj,
+      });
+    } catch (error) {
+      req.flash("infoErrors", error, error.message);
+      res.redirect("/admin-panel/map/pins-list");
+    }
+  } else {
+    res.redirect("/login");
   }
 };
 
@@ -166,19 +186,24 @@ exports.pinsAPI = async (req, res) => {
 // Map add routes
 // Main form view
 exports.addRoute = async (req, res) => {
-  const infoErrorsObj = req.flash("infoErrors");
-  const infoSubmitObj = req.flash("infoSubmit");
+  const cookies = req.cookies;
+  if (cookies.user__sesion) {
+    const infoErrorsObj = req.flash("infoErrors");
+    const infoSubmitObj = req.flash("infoSubmit");
 
-  try {
-    res.render("map-addRoute", {
-      title: "Kejtrip - mapa/dodawania tras",
-      infoErrorsObj,
-      infoSubmitObj,
-    });
-  } catch (error) {
-    res.status(500).send({
-      message: error.message || "Error Occured!",
-    });
+    try {
+      res.render("map-addRoute", {
+        title: "Kejtrip - mapa/dodawania tras",
+        infoErrorsObj,
+        infoSubmitObj,
+      });
+    } catch (error) {
+      res.status(500).send({
+        message: error.message || "Error Occured!",
+      });
+    }
+  } else {
+    res.redirect("/login");
   }
 };
 // Function - get routing and update
@@ -253,19 +278,24 @@ exports.submitAddRoute = async (req, res) => {
 
 //
 exports.routeList = async (req, res) => {
-  try {
-    const routes = await Route.find({}).sort({
-      _id: -1,
-    });
+  const cookies = req.cookies;
+  if (cookies.user__sesion) {
+    try {
+      const routes = await Route.find({}).sort({
+        _id: -1,
+      });
 
-    res.render("route-list", {
-      title: "Kejtrip-lista",
-      routes,
-    });
-  } catch (error) {
-    res.status(500).send({
-      message: "BŁĄD" + error.message || "Error Occured!",
-    });
+      res.render("route-list", {
+        title: "Kejtrip-lista",
+        routes,
+      });
+    } catch (error) {
+      res.status(500).send({
+        message: "BŁĄD" + error.message || "Error Occured!",
+      });
+    }
+  } else {
+    res.redirect("/login");
   }
 };
 //
@@ -285,22 +315,26 @@ exports.deleteRoute = async (req, res) => {
 //
 
 exports.editRoute = async (req, res) => {
-  // let id = req.params.id;
-  const infoErrorsObj = req.flash("infoErrors");
-  const infoSubmitObj = req.flash("infoSubmit");
-  const id = req.params.id;
-  try {
-    const route = await Route.findById(id);
-    res.render("map-editRoute", {
-      title: "Kejtrip-edycja",
-      route: route,
-      infoErrorsObj,
-      infoSubmitObj,
-    });
-  } catch (error) {
-    res.status(500).send({
-      message: "BŁĄD" + error.message || "Error Occured!",
-    });
+  const cookies = req.cookies;
+  if (cookies.user__sesion) {
+    const infoErrorsObj = req.flash("infoErrors");
+    const infoSubmitObj = req.flash("infoSubmit");
+    const id = req.params.id;
+    try {
+      const route = await Route.findById(id);
+      res.render("map-editRoute", {
+        title: "Kejtrip-edycja",
+        route: route,
+        infoErrorsObj,
+        infoSubmitObj,
+      });
+    } catch (error) {
+      res.status(500).send({
+        message: "BŁĄD" + error.message || "Error Occured!",
+      });
+    }
+  } else {
+    res.redirect("/login");
   }
 };
 

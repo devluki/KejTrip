@@ -34,7 +34,7 @@ router.post("/post-comment", articlesController.postComment);
 
 // About
 router.get("/submit-about", articlesController.submitAbout);
-router.post("/submit-about", articlesController.submitAboutArticle);
+// router.post("/submit-about", articlesController.submitAboutArticle);
 // Edit about
 router.get(
   "/about/edit/6277aa34772ff87e9fe3119c",
