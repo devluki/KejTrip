@@ -1,31 +1,18 @@
-const {
-    urlencoded
-} = require('express');
-const mongoose = require('mongoose');
-
+const { urlencoded } = require("express");
+const mongoose = require("mongoose");
 
 const userSchema = new mongoose.Schema({
+  login: {
+    type: String,
+    required: "This field is required.",
+  },
 
-    login: {
-        type: String,
-        required: 'This field is required.',
-
-    },
-
-
-
-    password: {
-        type: String,
-        required: true
-    },
-
-
-
+  password: {
+    type: String,
+    required: true,
+  },
 });
 
-
-
-
 // Do wypróbowania wildCard indexing
-// postSchema.index({"$**":'text'}) 
-module.exports = mongoose.model('user', userSchema);
+// postSchema.index({"$**":'text'})
+module.exports = mongoose.model("user", userSchema);

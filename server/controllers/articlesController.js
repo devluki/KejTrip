@@ -50,7 +50,7 @@ exports.homepage = async (req, res) => {
       .limit(limitNumberFeatured);
 
     res.render("index", {
-      title: "Kejtrip - Home",
+      title: "Kejtrip - blog podróżniczy",
       postsLatest,
       postsFeatured,
       showCookies,
@@ -511,8 +511,7 @@ exports.addLikes = async (req, res, next) => {
     // console.log(post.likes);
     const post = await Posts.findById(id);
     post.likes++;
-    // req.session.like = 1;
-    // req.session.id = id;
+
     post.save();
 
     res.cookie("a" + id, `${id}`, {
@@ -563,7 +562,7 @@ exports.postComment = async (req, res) => {
 };
 
 exports.deletePost = async (req, res) => {
-  console.log(req.params.id);
+  // console.log(req.params.id);
   let id = req.params.id;
   try {
     await Post.findByIdAndRemove(id);
@@ -678,17 +677,15 @@ exports.loginValidation = async (req, res) => {
 
   try {
     const userData = await User.findById(id);
-    console.log("DATA:", data);
+
     if (userData.login === data.login && userData.password === data.password) {
       //
-      console.log("Logowanie udane!!!!!");
       res.cookie("user__sesion", true, {
         // 45 mins session
         maxAge: 45 * 60 * 1000,
       });
       res.redirect("/admin-panel");
     } else {
-      console.log("Nie udało się zalogować!!!");
       res.redirect("/login");
     }
     // console.log(req.body);

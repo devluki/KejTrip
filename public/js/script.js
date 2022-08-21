@@ -414,10 +414,13 @@ socket.on("newLike", (data) => {
       let flag = document.cookie.indexOf("a" + postId);
       console.log("flag:", flag);
       if (flag !== -1) {
-        const likesCount = document.getElementById(`${postId}`);
-        console.log(likesCount);
+        const likesCounters = document.querySelectorAll(`.id${postId}`);
+        console.log(likesCounters);
 
-        likesCount.textContent = `${data.likes}`;
+        likesCounters.forEach(
+          (couner) => (couner.textContent = `${data.likes}`)
+        );
+        // likesCount.textContent = `${data.likes}`;
       }
     });
   }
