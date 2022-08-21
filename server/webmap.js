@@ -16,7 +16,7 @@ let routeCoords = [];
 let locations = [];
 const routes = [];
 
-console.log("routeparentEl:", routeDescriptionParentEl);
+// console.log("routeparentEl:", routeDescriptionParentEl);
 
 const grayMarker = L.icon({
   iconUrl: "/img/bitmapa6.png",
@@ -91,7 +91,7 @@ const renderRoute = (latlngsConv) => {
   lineLayer = L.layerGroup([polyline]).addTo(map);
   map.fitBounds(polyline.getBounds());
   createStartEndPoints(latlngsConv);
-  console.log("routeCoords", routeCoords);
+  // console.log("routeCoords", routeCoords);
   createMarkers(routeCoords);
   routeCoords = "";
 };
@@ -116,7 +116,7 @@ const switchActive = () => {
   tabs.forEach((tab) => tab.classList.remove("active"));
 };
 
-console.log(tabs.length);
+// console.log(tabs.length);
 // Render route after click
 if (tabs.length > 0) {
   createDescription();
@@ -127,7 +127,7 @@ tabs.forEach((tab) =>
     map.removeLayer(markerGroup);
 
     let index = tab.getAttribute("dataRoute");
-    console.log(index);
+    // console.log(index);
     let latlngs = JSON.parse(routes[index][1]);
     latlngs.forEach((point, i) => point.reverse());
     latlngsConv = latlngs;

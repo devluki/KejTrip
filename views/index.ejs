@@ -69,7 +69,7 @@
                                             <%- post.data.toLocaleString().slice(0,10)%>
                                             
                                         </p>
-                                        <p class="post__likes"><span class="likes-count"><%- post.likes%></span><i class="fa-solid fa-heart"></i></p>
+                                        <p class="post__likes"><span class="likes-count" id="<%= post._id%>"><%- post.likes%></span><i class="fa-solid fa-heart"></i></p>
                                       </div>
                                 </a>
                                 </div>
@@ -125,7 +125,7 @@
                                     <%- post.data.toLocaleString().slice(0,10)%>
                                     
                                 </p>
-                                <p class="post__likes"><span class="likes-count"><%- post.likes%></span><i class="fa-solid fa-heart"></i></p>
+                                <p class="post__likes"><span class="likes-count" id="<%= post._id%>"><%- post.likes%></span><i class="fa-solid fa-heart"></i></p>
                               </div>
                         </a>
                         </div>

@@ -39,6 +39,8 @@ const galleryCloseBtn = document.querySelector(".close-btn__container");
 const cookiesBtn = document.querySelector(".cookies__btn");
 const cookies = document.querySelector(".cookies");
 const cookiesContainer = document.querySelector(".cookies__container");
+// Likes
+const articleLinks = document.querySelectorAll(".article__link");
 
 // Z-index of map
 if (maps) {
@@ -395,16 +397,48 @@ socket.on("newComment", (comment) => {
   document.querySelector(".comment").insertAdjacentHTML("afterbegin", markup);
   console.log(comment);
 });
+// For post view
 socket.on("newLike", (data) => {
-  console.log(data);
+  if (commentsForm) {
+    let flag = document.cookie.indexOf("a" + commentsForm.postId.value);
+    if (flag !== -1) {
+      likeBtn.style.display = "none";
+      likesCounter.textContent = `${data.likes}`;
+      likeIco.innerHTML = '<i class="fa-solid fa-heart"></i>';
+    }
+  }
+  if (articleLinks.length !== 0) {
+    articleLinks.forEach((link) => {
+      const attribute = link.getAttribute("href");
 
-  let flag = document.cookie.indexOf("a" + commentsForm.postId.value);
-  if (flag !== -1) {
-    likeBtn.style.display = "none";
-    likesCounter.textContent = `${data.likes}`;
-    likeIco.innerHTML = '<i class="fa-solid fa-heart"></i>';
+      const postId = attribute.slice(6, attribute.length);
+      console.log(postId);
+      let flag = document.cookie.indexOf("a" + postId);
+      console.log("flag:", flag);
+      if (flag !== -1) {
+        const likesCount = document.getElementById(`${postId}`);
+        console.log(likesCount);
+
+        likesCount.textContent = `${data.likes}`;
+      }
+    });
   }
 });
+// For post cards
+
+// socket.on("updateLikes", (data) => {
+//   articleLinks.forEach((link) => {
+//     const attribute = link.getAttribute("href");
+
+//     // console.log(attribute.slice(6, attribute.length));
+//     const postId = attribute.slice(6, attribute.length);
+//     console.log(postId);
+//     let flag = document.cookie.indexOf("a" + postId);
+//     if (flag !== -1) {
+//       likesCounter.textContent = `${data.likes}`;
+//     }
+//   });
+// });
 
 //
 socket.on("cookies", (data) => {
