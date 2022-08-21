@@ -34,27 +34,28 @@
                     <%}%>
 
                 </div>
-<div class="post__navigation">
-    <p class="post__navigation-label">Czytaj dalej!</p>
-    <div class="post__navigation__container">
-<% if(prevPost) {%>
-                    <div class="navigation__previous">
-                        <p class="navigation__label label__prev">Poprzedni artykuł:</p>
-                        <a href="/post/<%- prevPost.id%>" class="navigation__link"><i class="fa-solid fa-arrow-left-long"></i><%- prevPost.title%></a>
-                        <!-- <p><%- prevPost.title%></p> -->
+                <div class="post__navigation">
+                    <p class="post__navigation-label">Czytaj dalej!</p>
+                    <div class="post__navigation__container">
+                <% if(prevPost) {%>
+                                    <div class="navigation__previous">
+                                        <p class="navigation__label label__prev">Poprzedni artykuł:</p>
+                                        <a href="/post/<%- prevPost.id%>" class="navigation__link"><i class="fa-solid fa-arrow-left-long"></i><%- prevPost.title%></a>
+                                        <!-- <p><%- prevPost.title%></p> -->
+                                    </div>
+                                    <%}%>
+                <% if(nextPost) {%>
+                                    <div class="navigation__next">
+                                        <p class="navigation__label label__next">Następny artykuł:</p>
+                                        <a href="/post/<%- nextPost.id%>" class="navigation__link"><%- nextPost.title%> <i class="fa-solid fa-arrow-right-long"></i></a>
+                                        <!-- <p><%- nextPost.title%></p> -->
+                                    </div>
+                                    <%}%>
+                
                     </div>
-                    <%}%>
-<% if(nextPost) {%>
-                    <div class="navigation__next">
-                        <p class="navigation__label label__next">Następny artykuł:</p>
-                        <a href="/post/<%- nextPost.id%>" class="navigation__link"><%- nextPost.title%> <i class="fa-solid fa-arrow-right-long"></i></a>
-                        <!-- <p><%- nextPost.title%></p> -->
-                    </div>
-                    <%}%>
+                   
+                </div>
 
-    </div>
-   
-</div>
 
                 <div class="articles__featured-posts-container">
                     <h2 class="articles__featured-posts-heading heading">
@@ -211,4 +212,3 @@
     </section>
 </div>
 
-</div>

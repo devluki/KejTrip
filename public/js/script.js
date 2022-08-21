@@ -390,7 +390,7 @@ if (commentsForm) {
 socket.on("newComment", (comment) => {
   let markup = ``;
   markup += `<p class="comments__user">${comment.comment}</p>`;
-  markup += `<p class="comments__commnent">${comment.userName}</p>`;
+  markup += `<p class="comments__comment">${comment.userName}</p>`;
   console.log(markup);
   document.querySelector(".comment").insertAdjacentHTML("afterbegin", markup);
   console.log(comment);

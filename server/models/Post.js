@@ -64,7 +64,7 @@ const postSchema = new mongoose.Schema({
 postSchema.pre("validate", function (next) {
   if (this.postContent) {
     this.sanitizedHtml = dompurify.sanitize(marked(this.postContent));
-    console.log(this.sanitizedHtml);
+    // console.log(this.sanitizedHtml);
   } else {
     console.log("Nie ma markdown");
   }

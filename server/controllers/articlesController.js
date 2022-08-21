@@ -50,7 +50,7 @@ exports.homepage = async (req, res) => {
       .limit(limitNumberFeatured);
 
     res.render("index", {
-      title: "Kejtrip - blog podróżniczy",
+      title: "KejTrip - blog podróżniczy",
       postsLatest,
       postsFeatured,
       showCookies,
@@ -70,7 +70,7 @@ exports.explorePosts = async (req, res) => {
 
   const skip = (page - 1) * limit;
   const numPosts = await Posts.countDocuments();
-  console.log("POst no:", numPosts);
+  // console.log("POst no:", numPosts);
 
   try {
     let showCookies;
@@ -91,12 +91,12 @@ exports.explorePosts = async (req, res) => {
       .limit(limit);
 
     if (req.query.page) {
-      console.log(numPosts);
+      // console.log(numPosts);
       if (skip >= numPosts) throw new Error("This page does not exist");
     }
-    console.log(page);
+    // console.log(page);
     res.render("posts", {
-      title: "Kejtrip - posty",
+      title: "KejTrip - artykuły",
       posts,
       page,
       numPosts,
@@ -132,7 +132,7 @@ exports.about = async (req, res) => {
       .limit(limitNumberLatest);
 
     const about = await About.findById(id);
-    console.log(about);
+    // console.log(about);
     res.render("about", {
       title: "Kejtrip - O mnie",
       about,
@@ -154,7 +154,7 @@ exports.readPost = async (req, res) => {
   const cookiesId = "a" + req.params.id;
 
   const cookies = req.cookies;
-  console.log(req.cookies["a" + req.params.id], cookies[cookiesId]);
+  // console.log(req.cookies["a" + req.params.id], cookies[cookiesId]);
   let showLikes;
   let showCookies;
   try {
@@ -192,7 +192,7 @@ exports.readPost = async (req, res) => {
         _id: -1,
       })
       .limit(1);
-    console.log("next/prev", nextPost);
+    // console.log("next/prev", nextPost);
 
     const limitNumberFeatured = 3;
     const postsFeatured = await Posts.find({
@@ -212,7 +212,7 @@ exports.readPost = async (req, res) => {
       })
       .limit(limitNumberFeatured);
     res.render("post", {
-      title: "Kejtrip - post",
+      title: `Kejtrip - ${post.title}`,
       post,
       postsFeatured,
       showLikes,
@@ -247,7 +247,7 @@ exports.searchPost = async (req, res) => {
       },
     });
     res.render("search", {
-      title: "Kejtrip - post",
+      title: `Kejtrip - ${searchTerm}`,
       posts,
       showCookies,
     });
@@ -276,7 +276,7 @@ exports.searchPostQuery = async (req, res) => {
       },
     });
     res.render("search", {
-      title: "Kejtrip - post",
+      title: `Kejtrip - ${searchTerm}`,
       posts,
       showCookies,
       // searchTerm
@@ -288,7 +288,7 @@ exports.searchPostQuery = async (req, res) => {
   }
 };
 
-// Destinations ??? TO DO
+// Destinations
 exports.destinations = async (req, res) => {
   const limitNumberFeatured = 3;
   try {
@@ -361,13 +361,13 @@ exports.submitPostArticle = async (req, res) => {
     let imageCloudPath;
 
     if (!req.files || Object.keys(req.files).length === 0) {
-      console.log("no files were uploaded");
+      // console.log("no files were uploaded");
     } else {
       imageUploadFile = req.files.image;
       newImageName = Date.now() + imageUploadFile.name;
       uploadPath =
         require("path").resolve("./") + "/public/uploads/" + newImageName;
-      console.log(uploadPath);
+      // console.log(uploadPath);
       imageUploadFile.mv(uploadPath, function (err) {
         if (err) return res.status(500).send(err);
       });
@@ -610,7 +610,7 @@ exports.editPut = async (req, res) => {
       newImageName = Date.now() + imageUploadFile.name;
       uploadPath =
         require("path").resolve("./") + "/public/uploads/" + newImageName;
-      console.log(uploadPath);
+      // console.log(uploadPath);
       imageUploadFile.mv(uploadPath, function (err) {
         if (err) return res.status(500).send(err);
       });
