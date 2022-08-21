@@ -374,7 +374,7 @@ exports.submitPostArticle = async (req, res) => {
       const result = await cloudinary.uploader.upload(
         uploadPath,
         {
-          width: 700,
+          width: 300,
           q_auto: "good",
         },
         function (error, result) {
@@ -617,7 +617,7 @@ exports.editPut = async (req, res) => {
       const result = await cloudinary.uploader.upload(
         uploadPath,
         {
-          width: 700,
+          width: 300,
           q_auto: "good",
         },
         function (error, result) {
