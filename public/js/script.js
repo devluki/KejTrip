@@ -306,7 +306,6 @@ if (cookiesBtn) {
       .then((res) => res.json())
       .then((data) => socket.emit("cookies", data))
       .catch(function (error) {
-        //   likesCounter.textContent = error;
         console.log(error);
       });
   });
@@ -385,7 +384,6 @@ if (commentsForm) {
         alert(res.text);
       })
       .catch((err) => console.log(err));
-    // return false
   });
 }
 
@@ -424,23 +422,7 @@ socket.on("newLike", (data) => {
     });
   }
 });
-// For post cards
 
-// socket.on("updateLikes", (data) => {
-//   articleLinks.forEach((link) => {
-//     const attribute = link.getAttribute("href");
-
-//     // console.log(attribute.slice(6, attribute.length));
-//     const postId = attribute.slice(6, attribute.length);
-//     console.log(postId);
-//     let flag = document.cookie.indexOf("a" + postId);
-//     if (flag !== -1) {
-//       likesCounter.textContent = `${data.likes}`;
-//     }
-//   });
-// });
-
-//
 socket.on("cookies", (data) => {
   console.log(data, data.cookies);
 
