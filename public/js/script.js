@@ -72,27 +72,31 @@ burger.addEventListener("click", burgerMenuToggle);
 const searchInput = document.querySelector(".nav__form-container");
 const searchLink = document.querySelector(".nav__search");
 
+const toggleActive = function (link, hiddenEl) {
+  if (!link.classList.contains("active")) {
+    link.classList.add("active");
+    hiddenEl.classList.remove("active");
+  }
+};
+
 searchLink.addEventListener("click", function (e) {
   e.preventDefault();
-
-  if (!searchLink.classList.contains("search-active")) {
-    searchLink.classList.add("search-active");
-    searchInput.classList.remove("search-active");
-  }
+  toggleActive(searchLink, searchInput);
 });
 
-document.addEventListener("click", function (e) {
+const removeActive = function (e, link, hiddenEl) {
   if (
-    searchLink.classList.contains("search-active") &&
-    e.target !== searchInput &&
-    e.target !== searchLink &&
+    link.classList.contains("active") &&
+    e.target !== hiddenEl &&
+    e.target !== link &&
     !e.target.classList.contains("form__input") &&
     !e.target.classList.contains("btn-search")
   ) {
-    searchLink.classList.remove("search-active");
-    searchInput.classList.add("search-active");
+    link.classList.remove("active");
+    hiddenEl.classList.add("active");
+    // console.log("warunek spełniony");
   }
-});
+};
 
 const headerPanel = document.querySelector(".header__panel");
 
@@ -103,6 +107,22 @@ if (headerPanel) {
   headerBanner.style.height = "100vh";
 }
 
+// Dropdown menu on click
+
+const dropdownBtn = document.querySelector(".nav__dropdown-link");
+const dropdownMenu = document.querySelector(".dropdown");
+
+dropdownBtn.addEventListener("click", function (e) {
+  // if(e.target.classList.contains('') )
+  e.preventDefault();
+  toggleActive(dropdownBtn, dropdownMenu);
+});
+
+document.addEventListener("click", function (e) {
+  removeActive(e, searchLink, searchInput);
+  removeActive(e, dropdownBtn, dropdownMenu);
+});
+
 // Hoover/blur - navlinks
 
 const blurLinksOnHoover = function (event) {
@@ -111,7 +131,8 @@ const blurLinksOnHoover = function (event) {
       if (
         event === "mouseover" &&
         (e.target.classList.contains("nav__link") ||
-          e.target.classList.contains("nav-icon"))
+          e.target.classList.contains("nav-icon") ||
+          e.target.classList.contains("link__dropdown"))
       ) {
         navLinks.forEach((navlink) => {
           navlink.classList.add("blur");
@@ -123,6 +144,7 @@ const blurLinksOnHoover = function (event) {
       if (event === "mouseout") {
         navLinks.forEach((navlink) => {
           navlink.classList.remove("blur");
+          // e.target.classList.remove("hidden");
         });
       }
 
