@@ -164,10 +164,8 @@
   border-radius: 10px;
 }
 
-/* .nav__item.nav__dropdown:hover .dropdown {
-  display: block;
-} */
-.dropdown__link:hover {
+.dropdown__link:hover,
+.nav__link:hover {
   color: green;
 }
 

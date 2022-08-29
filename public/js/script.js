@@ -61,7 +61,11 @@ const burgerMenuToggle = function () {
 // Event listeners
 navLinks.forEach((navLink) =>
   navLink.addEventListener("click", function (e) {
-    if (e.target.classList.contains("nav__search")) return;
+    if (
+      e.target.classList.contains("nav__search") ||
+      e.target.classList.contains("nav__dropdown-link")
+    )
+      return;
     if (window.innerWidth > 1024) return;
     burgerMenuToggle();
   })
@@ -90,7 +94,9 @@ const removeActive = function (e, link, hiddenEl) {
     e.target !== hiddenEl &&
     e.target !== link &&
     !e.target.classList.contains("form__input") &&
-    !e.target.classList.contains("btn-search")
+    !e.target.classList.contains("btn-search") //&&
+    // !e.target.classList.contains("nav__dropdown-link") &&
+    // !e.target.classList.contains("dropdown")
   ) {
     link.classList.remove("active");
     hiddenEl.classList.add("active");
@@ -115,6 +121,7 @@ const dropdownMenu = document.querySelector(".dropdown");
 dropdownBtn.addEventListener("click", function (e) {
   // if(e.target.classList.contains('') )
   e.preventDefault();
+  console.log("click drop");
   toggleActive(dropdownBtn, dropdownMenu);
 });
 
