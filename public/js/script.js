@@ -42,6 +42,9 @@ const cookiesContainer = document.querySelector(".cookies__container");
 // Likes
 const articleLinks = document.querySelectorAll(".article__link");
 
+// Dropdown menu
+let event;
+
 // Z-index of map
 if (maps) {
   maps.style.zIndex = 1;
@@ -95,8 +98,6 @@ const removeActive = function (e, link, hiddenEl) {
     e.target !== link &&
     !e.target.classList.contains("form__input") &&
     !e.target.classList.contains("btn-search") //&&
-    // !e.target.classList.contains("nav__dropdown-link") &&
-    // !e.target.classList.contains("dropdown")
   ) {
     link.classList.remove("active");
     hiddenEl.classList.add("active");
@@ -113,17 +114,22 @@ if (headerPanel) {
   headerBanner.style.height = "100vh";
 }
 
-// Dropdown menu on click
+// Dropdown menu on click/mouseover --> depends of mobile/desktop screen
 
 const dropdownBtn = document.querySelector(".nav__dropdown-link");
 const dropdownMenu = document.querySelector(".dropdown");
 
-dropdownBtn.addEventListener("click", function (e) {
-  // if(e.target.classList.contains('') )
-  e.preventDefault();
-  console.log("click drop");
-  toggleActive(dropdownBtn, dropdownMenu);
-});
+const handleDropdownMenu = function () {
+  let event = window.innerWidth < 1024 ? "click" : "mouseover";
+  console.log(event);
+  dropdownBtn.addEventListener(event, function (e) {
+    e.preventDefault();
+
+    toggleActive(dropdownBtn, dropdownMenu);
+  });
+};
+
+handleDropdownMenu();
 
 document.addEventListener("click", function (e) {
   removeActive(e, searchLink, searchInput);
