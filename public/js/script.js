@@ -138,7 +138,8 @@ document.addEventListener("click", function (e) {
 
 // Hoover/blur - navlinks
 
-const blurLinksOnHoover = function (event) {
+const blurLinksOnHover = function (event) {
+  if (window.innerWidth < 1024) return;
   navLinks.forEach((navlink) =>
     navlink.addEventListener(`${event}`, function (e) {
       if (
@@ -171,9 +172,9 @@ const blurLinksOnHoover = function (event) {
   );
 };
 
-blurLinksOnHoover("mouseover");
-blurLinksOnHoover("mouseout");
-blurLinksOnHoover("focus");
+blurLinksOnHover("mouseover");
+blurLinksOnHover("mouseout");
+blurLinksOnHover("focus");
 
 // Basic function to organize slider layout and change slides
 const slidePosition = function () {
