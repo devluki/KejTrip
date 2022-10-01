@@ -1275,15 +1275,15 @@
 
 @keyframes moving {
   0% {
-    background-position: 0%;
+    transform: translateX(0%);
   }
 
   50% {
-    background-position: 100%;
+    transform: translateX(100%);
   }
 
   100% {
-    background-position: 0%;
+    transform: translateX(0%);
   }
 }
 
@@ -1468,6 +1468,12 @@
   }
 }
 
+@media (orientation: portrait) and (min-width: 480px) {
+  .header__banner {
+    background-image: url("/img/Hero_mid.jpg");
+  }
+}
+
 @media (orientation: portrait) and (min-width: 540px) {
   .cookies {
     max-width: 700px;
@@ -1541,10 +1547,6 @@
   }
   .map__tab-container {
     min-width: 25%;
-  }
-
-  .header__banner {
-    background-image: url("/img/Hero_mid.jpg");
   }
 }
 
@@ -1638,9 +1640,9 @@
     background-size: 60%;
   }
 
-  .header__banner {
+  /* .header__banner {
     background-image: url("/img/hero.jpg");
-  }
+  } */
 }
 
 @media (orientation: portrait) and (min-width: 820px) {
@@ -1656,7 +1658,8 @@
     font-size: 1.5em;
   }
 }
-@media (orientation: landscape) and (min-width: 1000px) {
+
+@media (orientation: landscape) and (min-width: 768px) {
   .header__banner {
     background-image: url("/img/Hero.jpg");
   }
