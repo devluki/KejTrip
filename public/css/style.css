@@ -105,7 +105,8 @@
 
 .nav__burger-container {
   position: absolute;
-  top: 14%;
+  top: 50%;
+  transform: translateY(-50%);
   right: 10%;
   z-index: 3;
   color: var(--primary-color);
@@ -120,6 +121,7 @@
 .nav__links {
   position: absolute;
   top: 0;
+  /* left: 100vw; */
   left: 0;
   transform: translateX(100vw);
   z-index: 2;
@@ -135,48 +137,10 @@
   list-style: none;
 }
 
-.nav__link,
-.dropdown__link {
+.nav__link {
   text-decoration: none;
   font-size: 1.5em;
   color: var(--primary-color);
-  transition: 0.4s;
-}
-
-.nav__link,
-.dropdown__link,
-.dropdown,
-.nav__search,
-.nav__form-container {
-  transition: 0.3s;
-}
-
-.nav__dropdown {
-  position: relative;
-}
-
-.link__dropdown {
-  margin: 10px 0;
-  display: inline-block;
-  transform: rotate(90deg);
-}
-
-.dropdown {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  list-style: none;
-  width: 100%;
-  text-align: center;
-
-  border-top: none;
-  border-radius: 10px;
-}
-
-.dropdown__link:hover,
-.nav__link:hover {
-  color: green;
 }
 
 .search__link {
@@ -217,7 +181,7 @@
   min-width: 200px;
 }
 
-.active {
+.search-active {
   opacity: 0;
   z-index: -1;
 }
@@ -475,11 +439,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
-  background-image: url("/img/Hero.jpg");
+  /* background-image: url("/img/Hero.jpg"); */
+  background-image: url("/img/Hero_small.jpg");
   background-repeat: no-repeat;
   background-position: center;
-  background-size: cover, 60%;
-
+  background-size: cover;
+  height: calc(100vh - var(--nav-height));
   height: 100vh;
   color: var(--primary-color);
   width: 100%;
@@ -507,14 +472,14 @@
 }
 
 .header__motivation-quote-container {
-  margin-bottom: calc(0.35 * var(--nav-height));
+  margin-bottom: var(--nav-height);
   max-width: 1000px;
 }
 
 .header__motivation-quote {
   text-align: justify;
   font-style: italic;
-  animation: fade infinite 6s;
+  animation: fade infinite 8.5s;
 }
 
 .section {
@@ -533,7 +498,7 @@
   margin-top: 2%;
   font-family: var(--headding-font-family);
   text-align: right;
-  animation: fade infinite 6s;
+  animation: fade infinite 8.5s;
   transform: rotate(-5deg);
 }
 
@@ -1577,6 +1542,10 @@
   .map__tab-container {
     min-width: 25%;
   }
+
+  .header__banner {
+    background-image: url("/img/Hero_mid.jpg");
+  }
 }
 
 @media (orientation: portrait) and (min-width: 768px) {
@@ -1588,8 +1557,8 @@
     font-size: 1.35em;
   }
 
-  .nav__burger-container {
-    font-size: 2.5rem;
+  .aside__content {
+    flex-direction: row;
   }
 
   .nav__link {
@@ -1640,7 +1609,7 @@
   }
 
   .about-pic {
-    width: 45%;
+    width: 95%;
   }
 
   .aside__txt {
@@ -1668,6 +1637,10 @@
   .nav {
     background-size: 60%;
   }
+
+  .header__banner {
+    background-image: url("/img/hero.jpg");
+  }
 }
 
 @media (orientation: portrait) and (min-width: 820px) {
@@ -1681,6 +1654,17 @@
 
   .footer__social-heading {
     font-size: 1.5em;
+  }
+}
+@media (orientation: landscape) and (min-width: 1000px) {
+  .header__banner {
+    background-image: url("/img/Hero.jpg");
+  }
+  .aside__content {
+    flex-direction: row;
+  }
+  .about-pic {
+    width: 80%;
   }
 }
 
@@ -1746,6 +1730,14 @@
     height: 100%;
     border-left: 0.05em solid var(--aside-border--color);
     justify-content: space-between;
+  }
+
+  .aside__content {
+    flex-direction: column;
+  }
+
+  .about-pic {
+    width: 50%;
   }
 
   .articles__slider-wrapper {
