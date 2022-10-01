@@ -1266,25 +1266,8 @@
   width: 80%;
   margin: 3% auto;
   /* font-size: 4em; */
-  animation: moving infinite 220s;
-  animation-fill-mode: forwards;
-  animation-play-state: running;
-  animation-timing-function: linear;
+
   text-align: center;
-}
-
-@keyframes moving {
-  0% {
-    transform: translateX(0%);
-  }
-
-  50% {
-    transform: translateX(100%);
-  }
-
-  100% {
-    transform: translateX(0%);
-  }
 }
 
 @keyframes spin {
