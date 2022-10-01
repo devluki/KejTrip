@@ -203,7 +203,7 @@ if (dots.length !== 0) {
 
 dots.forEach((dot, i) =>
   dot.addEventListener("click", function () {
-    index = i;
+    index = -1 * i;
     slidePosition();
   })
 );
