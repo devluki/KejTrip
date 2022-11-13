@@ -157,7 +157,6 @@
 }
 
 .nav__links.menu--active {
-  /* left: 0; */
   transform: translateX(0vw);
   position: fixed;
   transition: 0.4s;
