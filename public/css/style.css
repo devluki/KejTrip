@@ -115,7 +115,7 @@
 
 .nav__burger-container.menu--active {
   position: fixed;
-  top: 2.5%;
+  top: 3.5%;
 }
 
 .nav__links {
@@ -1033,6 +1033,8 @@
 .panel__login {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   width: 90%;
 }
 
