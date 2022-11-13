@@ -157,7 +157,7 @@ slidePosition();
 const moveSlideLeft = function () {
   if (index === 0) return;
   index++;
-  console.log(index);
+  // console.log(index);
   slidePosition();
 
   console.log("click left", index);
@@ -167,7 +167,7 @@ const moveSlideRight = function () {
   index--;
   slidePosition();
 
-  console.log("click right", index);
+  // console.log("click right", index);
 };
 
 // Swipe posts
@@ -333,8 +333,8 @@ if (likeBtn) {
   likeBtn.addEventListener("click", async function () {
     likeIco.innerHTML = '<i class="fa-solid fa-heart"></i>';
     const postId = likeBtn.getAttribute("postId");
-    console.log(postId);
-    console.log("click");
+    // console.log(postId);
+    // console.log("click");
     let flag = document.cookie.indexOf("a" + commentsForm.postId.value);
     fetch("/post/" + postId, {
       method: "POST",
@@ -368,7 +368,7 @@ if (commentsForm) {
       return;
     }
 
-    console.log(data);
+    // console.log(data);
 
     fetch("/post-comment", {
       method: "POST",
@@ -379,7 +379,7 @@ if (commentsForm) {
     })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         socket.emit("newComment", data);
         alert(res.text);
       })
@@ -391,9 +391,9 @@ socket.on("newComment", (comment) => {
   let markup = ``;
   markup += `<p class="comments__user">${comment.comment}</p>`;
   markup += `<p class="comments__comment">${comment.userName}</p>`;
-  console.log(markup);
+  // console.log(markup);
   document.querySelector(".comment").insertAdjacentHTML("afterbegin", markup);
-  console.log(comment);
+  // console.log(comment);
 });
 // For post view
 socket.on("newLike", (data) => {
@@ -410,12 +410,12 @@ socket.on("newLike", (data) => {
       const attribute = link.getAttribute("href");
 
       const postId = attribute.slice(6, attribute.length);
-      console.log(postId);
+      // console.log(postId);
       let flag = document.cookie.indexOf("a" + postId);
-      console.log("flag:", flag);
+      // console.log("flag:", flag);
       if (flag !== -1) {
         const likesCounters = document.querySelectorAll(`.id${postId}`);
-        console.log(likesCounters);
+        // console.log(likesCounters);
 
         likesCounters.forEach(
           (couner) => (couner.textContent = `${data.likes}`)
@@ -427,7 +427,7 @@ socket.on("newLike", (data) => {
 });
 
 socket.on("cookies", (data) => {
-  console.log(data, data.cookies);
+  // console.log(data, data.cookies);
 
   let cookies = data.cookies;
   if (cookies) {
@@ -453,7 +453,7 @@ if (paginationBtnsContainer) {
   const urlParams = new URLSearchParams(window.location.search);
   const curPage = urlParams.get("page") * 1 || 1;
   lastPage.textContent = max;
-  console.log("max", max, "no of", noOfPosts, "limit", limit);
+  // console.log("max", max, "no of", noOfPosts, "limit", limit);
   if (curPage === max) {
     btnNext.classList.add("hidden");
   }
@@ -464,7 +464,7 @@ if (paginationBtnsContainer) {
   btnNext.addEventListener("click", function () {
     let page = curPage + 1;
 
-    console.log(page, max);
+    // console.log(page, max);
 
     updateQueryString(urlParams, page);
   });
@@ -472,7 +472,7 @@ if (paginationBtnsContainer) {
   btnPrev.addEventListener("click", function () {
     let page = curPage - 1;
 
-    console.log(page, max);
+    // console.log(page, max);
 
     updateQueryString(urlParams, page);
   });
@@ -495,7 +495,7 @@ let sumDistance = 0;
 distance.forEach((el) => {
   sumDistance += el.value * 1;
 });
-console.log(sumDistance);
+// console.log(sumDistance);
 
 const daysCounter = document.querySelector(".date-counter");
 const distanceCounter = document.querySelector(".km-counter");
@@ -563,7 +563,7 @@ const getGalleryPage = function (page) {
   const start = (page - 1) * galleryIndex;
   const end = page * galleryIndex;
   let scope = imgs.slice(start, end);
-  console.log(start, end, scope);
+  // console.log(start, end, scope);
   imgsContainer.textContent = "";
   scope.forEach((img, i) => {
     imgsContainer.insertAdjacentHTML(
@@ -608,7 +608,7 @@ if (imgsContainer) {
       `![${imgs[index].description}](${imgs[index].path})`
     );
     const target = e.target;
-    console.log(target);
+    // console.log(target);
     target.textContent = "Skopiowano!";
 
     setTimeout(restoreContent.bind(null, target), 1500);
@@ -627,7 +627,7 @@ const getGallery = async function () {
     imgs = await data.imgs;
     getGalleryPage((page = 1));
 
-    console.log(data);
+    // console.log(data);
   } catch (error) {
     console.log(error);
   }
