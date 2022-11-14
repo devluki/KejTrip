@@ -14,9 +14,3 @@ Travelling blog. NodeJS, ExpressJS, MongoDb + EJS templating engine.
 - Comment posts;
 - Search posts;
 
-
-## How to run
-
-`npm install`
-
- `npm start`
